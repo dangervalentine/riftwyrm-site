@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+/*
+ * Colours from the game's own design system ("Inkstone and Brass"): a cool
+ * slate near-black table, stone panels, bone-coloured text and one antique
+ * brass accent. Brass is kept for links and the one call to action, as in the
+ * game, where it marks only the primary action and the selected thing.
+ */
+:root {
+  --ground: #0c1013;
+  --stone: #151b20;
+  --stone-raised: #1e262c;
+  --line: #2a333a;
+  --edge: #717f89;
+  --parchment: #e6e1d6;
+  --muted: #a8a090;
+  --brass: #c9a14a;
+  --brass-bright: #e0bd6e;
+}
+
+@theme inline {
+  --color-ground: var(--ground);
+  --color-stone: var(--stone);
+  --color-stone-raised: var(--stone-raised);
+  --color-line: var(--line);
+  --color-edge: var(--edge);
+  --color-parchment: var(--parchment);
+  --color-muted: var(--muted);
+  --color-brass: var(--brass);
+  --color-brass-bright: var(--brass-bright);
+  --font-display: var(--font-spectral), Georgia, serif;
+  --font-sans: var(--font-source-sans), system-ui, sans-serif;
+}
+
+body {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgb(40 77 91 / 0.22), transparent 60%),
+    var(--ground);
+  color: var(--parchment);
+  font-family: var(--font-sans);
+}
+
+.link-quiet {
+  color: var(--muted);
+  transition: color 120ms;
+}
+.link-quiet:hover,
+.link-quiet:focus-visible {
+  color: var(--brass-bright);
+}
+
+:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* The long-form pages. */
+.prose-ink {
+  line-height: 1.7;
+  font-size: 1.0625rem;
+}
+.prose-ink h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 2.25rem;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+.prose-ink h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.375rem;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  color: var(--parchment);
+}
+.prose-ink h3 {
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+.prose-ink p,
+.prose-ink ul {
+  margin-bottom: 1rem;
+}
+.prose-ink ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+}
+.prose-ink li {
+  margin-bottom: 0.4rem;
+}
+.prose-ink a {
+  color: var(--brass);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.prose-ink a:hover {
+  color: var(--brass-bright);
+}
+.prose-ink .lede {
+  color: var(--muted);
+}
