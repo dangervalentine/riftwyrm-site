@@ -1,33 +1,41 @@
-import Image from "next/image";
-import Link from "next/link";
+import type { Metadata } from "next";
 import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import JsonLd from "@/components/JsonLd";
+import Dragons from "@/components/sections/Dragons";
+import Features from "@/components/sections/Features";
+import FinalCta from "@/components/sections/FinalCta";
+import Gallery from "@/components/sections/Gallery";
+import Hero from "@/components/sections/Hero";
+import Pitch from "@/components/sections/Pitch";
+import World from "@/components/sections/World";
 import { site } from "@/components/site";
 
+export const metadata: Metadata = {
+  title: { absolute: `${site.name}: hunt dragons in a solo card game` },
+  description: site.tagline,
+  alternates: { canonical: "/" },
+};
+
+/** The page walks the game's road: each section stands on the next Region's
+ * ground, ending at the lair. */
 export default function Home() {
   return (
     <>
-      <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col items-center justify-center px-6 py-20 text-center">
-        <Image
-          src="/icon.svg"
-          alt={`${site.name} app icon`}
-          width={160}
-          height={160}
-          priority
-          className="rounded-[2rem] shadow-[0_20px_60px_rgb(0_0_0/0.6)] ring-1 ring-line"
-        />
-        <h1 className="mt-10 font-display text-5xl font-bold tracking-tight sm:text-6xl">
-          {site.name}
-        </h1>
-        <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
-          {site.tagline}
-        </p>
-        <p className="mt-10 rounded-md border border-brass/60 bg-stone px-5 py-3 font-display text-lg text-brass-bright">
-          Coming soon to Google Play and the App Store
-        </p>
-        <nav className="mt-10 flex gap-8 text-base">
-          <Link href="/privacy" className="link-quiet">Privacy Policy</Link>
-          <Link href="/support" className="link-quiet">Support</Link>
-        </nav>
+      <JsonLd />
+      <Header overlay />
+      <main>
+        <Hero />
+        <section aria-labelledby="about-title" className="ground-1 py-24 sm:py-32">
+          <div className="mx-auto max-w-6xl px-6">
+            <Pitch />
+            <Features />
+          </div>
+        </section>
+        <Gallery />
+        <Dragons />
+        <World />
+        <FinalCta />
       </main>
       <Footer />
     </>

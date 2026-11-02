@@ -1,13 +1,15 @@
 import type { Metadata, Viewport } from "next";
 import { Source_Sans_3, Spectral } from "next/font/google";
 import "./globals.css";
+import { palette } from "@/components/palette";
 import { site } from "@/components/site";
 
 /** The game's two faces: Spectral for headings, Source Sans 3 for text. */
 const spectral = Spectral({
   variable: "--font-spectral",
   subsets: ["latin"],
-  weight: ["600", "700"],
+  weight: ["500", "600", "700"],
+  style: ["normal", "italic"],
 });
 
 const sourceSans = Source_Sans_3({
@@ -17,6 +19,7 @@ const sourceSans = Source_Sans_3({
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
+  applicationName: site.name,
   title: {
     default: site.name,
     template: `%s · ${site.name}`,
@@ -31,11 +34,17 @@ export const metadata: Metadata = {
     description: site.tagline,
     locale: "en_US",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: site.name,
+    description: site.tagline,
+  },
 };
 
 /** Paints the mobile browser chrome the colour of the page. */
 export const viewport: Viewport = {
-  themeColor: "#0c1013",
+  themeColor: palette.ground,
+  colorScheme: "dark",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

@@ -1,43 +1,101 @@
 @import "tailwindcss";
 
 /*
- * Colours from the game's own design system ("Inkstone and Brass"): a cool
- * slate near-black table, stone panels, bone-coloured text and one antique
- * brass accent. Brass is kept for links and the one call to action, as in the
- * game, where it marks only the primary action and the selected thing.
+ * Colours from the game's own design system ("Inkstone and Brass",
+ * ui/theme/tokens.gd in the game): a cool slate near-black table, stone
+ * panels, bone-coloured text and one antique brass accent. Brass is kept for
+ * links, focus and the calls to action, as in the game, where it marks only
+ * the primary action and the selected thing. Each dragon carries its Essence's
+ * pigment, and each Region its own ground. This file and components/palette.ts
+ * are the only places a colour is written down (the store buttons' livery
+ * excepted, see components/StoreButton.tsx).
  */
 :root {
   --ground: #0c1013;
   --stone: #151b20;
   --stone-raised: #1e262c;
+  --well: #080b0d;
   --line: #2a333a;
   --edge: #717f89;
   --parchment: #e6e1d6;
   --muted: #a8a090;
+  --faint: #56606a;
   --brass: #c9a14a;
   --brass-bright: #e0bd6e;
+  --brass-deep: #7a5c1e;
+  --on-brass: #17120a;
+  --jade: #7fb89a;
+  --danger: #de6f56;
+
+  /* Essences: each dragon's pigment and its bright partner. */
+  --lightning: #a87d36;
+  --lightning-bright: #d8ac5c;
+  --water: #2c4c80;
+  --water-bright: #7aa5dc;
+  --fire: #87302a;
+  --fire-bright: #d6765f;
+  --shadow: #4f3a80;
+  --shadow-bright: #a28ed0;
+
+  /* Regions: the ground of each leg of the journey, and its hue. */
+  --region-1-ground: #0d121a;
+  --region-2-ground: #0b1414;
+  --region-3-ground: #16100c;
+  --region-4-ground: #0d130d;
+  --region-1: #5f84b0;
+  --region-2: #3f8e87;
+  --region-3: #b97445;
+  --region-4: #6c9a5e;
+  --lair: #9a3a33;
 }
 
 @theme inline {
   --color-ground: var(--ground);
   --color-stone: var(--stone);
   --color-stone-raised: var(--stone-raised);
+  --color-well: var(--well);
   --color-line: var(--line);
   --color-edge: var(--edge);
   --color-parchment: var(--parchment);
   --color-muted: var(--muted);
+  --color-faint: var(--faint);
   --color-brass: var(--brass);
   --color-brass-bright: var(--brass-bright);
+  --color-brass-deep: var(--brass-deep);
+  --color-on-brass: var(--on-brass);
+  --color-jade: var(--jade);
+  --color-danger: var(--danger);
+  --color-lightning: var(--lightning);
+  --color-lightning-bright: var(--lightning-bright);
+  --color-water: var(--water);
+  --color-water-bright: var(--water-bright);
+  --color-fire: var(--fire);
+  --color-fire-bright: var(--fire-bright);
+  --color-shadow: var(--shadow);
+  --color-shadow-bright: var(--shadow-bright);
+  --color-region-1: var(--region-1);
+  --color-region-2: var(--region-2);
+  --color-region-3: var(--region-3);
+  --color-region-4: var(--region-4);
+  --color-lair: var(--lair);
   --font-display: var(--font-spectral), Georgia, serif;
   --font-sans: var(--font-source-sans), system-ui, sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
 body {
-  background:
-    radial-gradient(ellipse at 50% 0%, rgb(40 77 91 / 0.22), transparent 60%),
-    var(--ground);
+  background: var(--ground);
   color: var(--parchment);
   font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--brass-deep);
+  color: var(--parchment);
 }
 
 .link-quiet {
@@ -55,7 +113,87 @@ body {
   border-radius: 4px;
 }
 
-/* The long-form pages. */
+/* ------------------------------------------------------------ the journey */
+
+/*
+ * The page is walked like the game's road: each section stands on the next
+ * Region's ground, with that Region's hue as a low glow at its head, so the
+ * colour shifts as you scroll from one country into the next.
+ */
+.ground-1 { background: radial-gradient(ellipse 80% 60% at 50% 0%, color-mix(in srgb, var(--region-1) 14%, transparent), transparent 70%), var(--region-1-ground); }
+.ground-2 { background: radial-gradient(ellipse 80% 60% at 50% 0%, color-mix(in srgb, var(--region-2) 14%, transparent), transparent 70%), var(--region-2-ground); }
+.ground-3 { background: radial-gradient(ellipse 80% 60% at 50% 0%, color-mix(in srgb, var(--region-3) 12%, transparent), transparent 70%), var(--region-3-ground); }
+.ground-4 { background: radial-gradient(ellipse 80% 60% at 50% 0%, color-mix(in srgb, var(--region-4) 14%, transparent), transparent 70%), var(--region-4-ground); }
+.ground-lair { background: radial-gradient(ellipse 70% 70% at 50% 100%, color-mix(in srgb, var(--lair) 22%, transparent), transparent 70%), var(--ground); }
+
+/* The brass-to-bone sheen on the game's name. */
+.title-sheen {
+  background: linear-gradient(180deg, var(--parchment) 30%, var(--brass-bright) 75%, var(--brass) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* A game icon drawn in the current text colour, from its SVG as a mask. */
+.glyph {
+  display: inline-block;
+  background-color: currentColor;
+  mask: var(--glyph) center / contain no-repeat;
+  -webkit-mask: var(--glyph) center / contain no-repeat;
+}
+
+/* ------------------------------------------------------------ motion */
+
+/*
+ * One orchestrated moment: on load the hero's card rises out of the dark, the
+ * storm in it flashes once, and the dragon steps forward out of its frame.
+ * Everything else on the page holds still except where a person acts on it.
+ */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(32px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes step-out {
+  from { opacity: 0; transform: translate(-6%, 4%) scale(0.92); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes flash {
+  0%, 100% { opacity: 0; }
+  8% { opacity: 0.55; }
+  14% { opacity: 0.1; }
+  20% { opacity: 0.4; }
+}
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.hero-card { animation: rise 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.hero-flash { animation: flash 1400ms 700ms ease-out both; }
+.hero-dragon { animation: step-out 1100ms 450ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.hero-copy { animation: fade 700ms 200ms ease-out both; }
+
+/* The four dragons come up one after another as their row scrolls in. */
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: rise linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 60%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ------------------------------------------------------------ long-form pages */
+
 .prose-ink {
   line-height: 1.7;
   font-size: 1.0625rem;
