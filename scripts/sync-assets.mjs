@@ -36,8 +36,19 @@ const SCREENSHOTS = [
 ];
 /** In unlock order. */
 const DRAGONS = ["lightning", "water", "fire", "shadow"];
-const JOURNEYS = ["waterfall", "burning-forest", "peaks", "swamp", "rope-bridge", "volcano"];
-const ENEMIES = ["naga", "club-ogre", "goblin-hexer", "antler-horror", "marsh-treant", "lion-archer"];
+/** Every road and foe, region by region, as the game's ui/model/art.gd lists them. */
+const JOURNEYS = [
+  "peaks", "waterfall", "mountain-road", "cave-entrance",
+  "swamp", "river", "willow-tree", "cliff-crossing",
+  "volcano", "desert", "lava", "underground-cave",
+  "rope-bridge", "stone-path", "burning-forest", "forest-entrance",
+];
+const ENEMIES = [
+  "panda-fighter", "lion-archer", "crane-monk", "monkey-brawler",
+  "marsh-treant", "axe-gnome", "club-ogre", "horned-goblin",
+  "twin-ghoul", "twin-ogre", "naga", "boar-shaman",
+  "goblin-hexer", "hedge-wizard", "antler-horror", "gath-brute",
+];
 const ICONS = ["crown", "level_up", "book", "trophy", "star", "reshuffle"];
 /** The printed cards. Regions in road order, then a hand of Adept Cards (one
  * per Essence) and the two fire cards fanned under the hero's deck. */
@@ -126,13 +137,13 @@ function plan(game, version, cardsDir) {
 
   for (const name of JOURNEYS)
     add(`journeys.${name}`, join(art, "painted", "journeys", `${name}.png`), `public/media/world/journey-${name}.webp`,
-      (s) => s.resize({ width: 640, withoutEnlargement: true }).webp({ quality: 78 }));
+      (s) => s.resize({ width: 420, withoutEnlargement: true }).webp({ quality: 78 }));
 
   for (const name of ENEMIES) {
     add(`enemies.${name}.art`, join(art, "painted", "enemies", `${name}.png`), `public/media/world/enemy-${name}.webp`,
-      (s) => s.resize({ width: 640, withoutEnlargement: true }).webp({ quality: 80, alphaQuality: 90 }));
+      (s) => s.resize({ width: 420, withoutEnlargement: true }).webp({ quality: 80, alphaQuality: 90 }));
     add(`enemies.${name}.backdrop`, join(art, "painted", "backdrops", `${name}.png`), `public/media/world/backdrop-${name}.webp`,
-      (s) => s.resize({ width: 900, withoutEnlargement: true }).webp({ quality: 76 }));
+      (s) => s.resize({ width: 600, withoutEnlargement: true }).webp({ quality: 76 }));
   }
 
   // The share image is drawn at build time by a renderer that reads PNG, not WebP.

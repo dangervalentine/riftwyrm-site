@@ -318,3 +318,15 @@ Verification:
   - no horizontal overflow from 320 to 2560 px; a screen-reader-only caption in the scrolling road had stretched the document, fixed by making each road card `relative`
   - store buttons on the first screen down to 320×640
   - Lighthouse 100/100/100/100 on the home page
+
+### Revision: every foe and road, one region at a time (2026-11-02, from developer feedback)
+
+- The world section shows all 16 foes, each on its backdrop, and all 16 roads, grouped by region in the order the regions are crossed. Names come from the game's `ui/model/art.gd`.
+- Each region is one centred slide (max 760 px), laid out as its Region Card is: four foes above four roads.
+- Ways to move between regions:
+  - swipe
+  - the previous and next buttons beside the slide, which step exactly one region
+  - the region tabs I–IV underneath, which show the current region
+  - the arrow keys when the strip has focus
+- `sync-assets` takes every road, foe and backdrop. Roads and foes are stored at 420 px, backdrops at 600 px.
+- Verified: no horizontal overflow at any tested size, and Lighthouse 100/100/100/100 on the home page.

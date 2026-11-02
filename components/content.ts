@@ -135,21 +135,74 @@ export const dragons: {
   },
 ];
 
-/** Roads and foes from the game, with the names the game gives them. */
-export const journeys: { key: string; name: string; alt: string }[] = [
-  { key: "peaks", name: "High Peaks", alt: "A pale road winding between steep green peaks." },
-  { key: "waterfall", name: "The Falls", alt: "A tall waterfall between blue cliffs, a stone path at its foot." },
-  { key: "swamp", name: "Sunken Mire", alt: "A boardwalk across still marsh water to a lone bare tree." },
-  { key: "volcano", name: "Ash Slopes", alt: "A dark mountain against a red sun, a river running down from it." },
-  { key: "rope-bridge", name: "Rope Bridge", alt: "A rope bridge slung across a green gorge above a river." },
-  { key: "burning-forest", name: "Burnt Forest", alt: "A pale road through a forest of bare, ash-white trees." },
-];
+type Piece = { key: string; name: string; alt: string };
 
-export const enemies: { key: string; name: string; alt: string }[] = [
-  { key: "lion-archer", name: "Lionel Archer", alt: "A lion archer drawing a bow." },
-  { key: "marsh-treant", name: "Swamp Treant", alt: "An antlered tree creature with clawed, glowing hands." },
-  { key: "club-ogre", name: "Bog Ogre", alt: "A grey ogre dragging a flaming hammer." },
-  { key: "naga", name: "Naga Goro", alt: "A serpent-headed figure in a long robe, red tongue flickering." },
-  { key: "goblin-hexer", name: "Goblin Hexer", alt: "A hooded goblin with a staff of purple fire." },
-  { key: "antler-horror", name: "Antlered Horror", alt: "A gaunt, grey, deer-like horror crowned with antlers." },
+/** Every foe and road, region by region, with the names the game gives them
+ * (ui/model/art.gd in the game): on each Region Card the four foes sit above
+ * its four roads, and the site lays them out the same way. */
+export const world: { n: 1 | 2 | 3 | 4; region: string; enemies: Piece[]; journeys: Piece[] }[] = [
+  {
+    n: 1,
+    region: "Verdant Crags",
+    enemies: [
+      { key: "panda-fighter", name: "Shaolin Panda", alt: "A fighter in a white gi and black belt, fists crackling." },
+      { key: "lion-archer", name: "Lionel Archer", alt: "A lion archer drawing a bow." },
+      { key: "crane-monk", name: "Crane Monk", alt: "A heron-headed monk in green robes with a blade." },
+      { key: "monkey-brawler", name: "Frenzied Ape", alt: "A hulking blue ape, roaring." },
+    ],
+    journeys: [
+      { key: "peaks", name: "High Peaks", alt: "A pale road winding between steep green peaks." },
+      { key: "waterfall", name: "The Falls", alt: "A tall waterfall between blue cliffs, a stone path at its foot." },
+      { key: "mountain-road", name: "Mountain Road", alt: "A stone road climbing toward a peak streaked with fire." },
+      { key: "cave-entrance", name: "Dark Cave", alt: "A path into a deep gorge under a purple glow." },
+    ],
+  },
+  {
+    n: 2,
+    region: "Vile Mires",
+    enemies: [
+      { key: "marsh-treant", name: "Swamp Treant", alt: "An antlered tree creature with clawed, glowing hands." },
+      { key: "axe-gnome", name: "Rapid Gnome", alt: "A gnome in a red cap charging with a flaming axe." },
+      { key: "club-ogre", name: "Bog Ogre", alt: "A grey ogre dragging a flaming hammer." },
+      { key: "horned-goblin", name: "Goblin Raider", alt: "A goblin in a horned helmet with a crackling spear." },
+    ],
+    journeys: [
+      { key: "swamp", name: "Sunken Mire", alt: "A boardwalk across still marsh water to a lone bare tree." },
+      { key: "river", name: "Black River", alt: "Stepping stones across a river under the moon." },
+      { key: "willow-tree", name: "Weeping Willows", alt: "A path winding past a great willow." },
+      { key: "cliff-crossing", name: "Cliff Path", alt: "A narrow bridge between two cliffs, struck by violet lightning." },
+    ],
+  },
+  {
+    n: 3,
+    region: "Steam Flats",
+    enemies: [
+      { key: "twin-ghoul", name: "Conjoined Ghoul", alt: "A gaunt two-headed ghoul with long claws." },
+      { key: "twin-ogre", name: "Twin Ogre", alt: "A two-headed ogre gripping a club." },
+      { key: "naga", name: "Naga Goro", alt: "A serpent-headed figure in a long robe, red tongue flickering." },
+      { key: "boar-shaman", name: "Wereboar", alt: "A boar warrior raising a spear." },
+    ],
+    journeys: [
+      { key: "volcano", name: "Ash Slopes", alt: "A dark mountain against a red sun, a river running down from it." },
+      { key: "desert", name: "Glass Desert", alt: "Orange dunes around a rock spire, lightning in the sky." },
+      { key: "lava", name: "Lava Fields", alt: "A river of lava beneath a broken scaffold and a red sun." },
+      { key: "underground-cave", name: "Deep Caverns", alt: "A stone arch in a cavern over a glowing violet door." },
+    ],
+  },
+  {
+    n: 4,
+    region: "Wyrmwood",
+    enemies: [
+      { key: "goblin-hexer", name: "Goblin Hexer", alt: "A hooded goblin with a staff of purple fire." },
+      { key: "hedge-wizard", name: "Hedge Wizard", alt: "An old wizard in a pointed hat with a burning staff." },
+      { key: "antler-horror", name: "Antlered Horror", alt: "A gaunt, grey, deer-like horror crowned with antlers." },
+      { key: "gath-brute", name: "Brute of Gath", alt: "A horned, shaggy brute, fists clenched." },
+    ],
+    journeys: [
+      { key: "rope-bridge", name: "Rope Bridge", alt: "A rope bridge slung across a green gorge above a river." },
+      { key: "stone-path", name: "Tainted Mine", alt: "Mine tracks running between violet crystals." },
+      { key: "burning-forest", name: "Burnt Forest", alt: "A pale road through a forest of bare, ash-white trees." },
+      { key: "forest-entrance", name: "Forest Gate", alt: "A path into a pine forest under a lightning storm." },
+    ],
+  },
 ];

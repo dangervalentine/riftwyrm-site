@@ -109,108 +109,278 @@ export const dragons = {
 
 export const journeys = {
   "burning-forest": {
-    "height": 823,
+    "height": 540,
     "src": "/media/world/journey-burning-forest.webp",
-    "width": 640
+    "width": 420
+  },
+  "cave-entrance": {
+    "height": 540,
+    "src": "/media/world/journey-cave-entrance.webp",
+    "width": 420
+  },
+  "cliff-crossing": {
+    "height": 540,
+    "src": "/media/world/journey-cliff-crossing.webp",
+    "width": 420
+  },
+  "desert": {
+    "height": 540,
+    "src": "/media/world/journey-desert.webp",
+    "width": 420
+  },
+  "forest-entrance": {
+    "height": 540,
+    "src": "/media/world/journey-forest-entrance.webp",
+    "width": 420
+  },
+  "lava": {
+    "height": 540,
+    "src": "/media/world/journey-lava.webp",
+    "width": 420
+  },
+  "mountain-road": {
+    "height": 540,
+    "src": "/media/world/journey-mountain-road.webp",
+    "width": 420
   },
   "peaks": {
-    "height": 823,
+    "height": 540,
     "src": "/media/world/journey-peaks.webp",
-    "width": 640
+    "width": 420
+  },
+  "river": {
+    "height": 540,
+    "src": "/media/world/journey-river.webp",
+    "width": 420
   },
   "rope-bridge": {
-    "height": 823,
+    "height": 540,
     "src": "/media/world/journey-rope-bridge.webp",
-    "width": 640
+    "width": 420
+  },
+  "stone-path": {
+    "height": 540,
+    "src": "/media/world/journey-stone-path.webp",
+    "width": 420
   },
   "swamp": {
-    "height": 823,
+    "height": 540,
     "src": "/media/world/journey-swamp.webp",
-    "width": 640
+    "width": 420
+  },
+  "underground-cave": {
+    "height": 540,
+    "src": "/media/world/journey-underground-cave.webp",
+    "width": 420
   },
   "volcano": {
-    "height": 823,
+    "height": 540,
     "src": "/media/world/journey-volcano.webp",
-    "width": 640
+    "width": 420
   },
   "waterfall": {
-    "height": 823,
+    "height": 540,
     "src": "/media/world/journey-waterfall.webp",
-    "width": 640
+    "width": 420
+  },
+  "willow-tree": {
+    "height": 540,
+    "src": "/media/world/journey-willow-tree.webp",
+    "width": 420
   }
 } as const;
 
 export const enemies = {
   "antler-horror": {
     "art": {
-      "height": 640,
+      "height": 420,
       "src": "/media/world/enemy-antler-horror.webp",
-      "width": 640
+      "width": 420
     },
     "backdrop": {
-      "height": 663,
+      "height": 442,
       "src": "/media/world/backdrop-antler-horror.webp",
-      "width": 900
+      "width": 600
+    }
+  },
+  "axe-gnome": {
+    "art": {
+      "height": 420,
+      "src": "/media/world/enemy-axe-gnome.webp",
+      "width": 420
+    },
+    "backdrop": {
+      "height": 442,
+      "src": "/media/world/backdrop-axe-gnome.webp",
+      "width": 600
+    }
+  },
+  "boar-shaman": {
+    "art": {
+      "height": 420,
+      "src": "/media/world/enemy-boar-shaman.webp",
+      "width": 420
+    },
+    "backdrop": {
+      "height": 442,
+      "src": "/media/world/backdrop-boar-shaman.webp",
+      "width": 600
     }
   },
   "club-ogre": {
     "art": {
-      "height": 640,
+      "height": 420,
       "src": "/media/world/enemy-club-ogre.webp",
-      "width": 640
+      "width": 420
     },
     "backdrop": {
-      "height": 663,
+      "height": 442,
       "src": "/media/world/backdrop-club-ogre.webp",
-      "width": 900
+      "width": 600
+    }
+  },
+  "crane-monk": {
+    "art": {
+      "height": 420,
+      "src": "/media/world/enemy-crane-monk.webp",
+      "width": 420
+    },
+    "backdrop": {
+      "height": 442,
+      "src": "/media/world/backdrop-crane-monk.webp",
+      "width": 600
+    }
+  },
+  "gath-brute": {
+    "art": {
+      "height": 420,
+      "src": "/media/world/enemy-gath-brute.webp",
+      "width": 420
+    },
+    "backdrop": {
+      "height": 442,
+      "src": "/media/world/backdrop-gath-brute.webp",
+      "width": 600
     }
   },
   "goblin-hexer": {
     "art": {
-      "height": 640,
+      "height": 420,
       "src": "/media/world/enemy-goblin-hexer.webp",
-      "width": 640
+      "width": 420
     },
     "backdrop": {
-      "height": 663,
+      "height": 442,
       "src": "/media/world/backdrop-goblin-hexer.webp",
-      "width": 900
+      "width": 600
+    }
+  },
+  "hedge-wizard": {
+    "art": {
+      "height": 420,
+      "src": "/media/world/enemy-hedge-wizard.webp",
+      "width": 420
+    },
+    "backdrop": {
+      "height": 442,
+      "src": "/media/world/backdrop-hedge-wizard.webp",
+      "width": 600
+    }
+  },
+  "horned-goblin": {
+    "art": {
+      "height": 420,
+      "src": "/media/world/enemy-horned-goblin.webp",
+      "width": 420
+    },
+    "backdrop": {
+      "height": 442,
+      "src": "/media/world/backdrop-horned-goblin.webp",
+      "width": 600
     }
   },
   "lion-archer": {
     "art": {
-      "height": 640,
+      "height": 420,
       "src": "/media/world/enemy-lion-archer.webp",
-      "width": 640
+      "width": 420
     },
     "backdrop": {
-      "height": 663,
+      "height": 442,
       "src": "/media/world/backdrop-lion-archer.webp",
-      "width": 900
+      "width": 600
     }
   },
   "marsh-treant": {
     "art": {
-      "height": 640,
+      "height": 420,
       "src": "/media/world/enemy-marsh-treant.webp",
-      "width": 640
+      "width": 420
     },
     "backdrop": {
-      "height": 663,
+      "height": 442,
       "src": "/media/world/backdrop-marsh-treant.webp",
-      "width": 900
+      "width": 600
+    }
+  },
+  "monkey-brawler": {
+    "art": {
+      "height": 420,
+      "src": "/media/world/enemy-monkey-brawler.webp",
+      "width": 420
+    },
+    "backdrop": {
+      "height": 442,
+      "src": "/media/world/backdrop-monkey-brawler.webp",
+      "width": 600
     }
   },
   "naga": {
     "art": {
-      "height": 640,
+      "height": 420,
       "src": "/media/world/enemy-naga.webp",
-      "width": 640
+      "width": 420
     },
     "backdrop": {
-      "height": 663,
+      "height": 442,
       "src": "/media/world/backdrop-naga.webp",
-      "width": 900
+      "width": 600
+    }
+  },
+  "panda-fighter": {
+    "art": {
+      "height": 420,
+      "src": "/media/world/enemy-panda-fighter.webp",
+      "width": 420
+    },
+    "backdrop": {
+      "height": 442,
+      "src": "/media/world/backdrop-panda-fighter.webp",
+      "width": 600
+    }
+  },
+  "twin-ghoul": {
+    "art": {
+      "height": 420,
+      "src": "/media/world/enemy-twin-ghoul.webp",
+      "width": 420
+    },
+    "backdrop": {
+      "height": 442,
+      "src": "/media/world/backdrop-twin-ghoul.webp",
+      "width": 600
+    }
+  },
+  "twin-ogre": {
+    "art": {
+      "height": 420,
+      "src": "/media/world/enemy-twin-ogre.webp",
+      "width": 420
+    },
+    "backdrop": {
+      "height": 442,
+      "src": "/media/world/backdrop-twin-ogre.webp",
+      "width": 600
     }
   }
 } as const;
