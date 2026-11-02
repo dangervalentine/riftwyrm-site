@@ -16,7 +16,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
   return (
     <footer className="footer-bar mt-auto">
-      <Link href="/" className="footer-brand" aria-label={`${site.name} home`}>
+      <Link href="/" className="footer-brand">
         <Image src="/icon.svg" alt="" width={16} height={16} className="rounded-[4px]" />
         <span className="footer-name">{site.name}</span>
         <span className="footer-year">&copy; {year}</span>
@@ -33,7 +33,7 @@ export default function Footer() {
         className="footer-link"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label={`Made by ${site.developer}: view profile on GitHub (opens in a new tab)`}
+        aria-label="dangervalentine on GitHub (opens in a new tab)"
       >
         <svg viewBox="0 0 24 24" width={14} height={14} fill="currentColor" aria-hidden="true" focusable="false">
           <path d={GITHUB_MARK} />

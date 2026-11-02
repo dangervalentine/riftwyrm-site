@@ -437,3 +437,447 @@ export const cards = {
     "width": 370
   }
 } as const;
+
+/** Each Region Card's foes and roads, in card order, as printed. */
+export const regionStats = [
+  {
+    "region": 1,
+    "enemies": [
+      {
+        "hp": 7,
+        "speed": 8,
+        "attack": {
+          "value": 1,
+          "affinity": "lightning"
+        },
+        "armor": [
+          {
+            "affinity": "lightning",
+            "value": 1
+          }
+        ],
+        "xp": 4,
+        "trait": null
+      },
+      {
+        "hp": 11,
+        "speed": 4,
+        "attack": {
+          "value": 2,
+          "affinity": "fire"
+        },
+        "armor": [
+          {
+            "affinity": "fire",
+            "value": 1
+          }
+        ],
+        "xp": 7,
+        "trait": null
+      },
+      {
+        "hp": 9,
+        "speed": 6,
+        "attack": {
+          "value": 2,
+          "affinity": "water"
+        },
+        "armor": [
+          {
+            "affinity": "water",
+            "value": 2
+          }
+        ],
+        "xp": 5,
+        "trait": null
+      },
+      {
+        "hp": 13,
+        "speed": 2,
+        "attack": {
+          "value": 3,
+          "affinity": "shadow"
+        },
+        "armor": [
+          {
+            "affinity": "shadow",
+            "value": 3
+          }
+        ],
+        "xp": 8,
+        "trait": null
+      }
+    ],
+    "journeys": [
+      {
+        "mp": {
+          "value": 12,
+          "affinity": "lightning"
+        },
+        "delay": 2,
+        "xp": 5,
+        "obstacle": null
+      },
+      {
+        "mp": {
+          "value": 8,
+          "affinity": "water"
+        },
+        "delay": 1,
+        "xp": 3,
+        "obstacle": null
+      },
+      {
+        "mp": {
+          "value": 11,
+          "affinity": "fire"
+        },
+        "delay": 2,
+        "xp": 4,
+        "obstacle": null
+      },
+      {
+        "mp": {
+          "value": 10,
+          "affinity": "shadow"
+        },
+        "delay": 1,
+        "xp": 3,
+        "obstacle": null
+      }
+    ]
+  },
+  {
+    "region": 2,
+    "enemies": [
+      {
+        "hp": 9,
+        "speed": 6,
+        "attack": {
+          "value": 2,
+          "affinity": "shadow"
+        },
+        "armor": [
+          {
+            "affinity": "shadow",
+            "value": 1
+          }
+        ],
+        "xp": 5,
+        "trait": "Reach"
+      },
+      {
+        "hp": 10,
+        "speed": 8,
+        "attack": {
+          "value": 2,
+          "affinity": "lightning"
+        },
+        "armor": [
+          {
+            "affinity": "lightning",
+            "value": 1
+          }
+        ],
+        "xp": 4,
+        "trait": null
+      },
+      {
+        "hp": 15,
+        "speed": 2,
+        "attack": {
+          "value": 4,
+          "affinity": "fire"
+        },
+        "armor": [
+          {
+            "affinity": "fire",
+            "value": 3
+          }
+        ],
+        "xp": 8,
+        "trait": "Lumbering"
+      },
+      {
+        "hp": 13,
+        "speed": 5,
+        "attack": {
+          "value": 3,
+          "affinity": "water"
+        },
+        "armor": [
+          {
+            "affinity": "water",
+            "value": 2
+          }
+        ],
+        "xp": 7,
+        "trait": "Frostbite"
+      }
+    ],
+    "journeys": [
+      {
+        "mp": {
+          "value": 10,
+          "affinity": "fire"
+        },
+        "delay": 2,
+        "xp": 4,
+        "obstacle": "Crumbling"
+      },
+      {
+        "mp": {
+          "value": 13,
+          "affinity": "water"
+        },
+        "delay": 2,
+        "xp": 7,
+        "obstacle": null
+      },
+      {
+        "mp": {
+          "value": 11,
+          "affinity": "lightning"
+        },
+        "delay": 3,
+        "xp": 5,
+        "obstacle": null
+      },
+      {
+        "mp": {
+          "value": 9,
+          "affinity": "shadow"
+        },
+        "delay": 2,
+        "xp": 4,
+        "obstacle": "Uphill"
+      }
+    ]
+  },
+  {
+    "region": 3,
+    "enemies": [
+      {
+        "hp": 17,
+        "speed": 5,
+        "attack": {
+          "value": 3,
+          "affinity": "shadow"
+        },
+        "armor": [
+          {
+            "affinity": "shadow",
+            "value": 3
+          }
+        ],
+        "xp": 9,
+        "trait": null
+      },
+      {
+        "hp": 14,
+        "speed": 4,
+        "attack": {
+          "value": 3,
+          "affinity": "water"
+        },
+        "armor": [
+          {
+            "affinity": "water",
+            "value": 3
+          }
+        ],
+        "xp": 8,
+        "trait": "Lumbering"
+      },
+      {
+        "hp": 11,
+        "speed": 9,
+        "attack": {
+          "value": 2,
+          "affinity": "fire"
+        },
+        "armor": [
+          {
+            "affinity": "fire",
+            "value": 2
+          }
+        ],
+        "xp": 7,
+        "trait": "Toxic"
+      },
+      {
+        "hp": 9,
+        "speed": 7,
+        "attack": {
+          "value": 2,
+          "affinity": "lightning"
+        },
+        "armor": [
+          {
+            "affinity": "lightning",
+            "value": 2
+          }
+        ],
+        "xp": 5,
+        "trait": "Reach"
+      }
+    ],
+    "journeys": [
+      {
+        "mp": {
+          "value": 14,
+          "affinity": "water"
+        },
+        "delay": 2,
+        "xp": 7,
+        "obstacle": "Uphill"
+      },
+      {
+        "mp": {
+          "value": 12,
+          "affinity": "lightning"
+        },
+        "delay": 3,
+        "xp": 6,
+        "obstacle": null
+      },
+      {
+        "mp": {
+          "value": 10,
+          "affinity": "fire"
+        },
+        "delay": 3,
+        "xp": 5,
+        "obstacle": "Crumbling"
+      },
+      {
+        "mp": {
+          "value": 11,
+          "affinity": "shadow"
+        },
+        "delay": 2,
+        "xp": 5,
+        "obstacle": null
+      }
+    ]
+  },
+  {
+    "region": 4,
+    "enemies": [
+      {
+        "hp": 13,
+        "speed": 6,
+        "attack": {
+          "value": 2,
+          "affinity": "shadow"
+        },
+        "armor": [
+          {
+            "affinity": "shadow",
+            "value": 3
+          },
+          {
+            "affinity": "water",
+            "value": 2
+          }
+        ],
+        "xp": 7,
+        "trait": "Toxic"
+      },
+      {
+        "hp": 9,
+        "speed": 10,
+        "attack": {
+          "value": 3,
+          "affinity": "fire"
+        },
+        "armor": [
+          {
+            "affinity": "fire",
+            "value": 1
+          }
+        ],
+        "xp": 5,
+        "trait": "Reach"
+      },
+      {
+        "hp": 14,
+        "speed": 8,
+        "attack": {
+          "value": 4,
+          "affinity": "lightning"
+        },
+        "armor": [
+          {
+            "affinity": "lightning",
+            "value": 2
+          },
+          {
+            "affinity": "fire",
+            "value": 2
+          }
+        ],
+        "xp": 8,
+        "trait": "Frostbite"
+      },
+      {
+        "hp": 17,
+        "speed": 7,
+        "attack": {
+          "value": 5,
+          "affinity": "water"
+        },
+        "armor": [
+          {
+            "affinity": "water",
+            "value": 3
+          },
+          {
+            "affinity": "shadow",
+            "value": 2
+          }
+        ],
+        "xp": 9,
+        "trait": null
+      }
+    ],
+    "journeys": [
+      {
+        "mp": {
+          "value": 14,
+          "affinity": "water"
+        },
+        "delay": 2,
+        "xp": 7,
+        "obstacle": "Crumbling"
+      },
+      {
+        "mp": {
+          "value": 13,
+          "affinity": "shadow"
+        },
+        "delay": 3,
+        "xp": 6,
+        "obstacle": null
+      },
+      {
+        "mp": {
+          "value": 12,
+          "affinity": "fire"
+        },
+        "delay": 2,
+        "xp": 5,
+        "obstacle": null
+      },
+      {
+        "mp": {
+          "value": 11,
+          "affinity": "lightning"
+        },
+        "delay": 3,
+        "xp": 5,
+        "obstacle": "Uphill"
+      }
+    ]
+  }
+] as const;

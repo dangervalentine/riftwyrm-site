@@ -1,18 +1,19 @@
 import Image from "next/image";
 import type { CSSProperties } from "react";
 import { dragons, hand, regions, world } from "../content";
-import { cards, dragons as dragonArt, enemies, journeys } from "../media.generated";
+import { cards, dragons as dragonArt, enemies, journeys, regionStats } from "../media.generated";
 import { site } from "../site";
 import Road, { type RoadDragon, type RoadRegion } from "./Road";
 
 /** The four Region Cards with every foe and road on them, for the road. */
 const roadRegions: RoadRegion[] = regions.map((r) => {
   const w = world.find((x) => x.n === r.n)!;
+  const stats = regionStats.find((x) => x.region === r.n)!;
   return {
     ...r,
     card: cards[`region${r.n}` as const],
-    enemies: w.enemies.map((e) => ({ ...e, ...enemies[e.key as keyof typeof enemies] })),
-    journeys: w.journeys.map((j) => ({ ...j, art: journeys[j.key as keyof typeof journeys] })),
+    enemies: w.enemies.map((e, i) => ({ ...e, ...enemies[e.key as keyof typeof enemies], stats: stats.enemies[i] })),
+    journeys: w.journeys.map((j, i) => ({ ...j, art: journeys[j.key as keyof typeof journeys], stats: stats.journeys[i] })),
   };
 });
 

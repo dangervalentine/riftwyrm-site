@@ -344,3 +344,24 @@ Verification:
   - all 36 targets switch the highlight on hover (desktop) and tap (phone)
   - no horizontal overflow at any tested size
   - Lighthouse 100/100/100/100 on the home page
+
+### Revision: card and highlight together, with in-game stats (2026-11-02, from developer feedback)
+
+- **The road is walked one card per row**: the four Region Cards, then the four dragons' card. Each row has its own highlight and keeps its own pick.
+  - **Wide screens (≥ 768 px)**: card and highlight side by side, swapping sides each row.
+  - **Phones**: a compact highlight above a medium-sized card.
+  - Each row stands on its region's ground, ending at the lair.
+- **Foes and roads show only their picture, name and printed stats**, as the game's icon chips. The descriptions move into the pictures' alt text.
+  - foes: HP, Speed, Attack, Armor and XP, with each Essence's icon in its colour, plus a Trait if the foe has one
+  - roads: MP, Delay and XP, plus an Obstacle if the road has one
+- **Roads are shown whole**, over a blurred copy of the painting, instead of cropped.
+- **Dragons** keep their title and line.
+- **`sync-assets`** writes `regionStats` from the game's `data/cards.json`, with Trait and Obstacle names from `data/text.json` (`term.<id>`). It also copies the stat and Essence icons.
+- **Footer accessibility**:
+  - the screen-reader labels now contain the links' visible text (Lighthouse `label-content-name-mismatch`)
+  - on phones the name and handle are hidden visually but still read
+- **Verified**:
+  - card and highlight fit on one screen together in every row at 1440×900, 1280×800, 1024×768, 768×1024, 390×844 and 360×740
+  - no horizontal overflow
+  - Lighthouse 100/100/100/100
+  - the sync makes no changes on a rerun

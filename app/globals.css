@@ -185,9 +185,18 @@ body {
 @media (min-width: 1025px) {
   .footer-bar { height: 40px; }
 }
+/* On a phone the icons stand for the name and the handle: hidden from sight
+   but still read, so the links keep their names. */
 @media (max-width: 640px) {
   .footer-name,
-  .footer-handle { display: none; }
+  .footer-handle {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
 }
 
 /* ------------------------------------------------------------ the journey */
