@@ -330,3 +330,17 @@ Verification:
   - the arrow keys when the strip has focus
 - `sync-assets` takes every road, foe and backdrop. Roads and foes are stored at 420 px, backdrops at 600 px.
 - Verified: no horizontal overflow at any tested size, and Lighthouse 100/100/100/100 on the home page.
+
+### Revision: look closer on the cards themselves (2026-11-02, from developer feedback)
+
+- The separate world section and its strip (`World.tsx`, `HScroll.tsx`) are removed.
+- The road in the deck section (`components/sections/Road.tsx`) is now interactive:
+  - every foe and road panel on the four Region Cards is a target (32 in all)
+  - the dragon slot is now a card of all four dragons, 2×2, drawn like a Region Card; each dragon is also a target
+  - hovering, tapping or keyboard-focusing a target shows that one foe, road or dragon large in a highlight area under the cards, with its name, where it belongs and a description; the highlight is announced to screen readers as it changes
+- The target positions on a Region Card are measured from the card renders.
+- The Dragon Card renders are no longer synced.
+- Verified:
+  - all 36 targets switch the highlight on hover (desktop) and tap (phone)
+  - no horizontal overflow at any tested size
+  - Lighthouse 100/100/100/100 on the home page

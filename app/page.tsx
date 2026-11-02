@@ -8,7 +8,6 @@ import Features from "@/components/sections/Features";
 import FinalCta from "@/components/sections/FinalCta";
 import Gallery from "@/components/sections/Gallery";
 import Hero from "@/components/sections/Hero";
-import World from "@/components/sections/World";
 import { site } from "@/components/site";
 
 export const metadata: Metadata = {
@@ -29,7 +28,6 @@ export default function Home() {
         <Deck />
         <Gallery />
         <Dragons />
-        <World />
         <Features />
         <FinalCta />
       </main>

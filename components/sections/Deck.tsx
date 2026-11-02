@@ -1,10 +1,22 @@
 import Image from "next/image";
 import type { CSSProperties } from "react";
-import { hand, regions } from "../content";
-import { cards } from "../media.generated";
+import { dragons, hand, regions, world } from "../content";
+import { cards, dragons as dragonArt, enemies, journeys } from "../media.generated";
 import { site } from "../site";
+import Road, { type RoadDragon, type RoadRegion } from "./Road";
 
-const NUMERAL = ["I", "II", "III", "IV"];
+/** The four Region Cards with every foe and road on them, for the road. */
+const roadRegions: RoadRegion[] = regions.map((r) => {
+  const w = world.find((x) => x.n === r.n)!;
+  return {
+    ...r,
+    card: cards[`region${r.n}` as const],
+    enemies: w.enemies.map((e) => ({ ...e, ...enemies[e.key as keyof typeof enemies] })),
+    journeys: w.journeys.map((j) => ({ ...j, art: journeys[j.key as keyof typeof journeys] })),
+  };
+});
+
+const roadDragons: RoadDragon[] = dragons.map((d) => ({ ...d, art: dragonArt[d.id].art, lair: dragonArt[d.id].lair }));
 
 /** Where each card of the hand sits in its fan. */
 const FAN: CSSProperties[] = [
@@ -16,12 +28,11 @@ const FAN: CSSProperties[] = [
 
 /**
  * The deck is the world. The road is the four printed Region Cards in the
- * order they are crossed, each holding its foes and roads, and the Dragon
- * Card at its end; your hand is your Adept Cards, your powers and your
- * resources at once. The numerals are the order the regions are crossed.
+ * order they are crossed, each holding its foes and roads, and the four
+ * dragons at its end; anything on them can be looked at up close (Road.tsx).
+ * Your hand is your Adept Cards, your powers and your resources at once.
  */
 export default function Deck() {
-  const dragon = cards.dragon_fire;
   return (
     <section aria-labelledby="deck-title" className="ground-1 overflow-hidden py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-6">
@@ -36,46 +47,11 @@ export default function Deck() {
         <h3 className="mt-16 font-display text-2xl font-semibold">The road</h3>
         <p className="mt-2 max-w-[60ch] text-muted">
           Each Region Card is a country of its own: four foes to face and four roads to cross. Draw your
-          hand from beneath it, and the card that leads names what you meet next.
+          hand from beneath it, and the card that leads names what you meet next. Hover or tap anything on
+          the cards to see it up close.
         </p>
       </div>
-      <ol className="mt-10 flex snap-x snap-mandatory items-end gap-4 overflow-x-auto px-6 pb-6 [scrollbar-color:var(--line)_transparent] sm:gap-5 xl:justify-center xl:overflow-visible">
-        {regions.map((r) => {
-          const c = cards[`region${r.n}` as const];
-          return (
-            <li key={r.n} className="relative w-[62vw] shrink-0 snap-center sm:w-[220px] xl:w-[204px]">
-              <figure>
-                <Image
-                  src={c.src}
-                  width={c.width}
-                  height={c.height}
-                  alt={r.alt}
-                  sizes="(min-width: 640px) 220px, 62vw"
-                  className="h-auto w-full drop-shadow-[0_18px_28px_var(--well)]"
-                />
-                <figcaption className="mt-4 flex items-baseline gap-2">
-                  <span aria-hidden="true" className="font-display text-brass">{NUMERAL[r.n - 1]}</span>
-                  <span className="font-display text-lg text-parchment">{r.name}</span>
-                  <span className="sr-only">, region {r.n}</span>
-                </figcaption>
-              </figure>
-            </li>
-          );
-        })}
-        <li className="w-[62vw] shrink-0 snap-center sm:w-[220px] xl:w-[204px]">
-          <figure>
-            <Image
-              src={dragon.src}
-              width={dragon.width}
-              height={dragon.height}
-              alt="Cindermaw's Dragon Card: the dragon above its approach and its strength, dealt at the end of the road."
-              sizes="(min-width: 640px) 220px, 62vw"
-              className="h-auto w-full rounded-[4%] shadow-[0_0_60px_-10px_var(--fire)]"
-            />
-            <figcaption className="mt-4 font-display text-lg text-fire-bright">Then the dragon</figcaption>
-          </figure>
-        </li>
-      </ol>
+      <Road regions={roadRegions} dragons={roadDragons} />
 
       {/* Your hand. */}
       <div className="mx-auto mt-20 grid max-w-6xl items-center gap-12 px-6 md:grid-cols-[1fr_1.1fr]">

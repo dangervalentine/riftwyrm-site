@@ -34,7 +34,7 @@ without it. To bring them up to date:
 
 ```sh
 cd ../dragon-hunter && scripts/dev store   # new store screenshots (keep its window uncovered)
-godot --path . --always-on-top -s tools/card_shots.gd -- build/card-shots adept region dragon   # the printed cards
+godot --path . --always-on-top -s tools/card_shots.gd -- build/card-shots adept region   # the printed cards
 cd ../riftwyrm-site
 npm run sync-assets                         # copy and web-size everything
 npm run lint && npm run build
