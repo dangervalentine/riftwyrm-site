@@ -295,3 +295,26 @@ Verification:
 - the tab order skips the coming-soon buttons
 - a store URL, set and then reverted, swaps in live links in both places and adds `installUrl`
 - the palette and copy audits are clean
+
+### Revision: the deck first (2026-11-02, from developer feedback)
+
+- **Hero**: now Cindermaw in its fire lair, the top card of a deck. The deck's edges show beneath it, and two fire Adept Cards fan out from under it on load.
+- **New `components/sections/Deck.tsx`**, "The deck is the world", right after the hero:
+  - the four Region Cards as the road (I–IV), then Cindermaw's Dragon Card
+  - a fanned hand of four Adept Cards, one per Essence, described as powers and resources
+  - the pitch: every shuffle deals a new story
+  - "Pitch.tsx" is removed
+- **Card images**: rendered by the game's `tools/card_shots.gd`. Run it with `--always-on-top`, since macOS doesn't redraw a covered window and the tool then saves the same stale frame every time. `sync-assets` trims each card, rounds its corners to transparent, and writes it to `public/media/cards/` (option `--cards`).
+- **Features** move to their own section, "Made to come back to", before the closing section:
+  - dragons, difficulty and lessons
+  - leaderboards (Google Play Games and Game Center)
+  - 27 achievements
+  - progress on all your devices, within one platform as the support page says
+  - no ads, no tracking, no account
+- **Copy accuracy**: losing a fight is braced by levelling cards down (`rulebook.toll.absorb`), not by losing them.
+- **Share image**: now uses the fire dragon and lair, with the line "Every region, foe and dragon is a card."
+- **Verified**:
+  - lint and build pass
+  - no horizontal overflow from 320 to 2560 px; a screen-reader-only caption in the scrolling road had stretched the document, fixed by making each road card `relative`
+  - store buttons on the first screen down to 320×640
+  - Lighthouse 100/100/100/100 on the home page

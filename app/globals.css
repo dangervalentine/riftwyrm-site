@@ -47,6 +47,11 @@
   --region-3: #b97445;
   --region-4: #6c9a5e;
   --lair: #9a3a33;
+
+  /* The printed card's frame and the edge of a stack of them. */
+  --card-frame: #10161a;
+  --card-edge: #8a8780;
+  --card-edge-line: #45433f;
 }
 
 @theme inline {
@@ -78,6 +83,9 @@
   --color-region-3: var(--region-3);
   --color-region-4: var(--region-4);
   --color-lair: var(--lair);
+  --color-card-frame: var(--card-frame);
+  --color-card-edge: var(--card-edge);
+  --color-card-edge-line: var(--card-edge-line);
   --font-display: var(--font-spectral), Georgia, serif;
   --font-sans: var(--font-source-sans), system-ui, sans-serif;
 }
@@ -214,8 +222,9 @@ body {
 /* ------------------------------------------------------------ motion */
 
 /*
- * One orchestrated moment: on load the hero's card rises out of the dark, the
- * storm in it flashes once, and the dragon steps forward out of its frame.
+ * One orchestrated moment: on load the deck rises out of the dark, two cards
+ * fan out from under it, the fire in the top card flares once, and the dragon
+ * steps forward out of its frame.
  * Everything else on the page holds still except where a person acts on it.
  */
 @keyframes rise {
@@ -232,12 +241,20 @@ body {
   14% { opacity: 0.1; }
   20% { opacity: 0.4; }
 }
+@keyframes fan {
+  from { opacity: 0; transform: translate(0, 0) rotate(0deg); }
+  to { opacity: 1; transform: translate(var(--fan-x), var(--fan-y)) rotate(var(--fan-r)); }
+}
 @keyframes fade {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
 .hero-card { animation: rise 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.hero-fan { animation: fan 900ms 350ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-fan { transform: translate(var(--fan-x), var(--fan-y)) rotate(var(--fan-r)); }
+}
 .hero-flash { animation: flash 1400ms 700ms ease-out both; }
 .hero-dragon { animation: step-out 1100ms 450ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
 .hero-copy { animation: fade 700ms 200ms ease-out both; }

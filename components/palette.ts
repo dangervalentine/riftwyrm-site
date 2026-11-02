@@ -11,5 +11,6 @@ export const palette = {
   brassBright: "#e0bd6e",
   lightning: "#a87d36",
   lightningBright: "#d8ac5c",
+  fire: "#87302a",
   region1Ground: "#0d121a",
 } as const;

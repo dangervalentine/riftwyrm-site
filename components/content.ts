@@ -2,7 +2,8 @@
  * The words on the home page that are not shared facts. Names, titles and
  * flavour lines are the game's own text, exactly as the game shows them
  * (data/text.json and ui/model/art.gd in the game). Every claim about the game
- * is one its README or this site's privacy policy already makes.
+ * is one its README or this site's privacy policy and support page already
+ * make.
  */
 
 export type ScreenshotId = "title" | "trial" | "dragons" | "showdown" | "won";
@@ -36,28 +37,19 @@ export const screenshots: { id: ScreenshotId; caption: string; alt: string }[] =
   },
 ];
 
-/** At most six. Titles up to 40 characters, bodies up to 140. Icons are the
- * game's own, under /media/icons/. Offline play is not claimed. */
+/** Everything around the hunt itself: at most six. Titles up to 40
+ * characters, bodies up to 140. Icons are the game's own, under /media/icons/.
+ * Syncing is within one platform's devices, as the support page says. */
 export const features: { title: string; body: string; icon: string }[] = [
-  {
-    title: "A card game that fits in one hand",
-    body: "Every fight is a foe on the road and a hand of cards. Read what it takes to win, then play the cards that do it.",
-    icon: "/media/icons/deck.svg",
-  },
   {
     title: "Four dragons to hunt",
     body: "Start with one. Beat it on Normal or harder and the next dragon wakes, each a harder hunt than the last.",
     icon: "/media/icons/crown.svg",
   },
   {
-    title: "Four regions, then the lair",
-    body: "Cross four regions of foes and hard roads, growing your cards as you go, before the final fight.",
-    icon: "/media/icons/sigil_region.svg",
-  },
-  {
     title: "Six levels of difficulty",
     body: "From a gentle first hunt to a fight that wants every card. A win on one level opens the next.",
-    icon: "/media/icons/star.svg",
+    icon: "/media/icons/level_up.svg",
   },
   {
     title: "Learn by playing",
@@ -65,10 +57,37 @@ export const features: { title: string; body: string; icon: string }[] = [
     icon: "/media/icons/book.svg",
   },
   {
-    title: "Yours alone",
-    body: "27 achievements and a leaderboard of your best wins. No ads, no tracking, no account.",
+    title: "Leaderboards",
+    body: "Every win is scored. Beat your own best on each difficulty, then climb the leaderboards on Google Play Games and Game Center.",
     icon: "/media/icons/trophy.svg",
   },
+  {
+    title: "27 achievements",
+    body: "From your first win to every dragon and difficulty unlocked, and a hunt won in under nine minutes.",
+    icon: "/media/icons/star.svg",
+  },
+  {
+    title: "Your progress, on all your devices",
+    body: "Sign in to Google Play Games or Game Center and your unlocks, records and achievements follow you from phone to tablet.",
+    icon: "/media/icons/reshuffle.svg",
+  },
+];
+
+/** The road the deck deals: the four Region Cards in the order they are
+ * crossed, as the game prints them. */
+export const regions: { n: 1 | 2 | 3 | 4; name: string; alt: string }[] = [
+  { n: 1, name: "Verdant Crags", alt: "The Verdant Crags Region Card: four foes above four roads through green mountains." },
+  { n: 2, name: "Vile Mires", alt: "The Vile Mires Region Card: four foes of the swamp above four roads through the marsh." },
+  { n: 3, name: "Steam Flats", alt: "The Steam Flats Region Card: four foes under red skies above four roads through fire and ash." },
+  { n: 4, name: "Wyrmwood", alt: "The Wyrmwood Region Card: four foes of the dark wood above four roads through the forest." },
+];
+
+/** A hand of Adept Cards, one of each Essence. */
+export const hand: { key: "ember_dash" | "lightning_step" | "shadow_stride" | "blinding_blade"; name: string }[] = [
+  { key: "ember_dash", name: "Ember Dash" },
+  { key: "lightning_step", name: "Lightning Step" },
+  { key: "shadow_stride", name: "Shadow Stride" },
+  { key: "blinding_blade", name: "Blinding Blade" },
 ];
 
 export type DragonId = "lightning" | "water" | "fire" | "shadow";

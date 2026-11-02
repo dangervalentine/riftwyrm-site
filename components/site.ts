@@ -12,13 +12,13 @@ export const site = {
    * meta description. The game is described generically on purpose: no other
    * game, publisher or in-game term is named anywhere. */
   tagline:
-    "A solo fantasy card game for phones and desktop. Build a hand of cards " +
-    "and hunt dragons across the regions of a broken land.",
-  /** The pitch under the hero: what a game is like, in two or three sentences. */
+    "A solo fantasy card game for phones and desktop. Every region, foe and dragon " +
+    "is a card, and every shuffle deals a new hunt.",
+  /** What the game is, said once under the deck: the deck is the world. */
   pitch:
-    "Each hunt is a road of foes, and you meet each one with the cards in your hand. " +
-    "Read the fight, play the right cards, and spend what you earn to grow stronger " +
-    "before the dragon at the end of the road.",
+    "Everything in Riftwyrm is a card. The regions you cross, the foes and roads in them, " +
+    "the dragon waiting at the end, and your own powers and resources are all dealt from " +
+    "one deck. Shuffle, and the road is dealt again: no two hunts tell the same story.",
   /** Store listings. "" until the game is live there; otherwise the listing's
    * URL (https://play.google.com/… and https://apps.apple.com/…). Setting one
    * turns its button into a live link everywhere it appears. */

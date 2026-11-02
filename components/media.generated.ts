@@ -214,3 +214,76 @@ export const enemies = {
     }
   }
 } as const;
+
+export const cards = {
+  "blinding_blade": {
+    "height": 518,
+    "src": "/media/cards/adept-blinding-blade.webp",
+    "width": 370
+  },
+  "cold_blaze": {
+    "height": 518,
+    "src": "/media/cards/adept-cold-blaze.webp",
+    "width": 370
+  },
+  "dragon_fire": {
+    "height": 688,
+    "src": "/media/cards/dragon-fire.webp",
+    "width": 495
+  },
+  "dragon_lightning": {
+    "height": 688,
+    "src": "/media/cards/dragon-lightning.webp",
+    "width": 495
+  },
+  "dragon_shadow": {
+    "height": 688,
+    "src": "/media/cards/dragon-shadow.webp",
+    "width": 495
+  },
+  "dragon_water": {
+    "height": 688,
+    "src": "/media/cards/dragon-water.webp",
+    "width": 495
+  },
+  "ember_dash": {
+    "height": 518,
+    "src": "/media/cards/adept-ember-dash.webp",
+    "width": 370
+  },
+  "lightning_step": {
+    "height": 518,
+    "src": "/media/cards/adept-lightning-step.webp",
+    "width": 370
+  },
+  "region1": {
+    "height": 687,
+    "src": "/media/cards/region-1.webp",
+    "width": 497
+  },
+  "region2": {
+    "height": 687,
+    "src": "/media/cards/region-2.webp",
+    "width": 497
+  },
+  "region3": {
+    "height": 687,
+    "src": "/media/cards/region-3.webp",
+    "width": 497
+  },
+  "region4": {
+    "height": 687,
+    "src": "/media/cards/region-4.webp",
+    "width": 497
+  },
+  "shadow_stride": {
+    "height": 518,
+    "src": "/media/cards/adept-shadow-stride.webp",
+    "width": 370
+  },
+  "static_rush": {
+    "height": 518,
+    "src": "/media/cards/adept-static-rush.webp",
+    "width": 370
+  }
+} as const;

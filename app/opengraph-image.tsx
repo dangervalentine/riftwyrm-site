@@ -27,7 +27,7 @@ export default async function OpengraphImage() {
           width: "100%",
           height: "100%",
           display: "flex",
-          background: `radial-gradient(ellipse 60% 80% at 78% 50%, ${palette.lightning}55, ${palette.ground} 70%)`,
+          background: `radial-gradient(ellipse 60% 80% at 78% 50%, ${palette.fire}77, ${palette.ground} 70%)`,
           backgroundColor: palette.ground,
           color: palette.parchment,
           fontFamily: "Spectral",
@@ -36,7 +36,7 @@ export default async function OpengraphImage() {
         <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "0 0 0 80px", width: 640 }}>
           <div style={{ fontSize: 100, letterSpacing: 5, color: palette.brassBright, lineHeight: 1 }}>RIFTWYRM</div>
           <div style={{ display: "flex", width: 380, height: 2, background: palette.brass, opacity: 0.6, margin: "36px 0" }} />
-          <div style={{ fontSize: 40, lineHeight: 1.25 }}>Hunt dragons with a hand of cards.</div>
+          <div style={{ fontSize: 40, lineHeight: 1.25 }}>Every region, foe and dragon is a card.</div>
           <div style={{ fontSize: 26, color: palette.muted, marginTop: 20, lineHeight: 1.35 }}>
             A solo fantasy card game for phones and desktop.
           </div>

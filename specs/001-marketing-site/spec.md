@@ -35,6 +35,11 @@ real assets, while keeping the privacy and support pages the store listings depe
   Apple and Google Play marks from `components/icons.ts`): the badges' own dark livery, dimmed with
   a "Coming soon" reveal until a link is set, a live link once it is. Not the official badge
   images.
+- Q: What should the page lead with? → A: That the game is its deck. The regions, foes, roads,
+  dragons and the player's powers and resources are all cards, and every shuffle tells a new story.
+  The hero is the fire dragon (Cindermaw) in its lair, as the top card of a deck. The page shows the
+  real Region, Dragon and Adept Cards, rendered by the game's card tool, plus leaderboards,
+  achievements and syncing progress between devices.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -179,6 +184,10 @@ screenshots; the site shows the new images after a rebuild.
   buttons), a short pitch of what the game is, a features section, a screenshots gallery, a dragons
   showcase, a world/enemies art section, a closing call to action with the store buttons again, and
   the footer.
+- **FR-002a**: The home page MUST show, right after the hero, that the game is played from a deck. It
+  shows the four printed Region Cards in the order they are crossed, then a Dragon Card, and a hand of
+  Adept Cards described as the player's powers and resources, with the line that each shuffle deals a
+  new hunt. The card images MUST be the game's own renders (its card screenshot tool).
 - **FR-002**: The features section MUST present 4–6 concise selling points drawn from what the game
   actually contains (e.g. solo palm-sized card battles, four dragons to unlock, four regions and a
   final battle, six difficulty levels, interactive lessons, achievements, plays offline with no

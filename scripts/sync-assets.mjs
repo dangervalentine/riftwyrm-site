@@ -9,6 +9,9 @@
  * --game     the game repository (default $GAME_DIR, else ../dragon-hunter)
  * --version  the App Store screenshot run to use, a folder of
  *            build/app-store/ (default: the newest version folder)
+ * --cards    the printed cards, as drawn by the game's card tool
+ *            (default <game>/build/card-shots; make them with
+ *            godot --path . --always-on-top -s tools/card_shots.gd -- build/card-shots adept region dragon)
  *
  * Every input is checked before anything is written: if one is missing the
  * script names it and exits 1 with the site untouched. Output is identical
@@ -35,17 +38,29 @@ const SCREENSHOTS = [
 const DRAGONS = ["lightning", "water", "fire", "shadow"];
 const JOURNEYS = ["waterfall", "burning-forest", "peaks", "swamp", "rope-bridge", "volcano"];
 const ENEMIES = ["naga", "club-ogre", "goblin-hexer", "antler-horror", "marsh-treant", "lion-archer"];
-const ICONS = ["deck", "crown", "book", "trophy", "star", "sigil_region"];
+const ICONS = ["crown", "level_up", "book", "trophy", "star", "reshuffle"];
+/** The printed cards. Regions in road order, then a hand of Adept Cards (one
+ * per Essence) and the two fire cards fanned under the hero's deck. */
+const REGION_CARDS = [1, 2, 3, 4];
+const ADEPT_CARDS = [
+  ["02_C15", "ember-dash"],
+  ["06_C06", "lightning-step"],
+  ["11_C11", "shadow-stride"],
+  ["13_C02", "blinding-blade"],
+  ["01_C14", "cold-blaze"],
+  ["03_C16", "static-rush"],
+];
 
 // ---------------------------------------------------------------- arguments
 
 function parseArgs(argv) {
-  const out = { game: process.env.GAME_DIR || join(SITE, "..", "dragon-hunter"), version: null };
+  const out = { game: process.env.GAME_DIR || join(SITE, "..", "dragon-hunter"), version: null, cards: null };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     if (a === "--help" || a === "-h") out.help = true;
     else if (a === "--game") out.game = argv[++i];
     else if (a === "--version") out.version = argv[++i];
+    else if (a === "--cards") out.cards = argv[++i];
     else fail(`Unknown argument: ${a} (see --help)`);
   }
   out.game = resolve(out.game ?? "");
@@ -58,7 +73,7 @@ function fail(message) {
 }
 
 const HELP = readFileSync(fileURLToPath(import.meta.url), "utf8")
-  .split("\n").slice(2, 15).map((l) => l.replace(/^ \* ?/, "")).join("\n");
+  .split("\n").slice(2, 18).map((l) => l.replace(/^ \* ?/, "")).join("\n");
 
 // ---------------------------------------------------------------- inputs
 
@@ -79,8 +94,19 @@ function pickVersion(game, wanted) {
 }
 
 /** Every job: a source file, an output path under the site, and how to make it. */
-function plan(game, version) {
+/** A card render cut from its table: the margin trimmed, the corners rounded
+ * to transparent so cards can overlap on any ground. */
+async function cutCard(src, width) {
+  const trimmed = await sharp(src).trim({ threshold: 6 }).resize({ width, withoutEnlargement: true }).toBuffer();
+  const { width: w, height: h } = await sharp(trimmed).metadata();
+  const r = Math.round(w * 0.04);
+  const mask = Buffer.from(`<svg width="${w}" height="${h}"><rect width="${w}" height="${h}" rx="${r}" ry="${r}"/></svg>`);
+  return sharp(trimmed).ensureAlpha().composite([{ input: mask, blend: "dest-in" }]).webp({ quality: 86, alphaQuality: 95 }).toBuffer();
+}
+
+function plan(game, version, cardsDir) {
   const shots = join(game, "build", "app-store", version);
+  const cards = cardsDir ?? join(game, "build", "card-shots");
   const art = join(game, "art");
   const jobs = [];
   const add = (key, src, out, make) => jobs.push({ key, src, out, make });
@@ -110,9 +136,16 @@ function plan(game, version) {
   }
 
   // The share image is drawn at build time by a renderer that reads PNG, not WebP.
-  add("og.lair", join(art, "painted", "lairs", "dragon_lightning.png"), "assets/og-lair.png",
-    (s) => s.resize({ width: 560 }).png({ compressionLevel: 9, palette: true, quality: 90 }));
-  add("og.dragon", join(art, "painted", "dragons", "dragon_lightning.png"), "assets/og-dragon.png",
+  for (const n of REGION_CARDS)
+    add(`cards.region${n}`, join(cards, "region", `region_${n}.png`), `public/media/cards/region-${n}.webp`, { card: 560 });
+  for (const id of DRAGONS)
+    add(`cards.dragon_${id}`, join(cards, "dragon", `dragon_${id}.png`), `public/media/cards/dragon-${id}.webp`, { card: 560 });
+  for (const [file, name] of ADEPT_CARDS)
+    add(`cards.${name.replace(/-/g, "_")}`, join(cards, "adept", `${file}.png`), `public/media/cards/adept-${name}.webp`, { card: 400 });
+
+  add("og.lair", join(art, "painted", "lairs", "dragon_fire.png"), "assets/og-lair.png",
+    (s) => s.resize({ width: 400 }).png({ compressionLevel: 9 }));
+  add("og.dragon", join(art, "painted", "dragons", "dragon_fire.png"), "assets/og-dragon.png",
     (s) => s.resize({ width: 560 }).png({ compressionLevel: 9, palette: true, quality: 90 }));
 
   // App icons from the 1024 store icon.
@@ -189,6 +222,7 @@ function mediaModule(media, source) {
     body("dragons", media.dragons),
     body("journeys", media.journeys),
     body("enemies", media.enemies),
+    body("cards", media.cards),
   ].join("\n");
 }
 
@@ -202,7 +236,7 @@ async function main() {
   }
   if (!existsSync(args.game)) fail(`Game repository not found at ${args.game}. Pass --game <dir> or set GAME_DIR.`);
   const version = pickVersion(args.game, args.version);
-  const { jobs, manifest } = plan(args.game, version);
+  const { jobs, manifest } = plan(args.game, version, args.cards && resolve(args.cards));
 
   const missing = jobs.map((j) => j.src).concat(manifest).filter((p) => !existsSync(p));
   if (missing.length) fail(`Missing source file(s), nothing written:\n  ${[...new Set(missing)].join("\n  ")}`);
@@ -215,6 +249,7 @@ async function main() {
     let data;
     if (job.make === "copy") data = readFileSync(job.src);
     else if (job.make === "ico") data = await makeIco(job.src);
+    else if (job.make.card) data = await cutCard(job.src, job.make.card);
     else data = await job.make(sharp(job.src)).toBuffer();
     rendered.push({ ...job, data });
   }
