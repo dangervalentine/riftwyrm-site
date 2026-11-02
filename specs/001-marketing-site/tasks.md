@@ -371,3 +371,13 @@ Verification:
 - Every stat value sits in a fixed two-character slot with tabular figures, so a chip's width doesn't depend on its value.
 - The highlight's name and stats sit in one area (`.road-details`) whose height is fixed per breakpoint: 10.5rem below 640 px, 7.5rem from 640, 11rem from 768 and 8.5rem from 1024. Each is the tallest content measured at the narrowest width of its range, rounded up.
 - Verified at 12 widths from 320 to 1440 px by picking every foe, road and dragon in every row: one highlight height per row and no change in any row's height, and the content never overflows its area. Card and highlight still fit on one screen together, and Lighthouse is still 100/100/100/100 with CLS 0.
+
+### Revision: the game's scene lighting, no drop shadows on figures (2026-11-02, from developer feedback)
+
+- **No drop shadows** on foes standing on their backdrops, or on dragons standing in their lairs (the highlight and the dragons section). The hero dragon keeps its shadow, since it steps out over the card's edge.
+- **The game's own scene lighting is baked into the cut-outs** by `sync-assets`:
+  - the values are read from `ENEMY_LIGHT` (16 foes) and `DRAGON_LIGHT` (4 dragons) in the game's `ui/model/art.gd`
+  - the sums are those of its creature shader (`ui/fx/shaders/creature_idle.gdshader`): the colours are pulled toward the scene's fill while keeping their lightness, then a rim of light is added along the edges facing `rim_from`, `rim_width` wide, in four steps
+  - this runs on the full-size art before resizing
+  - the game's ink outline is not applied
+- **Verified**: lint and build pass, a sync rerun changes nothing, Lighthouse is 100/100/100/100, and before-and-after composites match how the game lights each foe.

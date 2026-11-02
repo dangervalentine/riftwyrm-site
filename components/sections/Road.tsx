@@ -266,7 +266,7 @@ function Highlight({ id, focus }: { id: string; focus: Focus }) {
     stage = (
       <>
         <Image src={e.backdrop.src} width={e.backdrop.width} height={e.backdrop.height} alt="" sizes="(min-width: 768px) 560px, 88vw" className="absolute inset-0 h-full w-full object-cover opacity-85" />
-        <Image src={e.art.src} width={e.art.width} height={e.art.height} alt={e.alt} sizes="(min-width: 768px) 400px, 60vw" className="absolute inset-x-0 bottom-0 mx-auto h-[94%] w-auto drop-shadow-[0_14px_18px_var(--well)]" />
+        <Image src={e.art.src} width={e.art.width} height={e.art.height} alt={e.alt} sizes="(min-width: 768px) 400px, 60vw" className="absolute inset-x-0 bottom-0 mx-auto h-[94%] w-auto" />
       </>
     );
     name = e.name;
@@ -306,7 +306,7 @@ function Highlight({ id, focus }: { id: string; focus: Focus }) {
     stage = (
       <>
         <Image src={d.lair.src} width={d.lair.width} height={d.lair.height} alt="" sizes="(min-width: 768px) 560px, 88vw" className="absolute inset-0 h-full w-full object-cover" />
-        <Image src={d.art.src} width={d.art.width} height={d.art.height} alt={d.alt} sizes="(min-width: 768px) 460px, 70vw" className="absolute inset-x-0 bottom-0 mx-auto h-full w-auto drop-shadow-[0_14px_18px_var(--well)]" />
+        <Image src={d.art.src} width={d.art.width} height={d.art.height} alt={d.alt} sizes="(min-width: 768px) 460px, 70vw" className="absolute inset-x-0 bottom-0 mx-auto h-full w-auto" />
       </>
     );
     name = d.name;

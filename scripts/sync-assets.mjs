@@ -112,6 +112,78 @@ function pickVersion(game, wanted) {
 /** Every job: a source file, an output path under the site, and how to make it. */
 /** A card render cut from its table: the margin trimmed, the corners rounded
  * to transparent so cards can overlap on any ground. */
+/**
+ * The light each painted figure stands in, as the game sets it on its scene
+ * (ENEMY_LIGHT and DRAGON_LIGHT in the game's ui/model/art.gd): a fill colour
+ * and how far it pulls the figure toward it, and a rim of light, its colour,
+ * strength, the direction it comes from and its width as a share of the art.
+ */
+function sceneLights(game) {
+  const src = readFileSync(join(game, "ui", "model", "art.gd"), "utf8");
+  const table = (name) => {
+    const start = src.indexOf(`const ${name} := {`);
+    if (start < 0) fail(`No ${name} in ui/model/art.gd.`);
+    const body = src.slice(start, src.indexOf("\n}", start));
+    const out = {};
+    const entry = /"([\w-]+)": \{"fill": "([0-9a-f]{6})", "fill_amount": ([\d.]+), "rim": "([0-9a-f]{6})", "rim_amount": ([\d.]+),\s*"rim_from": Vector2\(([-\d.]+), ([-\d.]+)\), "rim_width": ([\d.]+)\}/g;
+    for (const m of body.matchAll(entry))
+      out[m[1]] = { fill: m[2], fillAmount: +m[3], rim: m[4], rimAmount: +m[5], from: [+m[6], +m[7]], rimWidth: +m[8] };
+    return out;
+  };
+  return { enemies: table("ENEMY_LIGHT"), dragons: table("DRAGON_LIGHT") };
+}
+
+const hex = (h) => [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16) / 255);
+
+/**
+ * A figure lit as the game lights it on its scene, by the same sums as its
+ * creature shader (ui/fx/shaders/creature_idle.gdshader): its colours pulled
+ * toward the scene's fill, keeping their lightness, then a rim of light added
+ * along the edges that face where the light comes from. Done once here, at the
+ * art's full size, so the site serves the lit picture.
+ */
+async function litFigure(src, light, width) {
+  const { data, info } = await sharp(src).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+  const { width: w, height: h } = info;
+  const out = Buffer.from(data);
+  if (light) {
+    const fill = hex(light.fill);
+    const rim = hex(light.rim);
+    const len = Math.hypot(light.from[0], light.from[1]) || 1;
+    // The rim's reach in pixels; the shader's UV runs 0..1 across each side.
+    const dx = (light.from[0] / len) * light.rimWidth * w;
+    const dy = (light.from[1] / len) * light.rimWidth * h;
+    const alphaAt = (x, y) => (x < 0 || y < 0 || x >= w || y >= h ? 0 : data[(Math.round(y) * w + Math.round(x)) * 4 + 3] / 255);
+    for (let y = 0; y < h; y++) {
+      for (let x = 0; x < w; x++) {
+        const i = (y * w + x) * 4;
+        const a = data[i + 3] / 255;
+        if (a === 0) continue;
+        let c = [data[i] / 255, data[i + 1] / 255, data[i + 2] / 255];
+        if (light.fillAmount > 0) {
+          const lum = 0.299 * c[0] + 0.587 * c[1] + 0.114 * c[2];
+          c = c.map((v, k) => {
+            const lit = Math.min(1, Math.max(0, v * fill[k] * 1.6 * 0.65 + lum * fill[k] * 1.8 * 0.35));
+            return v + (lit - v) * light.fillAmount;
+          });
+        }
+        if (light.rimAmount > 0) {
+          let open = 0;
+          for (let k = 1; k <= 4; k++) open = Math.max(open, (1 - alphaAt(x + (dx * k) / 4, y + (dy * k) / 4)) * (1 - (k - 1) * 0.2));
+          c = c.map((v, k) => Math.min(1, v + rim[k] * open * light.rimAmount));
+        }
+        out[i] = Math.round(c[0] * 255);
+        out[i + 1] = Math.round(c[1] * 255);
+        out[i + 2] = Math.round(c[2] * 255);
+      }
+    }
+  }
+  return sharp(out, { raw: { width: w, height: h, channels: 4 } })
+    .resize({ width, withoutEnlargement: true })
+    .webp({ quality: 82, alphaQuality: 90 })
+    .toBuffer();
+}
+
 async function cutCard(src, width) {
   const trimmed = await sharp(src).trim({ threshold: 6 }).resize({ width, withoutEnlargement: true }).toBuffer();
   const { width: w, height: h } = await sharp(trimmed).metadata();
@@ -126,14 +198,16 @@ function plan(game, version, cardsDir) {
   const art = join(game, "art");
   const jobs = [];
   const add = (key, src, out, make) => jobs.push({ key, src, out, make });
+  const lights = sceneLights(game);
 
   for (const [file, id] of SCREENSHOTS)
     add(`screenshots.${id}`, join(shots, "iphone-6.9", `${file}.png`), `public/media/screenshots/${id}.webp`,
       (s) => s.resize({ width: 1920, withoutEnlargement: true }).webp({ quality: 80 }));
 
   for (const id of DRAGONS) {
+    // Every place the site shows a dragon's body, it stands in its own lair: lit as the game lights it there.
     add(`dragons.${id}.art`, join(art, "painted", "dragons", `dragon_${id}.png`), `public/media/dragons/${id}.webp`,
-      (s) => s.resize({ width: 1024, withoutEnlargement: true }).webp({ quality: 82, alphaQuality: 90 }));
+      { lit: lights.dragons[`dragon_${id}`], width: 1024 });
     add(`dragons.${id}.head`, join(art, "painted", "dragons", `dragon_${id}-head.png`), `public/media/dragons/${id}-head.webp`,
       (s) => s.resize({ width: 512, withoutEnlargement: true }).webp({ quality: 82, alphaQuality: 90 }));
     add(`dragons.${id}.lair`, join(art, "painted", "lairs", `dragon_${id}.png`), `public/media/dragons/${id}-lair.webp`,
@@ -146,7 +220,7 @@ function plan(game, version, cardsDir) {
 
   for (const name of ENEMIES) {
     add(`enemies.${name}.art`, join(art, "painted", "enemies", `${name}.png`), `public/media/world/enemy-${name}.webp`,
-      (s) => s.resize({ width: 420, withoutEnlargement: true }).webp({ quality: 80, alphaQuality: 90 }));
+      { lit: lights.enemies[name], width: 420 });
     add(`enemies.${name}.backdrop`, join(art, "painted", "backdrops", `${name}.png`), `public/media/world/backdrop-${name}.webp`,
       (s) => s.resize({ width: 600, withoutEnlargement: true }).webp({ quality: 76 }));
   }
@@ -294,6 +368,7 @@ async function main() {
     if (job.make === "copy") data = readFileSync(job.src);
     else if (job.make === "ico") data = await makeIco(job.src);
     else if (job.make.card) data = await cutCard(job.src, job.make.card);
+    else if ("lit" in job.make) data = await litFigure(job.src, job.make.lit, job.make.width);
     else data = await job.make(sharp(job.src)).toBuffer();
     rendered.push({ ...job, data });
   }

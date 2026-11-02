@@ -52,7 +52,7 @@ export default function Dragons() {
                       height={a.art.height}
                       alt={d.alt}
                       sizes="(min-width: 1024px) 300px, (min-width: 640px) 50vw, 100vw"
-                      className="absolute inset-x-0 bottom-[2%] mx-auto w-[108%] max-w-none -translate-x-[4%] drop-shadow-[0_16px_18px_var(--well)]"
+                      className="absolute inset-x-0 bottom-[2%] mx-auto w-[108%] max-w-none -translate-x-[4%]"
                     />
                   </div>
                   <span
