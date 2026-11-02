@@ -226,7 +226,7 @@ function Stat({ icon, value, label, essence }: { icon: string; value: number | s
   return (
     <li className="flex items-center gap-1.5 rounded-lg border border-line bg-stone/80 px-2 py-1 sm:gap-2 sm:px-3 sm:py-1.5">
       <span aria-hidden="true" className="glyph size-4 text-muted" style={{ "--glyph": `url(/media/icons/${icon}.svg)` } as CSSProperties} />
-      <span className="font-display text-base leading-none font-semibold text-parchment sm:text-lg">{value}</span>
+      <span className="inline-block w-[2ch] text-center font-display text-base leading-none font-semibold text-parchment tabular-nums sm:text-lg">{value}</span>
       {e ? (
         <span
           aria-hidden="true"
@@ -324,8 +324,10 @@ function Highlight({ id, focus }: { id: string; focus: Focus }) {
   return (
     <div id={id} aria-live="polite" className="relative">
       <div className="relative aspect-[2/1] overflow-hidden rounded-xl border border-line bg-stone sm:aspect-[16/9] md:aspect-[16/10]">{stage}</div>
-      <h4 className={`mt-3 font-display text-2xl leading-tight font-semibold md:mt-5 md:text-4xl ${ink}`}>{name}</h4>
-      {details}
+      <div data-details className="road-details">
+        <h4 className={`mt-3 font-display text-2xl leading-tight font-semibold md:mt-5 md:text-4xl ${ink}`}>{name}</h4>
+        {details}
+      </div>
     </div>
   );
 }

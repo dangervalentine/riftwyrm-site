@@ -365,3 +365,9 @@ Verification:
   - no horizontal overflow
   - Lighthouse 100/100/100/100
   - the sync makes no changes on a rerun
+
+### Revision: no layout shift in the highlight (2026-11-02, from developer feedback)
+
+- Every stat value sits in a fixed two-character slot with tabular figures, so a chip's width doesn't depend on its value.
+- The highlight's name and stats sit in one area (`.road-details`) whose height is fixed per breakpoint: 10.5rem below 640 px, 7.5rem from 640, 11rem from 768 and 8.5rem from 1024. Each is the tallest content measured at the narrowest width of its range, rounded up.
+- Verified at 12 widths from 320 to 1440 px by picking every foe, road and dragon in every row: one highlight height per row and no change in any row's height, and the content never overflows its area. Card and highlight still fit on one screen together, and Lighthouse is still 100/100/100/100 with CLS 0.

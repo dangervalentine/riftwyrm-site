@@ -199,6 +199,19 @@ body {
   }
 }
 
+/* ------------------------------------------------------------ the road */
+
+/*
+ * The highlight under or beside each card keeps one height whatever is picked
+ * (a foe's seven stats or a road's three, a dragon's line), so nothing on the
+ * page moves as you look from one card panel to the next. Each height is the
+ * tallest content measured at the narrowest width of its range, rounded up.
+ */
+.road-details { height: 10.5rem; }
+@media (min-width: 640px) { .road-details { height: 7.5rem; } }
+@media (min-width: 768px) { .road-details { height: 11rem; } }
+@media (min-width: 1024px) { .road-details { height: 8.5rem; } }
+
 /* ------------------------------------------------------------ the journey */
 
 /*
