@@ -381,3 +381,10 @@ Verification:
   - this runs on the full-size art before resizing
   - the game's ink outline is not applied
 - **Verified**: lint and build pass, a sync rerun changes nothing, Lighthouse is 100/100/100/100, and before-and-after composites match how the game lights each foe.
+
+### Revision: a spread of three cards, a dragon that breaks out, a byline (2026-11-02, from developer feedback)
+
+- **Three cards**: an Adept Card (Ember Dash) to the left of the deck and the fire's Region Card (Steam Flats) to the right. Each is 39% of the stage, overlapping the deck only at its inner edge, so most of each card can be read. The deck itself is smaller: 46% of a stage at most 480 px wide.
+- **The dragon**: it starts at 0.66 of its size, standing inside the top card's frame, and holds there while the deck rises and the cards spread. Then it grows to full size and breaks out over the card's left and right edges, gaining its shadow as it does. With reduced motion it is shown full size from the start.
+- **Byline**: "A game by Danger Valentine", from `site.developer`, sits under the title in place of the ornamental rule, above the fold at every tested size.
+- **Verified**: lint and build pass, no horizontal overflow from 320 to 2560 px, and the store buttons are within the first screen from 320×640 up (320×568 still misses, as before). Frames captured during the animation confirm the order: spread, then the dragon breaks out.

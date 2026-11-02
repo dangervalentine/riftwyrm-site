@@ -244,18 +244,21 @@ body {
 /* ------------------------------------------------------------ motion */
 
 /*
- * One orchestrated moment: on load the deck rises out of the dark, two cards
- * fan out from under it, the fire in the top card flares once, and the dragon
- * steps forward out of its frame.
+ * One orchestrated moment: on load the deck rises out of the dark, an Adept
+ * Card and a Region Card spread out from under it, the fire in the top card
+ * flares once, and then the dragon, painted inside the card until now, grows
+ * until it breaks out over the card's edges.
  * Everything else on the page holds still except where a person acts on it.
  */
 @keyframes rise {
   from { opacity: 0; transform: translateY(32px) scale(0.98); }
   to { opacity: 1; transform: none; }
 }
+/* The dragon starts at 0.66 of its size, small enough to sit inside the card's
+ * frame, and holds there until the spread is done before it grows. */
 @keyframes step-out {
-  from { opacity: 0; transform: translate(-6%, 4%) scale(0.92); }
-  to { opacity: 1; transform: none; }
+  0%, 55% { transform: scale(0.66); filter: drop-shadow(0 0 0 transparent); }
+  100% { transform: none; filter: drop-shadow(0 24px 30px var(--well)); }
 }
 @keyframes flash {
   0%, 100% { opacity: 0; }
@@ -264,8 +267,8 @@ body {
   20% { opacity: 0.4; }
 }
 @keyframes fan {
-  from { opacity: 0; transform: translate(0, 0) rotate(0deg); }
-  to { opacity: 1; transform: translate(var(--fan-x), var(--fan-y)) rotate(var(--fan-r)); }
+  from { opacity: 0; transform: translateX(var(--fan-from)) rotate(0deg); }
+  to { opacity: 1; transform: rotate(var(--fan-r)); }
 }
 @keyframes fade {
   from { opacity: 0; }
@@ -275,10 +278,14 @@ body {
 .hero-card { animation: rise 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
 .hero-fan { animation: fan 900ms 350ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
 @media (prefers-reduced-motion: reduce) {
-  .hero-fan { transform: translate(var(--fan-x), var(--fan-y)) rotate(var(--fan-r)); }
+  .hero-fan { transform: rotate(var(--fan-r)); }
+  .hero-dragon { filter: drop-shadow(0 24px 30px var(--well)); }
 }
 .hero-flash { animation: flash 1400ms 700ms ease-out both; }
-.hero-dragon { animation: step-out 1100ms 450ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.hero-dragon {
+  transform-origin: 50% 100%;
+  animation: step-out 2400ms 200ms cubic-bezier(0.3, 0, 0.2, 1) both;
+}
 .hero-copy { animation: fade 700ms 200ms ease-out both; }
 
 /* The four dragons come up one after another as their row scrolls in. */
