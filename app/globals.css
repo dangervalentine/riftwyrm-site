@@ -113,6 +113,75 @@ body {
   border-radius: 4px;
 }
 
+/* ------------------------------------------------------------ footer */
+
+/*
+ * The footer row, matching the developer's NextQuest site (its CompactFooter):
+ * one centred line, 28px high and 40px on desktop, small muted links between
+ * hairline separators, the brand a step brighter.
+ */
+.footer-bar {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 28px;
+  background-color: var(--well);
+  border-top: 0.5px solid var(--line);
+  color: var(--muted);
+  font-size: 0.6875rem;
+  white-space: nowrap;
+}
+.footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 100%;
+  color: color-mix(in srgb, var(--parchment) 80%, var(--muted));
+}
+.footer-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.8125rem;
+}
+.footer-year {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: var(--muted);
+}
+.footer-sep {
+  width: 0.5px;
+  height: 12px;
+  background-color: var(--line);
+}
+.footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  height: 100%;
+  color: var(--muted);
+  transition: color 150ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .footer-brand:hover,
+  .footer-link:hover {
+    color: var(--parchment);
+  }
+}
+.footer-brand:focus-visible,
+.footer-link:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: -2px;
+  border-radius: 0;
+}
+@media (min-width: 1025px) {
+  .footer-bar { height: 40px; }
+}
+@media (max-width: 640px) {
+  .footer-name,
+  .footer-handle { display: none; }
+}
+
 /* ------------------------------------------------------------ the journey */
 
 /*

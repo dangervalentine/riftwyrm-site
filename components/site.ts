@@ -5,7 +5,8 @@ export const site = {
   name: "Riftwyrm",
   shortName: "Riftwyrm",
   url: "https://riftwyrm.dangervalentine.com",
-  developer: "Victor Valentine",
+  developer: "Danger Valentine",
+  github: "https://github.com/dangervalentine",
   email: "victor@dangervalentine.com",
   /** One sentence in plain words, at most 160 characters: it doubles as the
    * meta description. The game is described generically on purpose: no other
