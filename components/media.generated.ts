@@ -394,6 +394,86 @@ export const enemies = {
 } as const;
 
 export const cards = {
+  "adept_C01": {
+    "height": 671,
+    "src": "/media/cards/adept-void-slam-water.webp",
+    "width": 480
+  },
+  "adept_C02": {
+    "height": 671,
+    "src": "/media/cards/adept-blinding-blade-water.webp",
+    "width": 480
+  },
+  "adept_C03": {
+    "height": 671,
+    "src": "/media/cards/adept-scorch-water.webp",
+    "width": 480
+  },
+  "adept_C04": {
+    "height": 671,
+    "src": "/media/cards/adept-cold-blaze-water.webp",
+    "width": 480
+  },
+  "adept_C05": {
+    "height": 671,
+    "src": "/media/cards/adept-inferno-lightning.webp",
+    "width": 480
+  },
+  "adept_C06": {
+    "height": 671,
+    "src": "/media/cards/adept-lightning-step-lightning.webp",
+    "width": 480
+  },
+  "adept_C07": {
+    "height": 671,
+    "src": "/media/cards/adept-surge-lightning.webp",
+    "width": 480
+  },
+  "adept_C08": {
+    "height": 671,
+    "src": "/media/cards/adept-swift-current-lightning.webp",
+    "width": 480
+  },
+  "adept_C09": {
+    "height": 671,
+    "src": "/media/cards/adept-swift-current-shadow.webp",
+    "width": 480
+  },
+  "adept_C10": {
+    "height": 671,
+    "src": "/media/cards/adept-inferno-shadow.webp",
+    "width": 480
+  },
+  "adept_C11": {
+    "height": 671,
+    "src": "/media/cards/adept-shadow-stride-shadow.webp",
+    "width": 480
+  },
+  "adept_C12": {
+    "height": 671,
+    "src": "/media/cards/adept-lightning-step-shadow.webp",
+    "width": 480
+  },
+  "adept_C13": {
+    "height": 671,
+    "src": "/media/cards/adept-surge-fire.webp",
+    "width": 480
+  },
+  "adept_C14": {
+    "height": 671,
+    "src": "/media/cards/adept-cold-blaze-fire.webp",
+    "width": 480
+  },
+  "adept_C15": {
+    "height": 671,
+    "src": "/media/cards/adept-ember-dash-fire.webp",
+    "width": 480
+  },
+  "adept_C16": {
+    "height": 671,
+    "src": "/media/cards/adept-static-rush-fire.webp",
+    "width": 480
+  },
   "blinding_blade": {
     "height": 671,
     "src": "/media/cards/adept-blinding-blade.webp",
@@ -941,3 +1021,291 @@ export const regionStats = [
     ]
   }
 ] as const;
+
+/** The strategy guide's numbers from the game: each dragon's Speed, First Strike and Showdown deck targets; each Adept Card's strength by Level and Empower costs. */
+export const guideStats = {
+  "cards": {
+    "C01": {
+      "essence": "water",
+      "image": "/media/cards/adept-void-slam-water.webp",
+      "name": "Void Slam",
+      "stepCost": [
+        1,
+        3,
+        4
+      ],
+      "strength": [
+        6,
+        8,
+        13,
+        16
+      ]
+    },
+    "C02": {
+      "essence": "water",
+      "image": "/media/cards/adept-blinding-blade-water.webp",
+      "name": "Blinding Blade",
+      "stepCost": [
+        2,
+        3,
+        4
+      ],
+      "strength": [
+        6,
+        8,
+        10,
+        14
+      ]
+    },
+    "C03": {
+      "essence": "water",
+      "image": "/media/cards/adept-scorch-water.webp",
+      "name": "Scorch",
+      "stepCost": [
+        2,
+        4,
+        5
+      ],
+      "strength": [
+        7,
+        10,
+        12,
+        16
+      ]
+    },
+    "C04": {
+      "essence": "water",
+      "image": "/media/cards/adept-cold-blaze-water.webp",
+      "name": "Cold Blaze",
+      "stepCost": [
+        1,
+        3,
+        4
+      ],
+      "strength": [
+        4,
+        7,
+        11,
+        15
+      ]
+    },
+    "C05": {
+      "essence": "lightning",
+      "image": "/media/cards/adept-inferno-lightning.webp",
+      "name": "Inferno",
+      "stepCost": [
+        1,
+        3,
+        4
+      ],
+      "strength": [
+        7,
+        9,
+        13,
+        17
+      ]
+    },
+    "C06": {
+      "essence": "lightning",
+      "image": "/media/cards/adept-lightning-step-lightning.webp",
+      "name": "Lightning Step",
+      "stepCost": [
+        2,
+        4,
+        6
+      ],
+      "strength": [
+        6,
+        11,
+        15,
+        19
+      ]
+    },
+    "C07": {
+      "essence": "lightning",
+      "image": "/media/cards/adept-surge-lightning.webp",
+      "name": "Surge",
+      "stepCost": [
+        2,
+        3,
+        4
+      ],
+      "strength": [
+        5,
+        8,
+        11,
+        14
+      ]
+    },
+    "C08": {
+      "essence": "lightning",
+      "image": "/media/cards/adept-swift-current-lightning.webp",
+      "name": "Swift Current",
+      "stepCost": [
+        2,
+        4,
+        5
+      ],
+      "strength": [
+        5,
+        8,
+        12,
+        17
+      ]
+    },
+    "C09": {
+      "essence": "shadow",
+      "image": "/media/cards/adept-swift-current-shadow.webp",
+      "name": "Swift Current",
+      "stepCost": [
+        2,
+        4,
+        5
+      ],
+      "strength": [
+        5,
+        8,
+        12,
+        17
+      ]
+    },
+    "C10": {
+      "essence": "shadow",
+      "image": "/media/cards/adept-inferno-shadow.webp",
+      "name": "Inferno",
+      "stepCost": [
+        1,
+        3,
+        4
+      ],
+      "strength": [
+        7,
+        9,
+        13,
+        17
+      ]
+    },
+    "C11": {
+      "essence": "shadow",
+      "image": "/media/cards/adept-shadow-stride-shadow.webp",
+      "name": "Shadow Stride",
+      "stepCost": [
+        2,
+        3,
+        5
+      ],
+      "strength": [
+        7,
+        10,
+        14,
+        18
+      ]
+    },
+    "C12": {
+      "essence": "shadow",
+      "image": "/media/cards/adept-lightning-step-shadow.webp",
+      "name": "Lightning Step",
+      "stepCost": [
+        2,
+        4,
+        6
+      ],
+      "strength": [
+        6,
+        11,
+        15,
+        19
+      ]
+    },
+    "C13": {
+      "essence": "fire",
+      "image": "/media/cards/adept-surge-fire.webp",
+      "name": "Surge",
+      "stepCost": [
+        2,
+        3,
+        4
+      ],
+      "strength": [
+        5,
+        8,
+        11,
+        14
+      ]
+    },
+    "C14": {
+      "essence": "fire",
+      "image": "/media/cards/adept-cold-blaze-fire.webp",
+      "name": "Cold Blaze",
+      "stepCost": [
+        1,
+        3,
+        4
+      ],
+      "strength": [
+        4,
+        7,
+        11,
+        15
+      ]
+    },
+    "C15": {
+      "essence": "fire",
+      "image": "/media/cards/adept-ember-dash-fire.webp",
+      "name": "Ember Dash",
+      "stepCost": [
+        2,
+        4,
+        5
+      ],
+      "strength": [
+        5,
+        7,
+        9,
+        12
+      ]
+    },
+    "C16": {
+      "essence": "fire",
+      "image": "/media/cards/adept-static-rush-fire.webp",
+      "name": "Static Rush",
+      "stepCost": [
+        1,
+        3,
+        4
+      ],
+      "strength": [
+        5,
+        10,
+        13,
+        17
+      ]
+    }
+  },
+  "dragons": {
+    "fire": {
+      "deckEven": 43,
+      "deckLikely": 46,
+      "firstStrike": 9,
+      "speed": 9
+    },
+    "lightning": {
+      "deckEven": 39,
+      "deckLikely": 42,
+      "firstStrike": 8,
+      "speed": 13
+    },
+    "shadow": {
+      "deckEven": 40,
+      "deckLikely": 43,
+      "firstStrike": 6,
+      "speed": 12
+    },
+    "water": {
+      "deckEven": 38,
+      "deckLikely": 41,
+      "firstStrike": 4,
+      "speed": 10
+    }
+  }
+} as const;
