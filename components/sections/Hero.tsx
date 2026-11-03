@@ -83,30 +83,32 @@ export default function Hero() {
         <div className="order-1 flex justify-center lg:order-2 lg:justify-end">
           <div className="relative w-[72vw] pb-[5%] min-[360px]:w-[min(88vw,420px)] sm:w-[min(64vw,460px)] lg:w-full lg:max-w-[480px]">
             {/* Adept Cards and Region Cards fanned out from under the deck.
-                Pointed at, a card lifts out of the hand and the rest dim. */}
-            <HeroHand cards={FAN} />
-
-            {/* The deck: the Dragon Card on top, with the edges of the cards under it. */}
-            <div className="hero-card relative mx-auto w-[44%]">
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 translate-x-[3%] translate-y-[2.6%] rounded-[8%/5.7%] bg-card-frame shadow-[0_3px_0_0_var(--card-edge-line),0_5px_0_0_var(--card-frame),0_8px_0_0_var(--card-edge-line),0_10px_0_0_var(--card-frame),0_13px_0_0_var(--card-edge-line),0_40px_80px_-20px_var(--well)]"
-              />
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 translate-x-[1.5%] translate-y-[1.3%] rounded-[8%/5.7%] border border-card-edge-line bg-card-frame"
-              />
-              {/* The Dragon Card as the game prints it. */}
-              <Image
-                src={cards.dragon_fire.src}
-                width={cards.dragon_fire.width}
-                height={cards.dragon_fire.height}
-                alt="Cindermaw's Dragon Card, a red dragon with a crest of flame and its stats, on top of a deck between a hand of Adept Cards and the four Region Cards."
-                priority
-                sizes="(min-width: 1024px) 230px, 42vw"
-                className="relative w-full"
-              />
-            </div>
+                Pointed at, a card (the deck's top card too) lifts and the rest dim. */}
+            <HeroHand
+              cards={FAN}
+              deck={
+                <>
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-0 translate-x-[3%] translate-y-[2.6%] rounded-[8%/5.7%] bg-card-frame shadow-[0_3px_0_0_var(--card-edge-line),0_5px_0_0_var(--card-frame),0_8px_0_0_var(--card-edge-line),0_10px_0_0_var(--card-frame),0_13px_0_0_var(--card-edge-line),0_40px_80px_-20px_var(--well)]"
+                  />
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-0 translate-x-[1.5%] translate-y-[1.3%] rounded-[8%/5.7%] border border-card-edge-line bg-card-frame"
+                  />
+                  {/* The Dragon Card as the game prints it. */}
+                  <Image
+                    src={cards.dragon_fire.src}
+                    width={cards.dragon_fire.width}
+                    height={cards.dragon_fire.height}
+                    alt="Cindermaw's Dragon Card, a red dragon with a crest of flame and its stats, on top of a deck between a hand of Adept Cards and the four Region Cards."
+                    priority
+                    sizes="(min-width: 1024px) 230px, 42vw"
+                    className="hero-top relative w-full"
+                  />
+                </>
+              }
+            />
           </div>
         </div>
       </div>

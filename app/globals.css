@@ -253,14 +253,17 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .hero-fan { transform: rotate(var(--fan-r)); }
 }
-/* Pointed at, a card in the hand lifts out of it and comes in front; the rest
- * dim (HeroHand sets data-on and data-active). */
-.hero-fan-card { transition: transform 220ms ease-out, filter 220ms ease-out; }
-.hero-fan[data-on] .hero-fan-card {
+/* Pointed at, a card in the hand, or the deck's top card, lifts and comes in
+ * front; the rest dim (HeroHand sets data-on and data-dim). */
+.hero-fan-card,
+.hero-top { transition: transform 220ms ease-out, filter 220ms ease-out; }
+.hero-fan[data-on] .hero-fan-card,
+.hero-card[data-on] .hero-top {
   transform: translateY(-14%) scale(1.12);
   filter: drop-shadow(0 0 1px var(--brass)) drop-shadow(0 18px 26px var(--well));
 }
-.hero-hand[data-active] .hero-fan:not([data-on]) .hero-fan-card { filter: brightness(0.6) drop-shadow(0 12px 18px var(--well)); }
+.hero-fan[data-dim] .hero-fan-card { filter: brightness(0.6) drop-shadow(0 12px 18px var(--well)); }
+.hero-card[data-dim] .hero-top { filter: brightness(0.6); }
 .hero-copy { animation: fade 700ms 200ms ease-out both; }
 
 /* The four dragons come up one after another as their row scrolls in. */
