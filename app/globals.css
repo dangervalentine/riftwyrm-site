@@ -199,19 +199,6 @@ body {
   }
 }
 
-/* ------------------------------------------------------------ the road */
-
-/*
- * The highlight under or beside each card keeps one height whatever is picked
- * (a foe's seven stats or a road's three, a dragon's line), so nothing on the
- * page moves as you look from one card panel to the next. Each height is the
- * tallest content measured at the narrowest width of its range, rounded up.
- */
-.road-details { height: 10.5rem; }
-@media (min-width: 640px) { .road-details { height: 7.5rem; } }
-@media (min-width: 768px) { .road-details { height: 11rem; } }
-@media (min-width: 1024px) { .road-details { height: 8.5rem; } }
-
 /* ------------------------------------------------------------ the journey */
 
 /*
@@ -255,11 +242,12 @@ body {
 }
 /* The dragon starts as the card prints it, cut to the card's picture and under
  * its figures, and holds there until the hand is fanned; then it comes up over
- * the figures, the cut opens, and it grows out over the card's edges. */
+ * the figures and the cut opens, showing it whole over the card's edges, at the
+ * same size. */
 @keyframes step-out {
-  0%, 55% { clip-path: var(--cut); transform: none; filter: drop-shadow(0 0 0 transparent); z-index: 0; }
+  0%, 55% { clip-path: var(--cut); filter: drop-shadow(0 0 0 transparent); z-index: 0; }
   56% { z-index: 2; }
-  100% { clip-path: inset(-80% round 0%); transform: scale(1.1); filter: drop-shadow(0 24px 30px var(--well)); z-index: 2; }
+  100% { clip-path: inset(-80% round 0%); filter: drop-shadow(0 24px 30px var(--well)); z-index: 2; }
 }
 @keyframes fan {
   from { opacity: 0; transform: rotate(0deg); }
@@ -285,7 +273,6 @@ body {
 }
 .hero-hand[data-active] .hero-fan:not([data-on]) .hero-fan-card { filter: brightness(0.6) drop-shadow(0 12px 18px var(--well)); }
 .hero-dragon {
-  transform-origin: 55% 88%;
   animation: step-out 2400ms 200ms cubic-bezier(0.3, 0, 0.2, 1) both;
 }
 .hero-copy { animation: fade 700ms 200ms ease-out both; }

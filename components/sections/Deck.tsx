@@ -1,7 +1,7 @@
 import Image from "next/image";
 import type { CSSProperties } from "react";
 import { dragons, hand, regions, world } from "../content";
-import { cards, dragons as dragonArt, enemies, journeys, regionStats } from "../media.generated";
+import { cards, enemies, journeys, regionStats } from "../media.generated";
 import { site } from "../site";
 import Road, { type RoadDragon, type RoadRegion } from "./Road";
 
@@ -17,7 +17,7 @@ const roadRegions: RoadRegion[] = regions.map((r) => {
   };
 });
 
-const roadDragons: RoadDragon[] = dragons.map((d) => ({ ...d, art: dragonArt[d.id].art, lair: dragonArt[d.id].lair }));
+const roadDragons: RoadDragon[] = dragons.map((d) => ({ ...d, card: cards[`dragon_${d.id}`] }));
 
 /** Where each card of the hand sits in its fan. */
 const FAN: CSSProperties[] = [

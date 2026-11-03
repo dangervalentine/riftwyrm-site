@@ -11,7 +11,7 @@
  *            build/app-store/ (default: the newest version folder)
  * --cards    the printed cards, as drawn by the game's card tool
  *            (default <game>/build/card-shots; make them with
- *            godot --path . --always-on-top -s tools/card_shots.gd -- build/card-shots adept region)
+ *            godot --path . --always-on-top -s tools/card_shots.gd -- build/card-shots adept region dragon)
  * --dragon-card  the hero's Dragon Card in layers, as drawn by this site's
  *            scripts/dragon_card.gd (default <game>/build/site-dragon-card; make
  *            it from the game's folder with
@@ -264,6 +264,8 @@ function plan(game, version, cardsDir, dragonCardDir) {
   // The share image is drawn at build time by a renderer that reads PNG, not WebP.
   for (const n of REGION_CARDS)
     add(`cards.region${n}`, join(cards, "region", `region_${n}.png`), `public/media/cards/region-${n}.webp`, { card: 560 });
+  for (const id of DRAGONS)
+    add(`cards.dragon_${id}`, join(cards, "dragon", `dragon_${id}.png`), `public/media/cards/dragon-${id}.webp`, { card: 400 });
   for (const [file, name] of ADEPT_CARDS)
     add(`cards.${name.replace(/-/g, "_")}`, join(cards, "adept", `${file}.png`), `public/media/cards/adept-${name}.webp`, { card: 400 });
 

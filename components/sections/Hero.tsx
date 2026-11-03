@@ -51,8 +51,7 @@ const PICK_SCENE = `(function(){var s=${JSON.stringify(SCENES)};document.documen
  * Cindermaw in its burning lair, the top card of a deck: the game is a deck
  * of cards, and every part of it (the regions, the foes, the dragon, your own
  * powers) is dealt from one. Adept Cards and Region Cards fan out from under
- * the deck, then the dragon grows until it breaks out over the top card's
- * edges. Behind it all is a Journey painting, dimmed and faded into the ground
+ * the deck, then the dragon breaks out over the top card's edges. Behind it all is a Journey painting, dimmed and faded into the ground
  * as the game's dragon screen shows one before a dragon is chosen. This is the page's one orchestrated moment (see the motion
  * block in globals.css).
  */
@@ -134,7 +133,7 @@ export default function Hero() {
                 className="hero-dragon pointer-events-none absolute z-[2] max-w-none"
               />
               {/* ...and the card's figures, over the dragon as printed until it
-                  grows, then under it. */}
+                  breaks out, then under it. */}
               <Image
                 src={hero.figures.src}
                 width={hero.figures.width}

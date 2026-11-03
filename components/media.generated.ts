@@ -639,6 +639,26 @@ export const cards = {
     "src": "/media/cards/adept-cold-blaze.webp",
     "width": 370
   },
+  "dragon_fire": {
+    "height": 556,
+    "src": "/media/cards/dragon-fire.webp",
+    "width": 400
+  },
+  "dragon_lightning": {
+    "height": 556,
+    "src": "/media/cards/dragon-lightning.webp",
+    "width": 400
+  },
+  "dragon_shadow": {
+    "height": 556,
+    "src": "/media/cards/dragon-shadow.webp",
+    "width": 400
+  },
+  "dragon_water": {
+    "height": 556,
+    "src": "/media/cards/dragon-water.webp",
+    "width": 400
+  },
   "ember_dash": {
     "height": 518,
     "src": "/media/cards/adept-ember-dash.webp",
