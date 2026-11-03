@@ -3,6 +3,7 @@ import type { CSSProperties } from "react";
 import { cards, hero, scenes } from "../media.generated";
 import { site } from "../site";
 import StoreButtons from "../StoreButtons";
+import HeroHand, { type HandCard } from "./HeroHand";
 
 /**
  * The hand fanned out from under the deck, each card turned about a point well
@@ -22,7 +23,7 @@ const REGIONS = [
   { card: cards.region2, r: 18 },
   { card: cards.region1, r: 9 },
 ];
-const FAN = [...ADEPTS, ...REGIONS];
+const FAN: HandCard[] = [...ADEPTS, ...REGIONS];
 
 /**
  * Where the dragon stands on its card, and the cut that keeps it inside the
@@ -97,26 +98,8 @@ export default function Hero() {
         <div className="order-1 flex justify-center lg:order-2 lg:justify-end">
           <div className="relative w-[72vw] pb-[5%] min-[360px]:w-[min(88vw,420px)] sm:w-[min(64vw,460px)] lg:w-full lg:max-w-[480px]">
             {/* Adept Cards and Region Cards fanned out from under the deck.
-                Hovered, a card lifts out of the hand and the rest dim. */}
-            <div className="hero-hand absolute inset-0">
-              {FAN.map(({ card, r }) => (
-                <div
-                  key={card.src}
-                  style={{ "--fan-r": `${r}deg`, "--fan-delay": `${300 + (Math.abs(r) / 9) * 90}ms` } as CSSProperties}
-                  className="hero-fan absolute top-[4%] left-[30%] w-[40%] origin-[50%_150%]"
-                >
-                  <Image
-                    src={card.src}
-                    width={card.width}
-                    height={card.height}
-                    alt=""
-                    priority
-                    sizes="(min-width: 1024px) 230px, 44vw"
-                    className="hero-fan-card w-full drop-shadow-[0_12px_18px_var(--well)]"
-                  />
-                </div>
-              ))}
-            </div>
+                Pointed at, a card lifts out of the hand and the rest dim. */}
+            <HeroHand cards={FAN} />
 
             {/* The deck: the Dragon Card on top, with the edges of the cards under it. */}
             <div className="hero-card relative mx-auto w-[44%]">

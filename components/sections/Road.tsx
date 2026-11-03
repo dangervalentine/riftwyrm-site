@@ -2,22 +2,22 @@
 
 import Image from "next/image";
 import { useState, type CSSProperties, type ReactNode } from "react";
+import { ENEMY_ASPECT, EnemyPanel, JourneyPanel, type EnemyPlace } from "./TrialPanel";
 
 type Img = { src: string; width: number; height: number };
 type Piece = { key: string; name: string; alt: string };
-type Essence = "lightning" | "water" | "fire" | "shadow";
 type Figure = { value: number; affinity: string | null };
 
 /** A foe's printed stats, and a road's. */
-export type EnemyStats = { hp: number; speed: number; attack: Figure; armor: readonly Figure[]; xp: number; trait: string | null };
-export type JourneyStats = { mp: Figure; delay: number; xp: number; obstacle: string | null };
+export type EnemyStats = { hp: number; speed: number; attack: Figure; armor: readonly Figure[]; xp: number; trait: string | null; traitIcon: string | null };
+export type JourneyStats = { mp: Figure; delay: number; xp: number; obstacle: string | null; obstacleIcon: string | null };
 
 export type RoadRegion = {
   n: number;
   name: string;
   alt: string;
   card: Img;
-  enemies: (Piece & { art: Img; backdrop: Img; stats: EnemyStats })[];
+  enemies: (Piece & { art: Img; backdrop: Img; place: EnemyPlace; stats: EnemyStats })[];
   journeys: (Piece & { art: Img; stats: JourneyStats })[];
 };
 
@@ -219,29 +219,6 @@ function DragonsCard({ dragons, target }: { dragons: RoadDragon[]; target: Targe
   );
 }
 
-/** One printed stat: the game's icon for it, its value, and its name. An
- * Essence, where the stat has one, is shown by its own icon in its colour. */
-function Stat({ icon, value, label, essence }: { icon: string; value: number | string; label: string; essence?: string | null }) {
-  const e = essence as Essence | null | undefined;
-  return (
-    <li className="flex items-center gap-1.5 rounded-lg border border-line bg-stone/80 px-2 py-1 sm:gap-2 sm:px-3 sm:py-1.5">
-      <span aria-hidden="true" className="glyph size-4 text-muted" style={{ "--glyph": `url(/media/icons/${icon}.svg)` } as CSSProperties} />
-      <span className="inline-block w-[2ch] text-center font-display text-base leading-none font-semibold text-parchment tabular-nums sm:text-lg">{value}</span>
-      {e ? (
-        <span
-          aria-hidden="true"
-          className={`glyph size-4 ${INK[e]}`}
-          style={{ "--glyph": `url(/media/icons/${e}.svg)` } as CSSProperties}
-        />
-      ) : null}
-      <span className="text-xs text-muted">
-        {label}
-        {e ? <span className="sr-only">, {e}</span> : null}
-      </span>
-    </li>
-  );
-}
-
 /** A Trait or Obstacle, named as the game names it. */
 function Rule({ kind, name }: { kind: string; name: string }) {
   return (
@@ -252,9 +229,11 @@ function Rule({ kind, name }: { kind: string; name: string }) {
   );
 }
 
-/** The one thing in focus, large. A foe stands on its own ground and a road
- * is shown whole, each with its name and its printed stats; a dragon stands in
- * its lair with its title and its line. Announced as it changes. */
+/** The one thing in focus, large. A foe or a road is drawn as its Region Card
+ * prints it, its figures in badges on the picture (TrialPanel.tsx), with its
+ * name and any Trait or Obstacle named beneath; a dragon stands in its lair
+ * with its title and its line. Every one takes the shape of a foe's panel, so
+ * nothing moves as the pick changes. Announced as it changes. */
 function Highlight({ id, focus }: { id: string; focus: Focus }) {
   let stage;
   let name;
@@ -262,52 +241,27 @@ function Highlight({ id, focus }: { id: string; focus: Focus }) {
   let ink = "text-parchment";
   if (focus.kind === "enemy") {
     const { piece: e } = focus;
-    const st = e.stats;
-    stage = (
-      <>
-        <Image src={e.backdrop.src} width={e.backdrop.width} height={e.backdrop.height} alt="" sizes="(min-width: 768px) 560px, 88vw" className="absolute inset-0 h-full w-full object-cover opacity-85" />
-        <Image src={e.art.src} width={e.art.width} height={e.art.height} alt={e.alt} sizes="(min-width: 768px) 400px, 60vw" className="absolute inset-x-0 bottom-0 mx-auto h-[94%] w-auto" />
-      </>
-    );
+    stage = <EnemyPanel name={e.name} alt={e.alt} art={e.art} backdrop={e.backdrop} place={e.place} stats={e.stats} />;
     name = e.name;
-    details = (
-      <ul className="mt-2 flex flex-wrap gap-1.5 sm:mt-3 sm:gap-2" aria-label={`${e.name}'s stats`}>
-        <Stat icon="hp" value={st.hp} label="HP" />
-        <Stat icon="initiative" value={st.speed} label="Speed" />
-        <Stat icon="attack" value={st.attack.value} label="Attack" essence={st.attack.affinity} />
-        {st.armor.map((a, i) => (
-          <Stat key={i} icon="armor" value={a.value} label="Armor" essence={a.affinity} />
-        ))}
-        <Stat icon="xp" value={st.xp} label="XP" />
-        {st.trait ? <Rule kind="Trait" name={st.trait} /> : null}
-      </ul>
-    );
+    details = e.stats.trait ? <ul className="mt-2 flex sm:mt-3"><Rule kind="Trait" name={e.stats.trait} /></ul> : null;
   } else if (focus.kind === "journey") {
     const { piece: j } = focus;
-    const st = j.stats;
-    // A road is painted upright: shown whole, over a blurred copy of itself.
+    // A road is printed upright: its panel stands over a blurred copy of its painting.
     stage = (
-      <>
+      <div className="relative h-full overflow-hidden rounded-xl border border-line bg-stone">
         <Image src={j.art.src} width={j.art.width} height={j.art.height} alt="" sizes="200px" className="absolute inset-0 h-full w-full scale-110 object-cover opacity-50 blur-xl" />
-        <Image src={j.art.src} width={j.art.width} height={j.art.height} alt={j.alt} sizes="(min-width: 768px) 320px, 50vw" className="absolute inset-0 h-full w-full object-contain drop-shadow-[0_10px_20px_var(--well)]" />
-      </>
+        <JourneyPanel name={j.name} alt={j.alt} art={j.art} stats={j.stats} className="absolute inset-y-0 left-1/2 h-full -translate-x-1/2 drop-shadow-[0_10px_20px_var(--well)]" />
+      </div>
     );
     name = j.name;
-    details = (
-      <ul className="mt-2 flex flex-wrap gap-1.5 sm:mt-3 sm:gap-2" aria-label={`${j.name}'s stats`}>
-        <Stat icon="mp" value={st.mp.value} label="MP" essence={st.mp.affinity} />
-        <Stat icon="time" value={st.delay} label="Delay" />
-        <Stat icon="xp" value={st.xp} label="XP" />
-        {st.obstacle ? <Rule kind="Obstacle" name={st.obstacle} /> : null}
-      </ul>
-    );
+    details = j.stats.obstacle ? <ul className="mt-2 flex sm:mt-3"><Rule kind="Obstacle" name={j.stats.obstacle} /></ul> : null;
   } else {
     const d = focus.dragon;
     stage = (
-      <>
+      <div className="relative h-full overflow-hidden rounded-xl border border-line bg-stone">
         <Image src={d.lair.src} width={d.lair.width} height={d.lair.height} alt="" sizes="(min-width: 768px) 560px, 88vw" className="absolute inset-0 h-full w-full object-cover" />
         <Image src={d.art.src} width={d.art.width} height={d.art.height} alt={d.alt} sizes="(min-width: 768px) 460px, 70vw" className="absolute inset-x-0 bottom-0 mx-auto h-full w-auto" />
-      </>
+      </div>
     );
     name = d.name;
     ink = INK[d.id];
@@ -323,7 +277,7 @@ function Highlight({ id, focus }: { id: string; focus: Focus }) {
 
   return (
     <div id={id} aria-live="polite" className="relative">
-      <div className="relative aspect-[2/1] overflow-hidden rounded-xl border border-line bg-stone sm:aspect-[16/9] md:aspect-[16/10]">{stage}</div>
+      <div className="relative" style={{ aspectRatio: ENEMY_ASPECT }}>{stage}</div>
       <div data-details className="road-details">
         <h4 className={`mt-3 font-display text-2xl leading-tight font-semibold md:mt-5 md:text-4xl ${ink}`}>{name}</h4>
         {details}
