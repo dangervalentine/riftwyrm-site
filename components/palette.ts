@@ -12,5 +12,7 @@ export const palette = {
   lightning: "#a87d36",
   lightningBright: "#d8ac5c",
   fire: "#87302a",
+  water: "#2c4c80",
+  shadow: "#4f3a80",
   region1Ground: "#0d121a",
 } as const;

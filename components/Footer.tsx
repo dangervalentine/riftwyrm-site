@@ -22,6 +22,8 @@ export default function Footer() {
         <span className="footer-year">&copy; {year}</span>
       </Link>
       <span className="footer-sep" aria-hidden="true" />
+      <Link href="/guide" className="footer-link">Strategy guide</Link>
+      <span className="footer-sep" aria-hidden="true" />
       <Link href="/support" className="footer-link">Support</Link>
       <span className="footer-sep" aria-hidden="true" />
       <Link href="/privacy" className="footer-link">Privacy</Link>

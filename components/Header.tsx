@@ -21,6 +21,7 @@ export default function Header({ overlay = false }: { overlay?: boolean }) {
         <nav aria-label="Site" className="flex gap-5 text-sm sm:gap-7">
           <Link href="/#screenshots" className="link-quiet hidden sm:inline">Screenshots</Link>
           <Link href="/#dragons" className="link-quiet hidden sm:inline">Dragons</Link>
+          <Link href="/guide" className="link-quiet">Guide</Link>
           <Link href="/support" className="link-quiet">Support</Link>
           <Link href="/privacy" className="link-quiet">Privacy</Link>
         </nav>

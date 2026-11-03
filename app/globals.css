@@ -333,3 +333,197 @@ body {
 .prose-ink .lede {
   color: var(--muted);
 }
+
+/* ------------------------------------------------------------ strategy guide */
+
+/*
+ * The guide's article pages: a printed field guide. One reading column of
+ * about 72 characters, display serif heads, brass for the things to act on.
+ */
+.guide-col {
+  width: 100%;
+  max-width: 46rem;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+.guide-body {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+.guide-body p + p { margin-top: 1rem; }
+.guide-body a:not(.guide-card-link) {
+  color: var(--brass);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.guide-body a:not(.guide-card-link):hover { color: var(--brass-bright); }
+.guide-kicker {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+.guide-standfirst {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.guide-byline {
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  font-variant: small-caps;
+  color: var(--edge);
+}
+.guide-h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.75rem;
+  line-height: 1.2;
+  color: var(--parchment);
+  margin-top: 3.5rem;
+  margin-bottom: 1rem;
+}
+.guide-h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.3;
+  color: var(--parchment);
+}
+.guide-dropcap::first-letter {
+  float: left;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 4.1em;
+  line-height: 0.82;
+  padding: 0.08em 0.1em 0 0;
+  color: var(--brass);
+}
+/* A rule of thumb set apart from the text, as a field guide prints one. */
+.guide-tip {
+  border-left: 3px solid var(--brass);
+  background: var(--stone-raised);
+  padding: 0.85rem 1.1rem;
+  border-radius: 0 6px 6px 0;
+}
+.guide-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+@media (min-width: 480px) {
+  .guide-stats { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+.guide-stats > div {
+  background: var(--stone);
+  padding: 0.85rem 1rem;
+}
+.guide-stats dt {
+  font-size: 0.75rem;
+  line-height: 1.3;
+  color: var(--muted);
+}
+.guide-stats dd {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.75rem;
+  line-height: 1.2;
+  color: var(--parchment);
+}
+.guide-tag {
+  display: inline-block;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+}
+
+/* Tables: real tables, which on a phone become one block per row, each cell labelled. */
+.guide-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+.guide-table caption {
+  text-align: left;
+  font-size: 0.8125rem;
+  color: var(--muted);
+  padding-bottom: 0.75rem;
+}
+.guide-table th,
+.guide-table td {
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+.guide-table thead th {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--muted);
+  white-space: nowrap;
+}
+@media (max-width: 639px) {
+  .guide-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .guide-table tr {
+    display: block;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .guide-table th,
+  .guide-table td {
+    display: grid;
+    grid-template-columns: 8.5rem 1fr;
+    gap: 0.75rem;
+    padding: 0.2rem 0;
+    border: 0;
+  }
+  .guide-table tbody th { display: block; font-family: var(--font-display); font-size: 1.125rem; padding-bottom: 0.35rem; }
+  .guide-table td::before {
+    content: attr(data-label);
+    color: var(--muted);
+    font-size: 0.8125rem;
+  }
+  /* A cell that is its row's whole content needs no label: give it the full width. */
+  .guide-table td.guide-td-full { display: block; }
+  .guide-table td.guide-td-full::before { content: none; }
+}
+.guide-bar-track {
+  display: block;
+  height: 4px;
+  margin-top: 0.3rem;
+  border-radius: 2px;
+  background: var(--well);
+  overflow: hidden;
+}
+.guide-bar-track > span { display: block; height: 100%; border-radius: 2px; }
+
+/* The dragon index's cards and the dragon nav: whole-card links. */
+.guide-card-link {
+  display: block;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--stone);
+  transition: border-color 150ms, background-color 150ms;
+}
+.guide-card-link:hover,
+.guide-card-link:focus-visible {
+  border-color: var(--brass-deep);
+  background: var(--stone-raised);
+}
