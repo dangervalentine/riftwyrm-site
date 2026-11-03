@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { enemies } from "../media.generated";
 import StoreButtons from "../StoreButtons";
 
@@ -18,13 +19,30 @@ export default function FinalCta() {
           <p className="mt-4 text-lg text-muted">Coming to iPhone, iPad and Android.</p>
           <StoreButtons className="mt-8" />
         </div>
-        <div
-          aria-hidden="true"
-          className="relative w-full max-w-[560px] self-center overflow-hidden [mask-image:radial-gradient(closest-side,black_55%,transparent)]"
+        {/* The hexer keeps the strategy guide: the picture is its only way in, with no
+            mark of it until it is pointed at or reached by keyboard. */}
+        <Link
+          href="/guide"
+          aria-label="The hunter's guide: how to beat each dragon"
+          className="group relative block w-full max-w-[560px] self-center rounded-full focus-visible:outline-offset-[-12px]"
         >
-          {/* The foe on its scene as one picture (sync-assets.mjs enemyScene). */}
-          <Image src={finale.src} width={finale.width} height={finale.height} alt="" className="h-auto w-full" />
-        </div>
+          <span className="block overflow-hidden [mask-image:radial-gradient(closest-side,black_55%,transparent)]">
+            {/* The foe on its scene as one picture (sync-assets.mjs enemyScene). */}
+            <Image
+              src={finale.src}
+              width={finale.width}
+              height={finale.height}
+              alt=""
+              className="h-auto w-full transition-[filter] duration-700 group-hover:brightness-110 group-focus-visible:brightness-110"
+            />
+          </span>
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-0 bottom-[3%] text-center font-display text-sm text-faint italic opacity-0 transition-opacity duration-700 group-hover:opacity-100 group-focus-visible:opacity-100"
+          >
+            the hunter&rsquo;s guide
+          </span>
+        </Link>
       </div>
     </section>
   );

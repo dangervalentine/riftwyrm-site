@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { ENEMY_ASPECT, EnemyPanel, JourneyPanel } from "./TrialPanel";
 
@@ -115,11 +114,7 @@ export default function Road({ regions, dragons }: { regions: RoadRegion[]; drag
           <h3 className="font-display text-2xl font-semibold text-fire-bright sm:text-3xl">Then the dragon</h3>
           <p className="mt-3 max-w-[60ch] text-muted">
             Every hunt starts with Thrallis. Win on Normal or harder and the next dragon wakes, each one harder to
-            bring down than the last. Stuck on one?{" "}
-            <Link href="/guide" className="text-brass underline underline-offset-4 hover:text-brass-bright">
-              Read the guide to each dragon
-            </Link>
-            .
+            bring down than the last.
           </p>
           <ol className="mt-8 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4">
             {dragons.map((d) => (
