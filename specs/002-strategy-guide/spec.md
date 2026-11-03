@@ -34,7 +34,7 @@ figures move to the site.
 - The lessons are one component: side tabs on wide screens, an accordion on phones, every lesson listed when scripts are off; `/guide#lesson-<id>` opens that lesson.
 - The at-a-glance comparison sits with the dragon index ("Choose your dragon").
 - Every card shown on the guide pages (both tables, the featured cards, the buys) is a small printed card; pressing it opens a card viewer with the card at all four Levels side by side and the chosen Level's figures spelled out, as the game's card detail does. Escape or Back closes it; without scripts the small card opens its picture.
-- The guide is quiet: the site header (Home, Support, Privacy), footer and road no longer link to it; its only way in from the site is the goblin hexer at the end of the home page, which shows a faint "the hunter's guide" only when pointed at or focused. The guide's pages stay in the sitemap. This supersedes FR-017 and SC-005.
+- The guide is quiet: the site header (Home, Support, Privacy), footer and road no longer link to it; its only way in from the site is the goblin hexer at the end of the home page, which shows a faint "the hunter's guide" only when pointed at or focused. The guide's pages are left out of the sitemap and carry noindex, nofollow (robots.txt still lets crawlers fetch them, so they see it). This supersedes FR-017, FR-018's sitemap clause and SC-005.
 - Opening a new page starts at its top; Back returns to the place left. FR-016 now reads: the full content is available without JavaScript; sorting, tabs and the accordion are added by script.
 
 ## User Scenarios & Testing *(mandatory)*

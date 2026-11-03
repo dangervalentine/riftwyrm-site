@@ -1,8 +1,8 @@
 import type { MetadataRoute } from "next";
-import { guideDragons } from "@/components/guide";
 import { site } from "@/components/site";
 
+/** The public pages. The strategy guide is left out on purpose: it is reached only
+ * through the goblin hexer on the home page, and its pages ask not to be indexed. */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const guide = ["/guide", ...guideDragons.map((d) => `/guide/${d.slug}`)];
-  return ["", "/privacy", "/support", ...guide].map((path) => ({ url: `${site.url}${path}` }));
+  return ["", "/privacy", "/support"].map((path) => ({ url: `${site.url}${path}` }));
 }

@@ -27,6 +27,8 @@ export async function generateMetadata({ params }: PageProps<"/guide/[dragon]">)
     title,
     description,
     alternates: { canonical: `/guide/${(await params).dragon}` },
+    /** Kept out of search results, as the main guide page is. */
+    robots: { index: false, follow: false },
     openGraph: { type: "article", url: `/guide/${(await params).dragon}`, title, description },
     twitter: { title, description },
   };
