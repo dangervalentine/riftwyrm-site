@@ -9,8 +9,8 @@ import type { CSSProperties, ReactNode } from "react";
  *
  * A foe is a framed picture on its scene with its figures in a column of
  * badges down the left, its Trait in the top right corner and its XP in a star
- * at the bottom right, standing where the game stands it (trial_face.gd
- * enemy_crop). A road has its MP and Delay in a dark strip along the top, its
+ * at the bottom right; the picture is baked whole by sync-assets.mjs, the foe
+ * standing where the game stands it (trial_face.gd enemy_crop). A road has its MP and Delay in a dark strip along the top, its
  * painting below, its Obstacle at the top right of the painting and its star
  * at the foot.
  */
@@ -18,9 +18,6 @@ import type { CSSProperties, ReactNode } from "react";
 type Img = { src: string; width: number; height: number };
 type Essence = "lightning" | "water" | "fire" | "shadow";
 type Figure = { value: number; affinity: string | null };
-
-/** Where a foe stands on its panel (sync-assets.mjs enemyPlaces). */
-export type EnemyPlace = { back: number; size: number; box: readonly number[] };
 
 /** The game's colours (ui/theme/tokens.gd). */
 const ESSENCE: Record<Essence, { base: string; bright: string }> = {
@@ -222,53 +219,18 @@ function Frame({ aspect, colour, children, className = "", style }: { aspect: nu
   );
 }
 
-/**
- * Where a foe's square of art lies in the art's part of its panel, of aspect
- * `ratio`, in percent of that part (trial_face.gd enemy_crop, creature.gd
- * art_rect): the panel's shape cut from the square's full height, set back
- * left of the middle, then grown about the figure's feet by its size.
- */
-export function enemySquare(place: EnemyPlace, ratio: number) {
-  let cw = ratio;
-  let ch = 1;
-  let cx = 0.5 - cw / 2 + cw * place.back;
-  let cy = 0;
-  const [bx, by, bw, bh] = place.box;
-  if (place.size !== 1) {
-    const fx = bx + bw / 2;
-    const fy = by + bh;
-    const ax = (fx - cx) / cw;
-    const ay = (fy - cy) / ch;
-    cw /= place.size;
-    ch /= place.size;
-    cx = fx - ax * cw;
-    cy = fy - ay * ch;
-  }
-  return { left: (-cx / cw) * 100, top: (-cy / ch) * 100, width: (1 / cw) * 100, height: (1 / ch) * 100 };
-}
-
 export type EnemyPanelProps = {
   name: string;
   alt: string;
-  art: Img;
-  backdrop: Img;
-  place: EnemyPlace;
+  /** The foe on its scene as one picture of the panel's shape: its backdrop, the glow of its
+   * attack's Essence and its figure where the game stands it (sync-assets.mjs enemyScene). */
+  scene: Img;
   stats: { hp: number; speed: number; attack: Figure; armor: readonly Figure[]; xp: number; trait: string | null; traitIcon: string | null };
 };
 
 /** A foe's panel, drawn large. */
-export function EnemyPanel({ name, alt, art, backdrop, place, stats: st }: EnemyPanelProps) {
+export function EnemyPanel({ name, alt, scene, stats: st }: EnemyPanelProps) {
   const affinity = st.attack.affinity;
-  // The art fills the panel right of the badges (parts(): x from 0.17 of the width).
-  const sq = enemySquare(place, 0.83 * ENEMY_ASPECT);
-  const [bx, by, bw, bh] = place.box;
-  const reach = 0.35;
-  const glow = {
-    left: `${sq.left + ((bx - bw * reach) * sq.width)}%`,
-    top: `${sq.top + ((by - bh * reach) * sq.height)}%`,
-    width: `${bw * (1 + 2 * reach) * sq.width}%`,
-    height: `${bh * (1 + 2 * reach) * sq.height}%`,
-  };
   // Badges in a column of four rows down the left; two shields share the last.
   const row = 92 / 4;
   const side = row * 0.94;
@@ -277,26 +239,7 @@ export function EnemyPanel({ name, alt, art, backdrop, place, stats: st }: Enemy
   const xs = `2cqw`;
   return (
     <Frame aspect={ENEMY_ASPECT} colour={tint(affinity)} className="w-full" style={{ background: `color-mix(in srgb, ${tint(affinity)} 18%, transparent)` }}>
-      <Image src={backdrop.src} width={backdrop.width} height={backdrop.height} alt="" sizes="(min-width: 768px) 560px, 88vw" className="absolute inset-0 h-full w-full object-cover" />
-      <div className="absolute inset-y-0 right-0 left-[17%] overflow-hidden">
-        <span
-          aria-hidden="true"
-          className="absolute"
-          style={{
-            ...glow,
-            background: `radial-gradient(closest-side, color-mix(in srgb, ${essence(affinity)?.bright ?? PARCHMENT} 32%, transparent), transparent)`,
-          }}
-        />
-        <Image
-          src={art.src}
-          width={art.width}
-          height={art.height}
-          alt={alt}
-          sizes="(min-width: 768px) 480px, 76vw"
-          className="absolute max-w-none"
-          style={{ left: `${sq.left}%`, top: `${sq.top}%`, width: `${sq.width}%`, height: `${sq.height}%` }}
-        />
-      </div>
+      <Image src={scene.src} width={scene.width} height={scene.height} alt={alt} className="absolute inset-0 h-full w-full" />
       <ul aria-label={`${name}'s stats`}>
         <Badge icon="hp" value={st.hp} label="HP" colour={STAT_HP} side={side} style={{ left: xs, top: `${y(0)}cqh` }} />
         <Badge icon="initiative" value={st.speed} label="Speed" colour={STAT_PLATE} side={side} style={{ left: xs, top: `${y(1)}cqh` }} />

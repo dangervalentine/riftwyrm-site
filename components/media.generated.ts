@@ -10,29 +10,29 @@ export const source = {
 
 export const screenshots = {
   "dragons": {
-    "height": 884,
+    "height": 1320,
     "src": "/media/screenshots/dragons.webp",
-    "width": 1920
+    "width": 2868
   },
   "showdown": {
-    "height": 884,
+    "height": 1320,
     "src": "/media/screenshots/showdown.webp",
-    "width": 1920
+    "width": 2868
   },
   "title": {
-    "height": 884,
+    "height": 1320,
     "src": "/media/screenshots/title.webp",
-    "width": 1920
+    "width": 2868
   },
   "trial": {
-    "height": 884,
+    "height": 1320,
     "src": "/media/screenshots/trial.webp",
-    "width": 1920
+    "width": 2868
   },
   "won": {
-    "height": 884,
+    "height": 1320,
     "src": "/media/screenshots/won.webp",
-    "width": 1920
+    "width": 2868
   }
 } as const;
 
@@ -109,84 +109,84 @@ export const dragons = {
 
 export const journeys = {
   "burning-forest": {
-    "height": 540,
+    "height": 1152,
     "src": "/media/world/journey-burning-forest.webp",
-    "width": 420
+    "width": 896
   },
   "cave-entrance": {
-    "height": 540,
+    "height": 1152,
     "src": "/media/world/journey-cave-entrance.webp",
-    "width": 420
+    "width": 896
   },
   "cliff-crossing": {
-    "height": 540,
+    "height": 1152,
     "src": "/media/world/journey-cliff-crossing.webp",
-    "width": 420
+    "width": 896
   },
   "desert": {
-    "height": 540,
+    "height": 1152,
     "src": "/media/world/journey-desert.webp",
-    "width": 420
+    "width": 896
   },
   "forest-entrance": {
-    "height": 540,
+    "height": 1152,
     "src": "/media/world/journey-forest-entrance.webp",
-    "width": 420
+    "width": 896
   },
   "lava": {
-    "height": 540,
+    "height": 1152,
     "src": "/media/world/journey-lava.webp",
-    "width": 420
+    "width": 896
   },
   "mountain-road": {
-    "height": 540,
+    "height": 1152,
     "src": "/media/world/journey-mountain-road.webp",
-    "width": 420
+    "width": 896
   },
   "peaks": {
-    "height": 540,
+    "height": 1152,
     "src": "/media/world/journey-peaks.webp",
-    "width": 420
+    "width": 896
   },
   "river": {
-    "height": 540,
+    "height": 1152,
     "src": "/media/world/journey-river.webp",
-    "width": 420
+    "width": 896
   },
   "rope-bridge": {
-    "height": 540,
+    "height": 1152,
     "src": "/media/world/journey-rope-bridge.webp",
-    "width": 420
+    "width": 896
   },
   "stone-path": {
-    "height": 540,
+    "height": 1152,
     "src": "/media/world/journey-stone-path.webp",
-    "width": 420
+    "width": 896
   },
   "swamp": {
-    "height": 540,
+    "height": 1152,
     "src": "/media/world/journey-swamp.webp",
-    "width": 420
+    "width": 896
   },
   "underground-cave": {
-    "height": 540,
+    "height": 1152,
     "src": "/media/world/journey-underground-cave.webp",
-    "width": 420
+    "width": 896
   },
   "volcano": {
-    "height": 540,
+    "height": 1152,
     "src": "/media/world/journey-volcano.webp",
-    "width": 420
+    "width": 896
   },
   "waterfall": {
-    "height": 540,
+    "height": 1152,
     "src": "/media/world/journey-waterfall.webp",
-    "width": 420
+    "width": 896
   },
   "willow-tree": {
-    "height": 540,
+    "height": 1152,
     "src": "/media/world/journey-willow-tree.webp",
-    "width": 420
+    "width": 896
   }
 } as const;
 
@@ -275,429 +275,194 @@ export const scenes = {
 
 export const enemies = {
   "antler-horror": {
-    "art": {
-      "height": 420,
+    "scene": {
+      "height": 886,
       "src": "/media/world/enemy-antler-horror.webp",
-      "width": 420
-    },
-    "backdrop": {
-      "height": 442,
-      "src": "/media/world/backdrop-antler-horror.webp",
-      "width": 600
-    },
-    "place": {
-      "back": 0.08,
-      "box": [
-        0.0469,
-        0.0918,
-        0.7754,
-        0.8633
-      ],
-      "size": 0.89
+      "width": 1280
     }
   },
   "axe-gnome": {
-    "art": {
-      "height": 420,
+    "scene": {
+      "height": 886,
       "src": "/media/world/enemy-axe-gnome.webp",
-      "width": 420
-    },
-    "backdrop": {
-      "height": 442,
-      "src": "/media/world/backdrop-axe-gnome.webp",
-      "width": 600
-    },
-    "place": {
-      "back": 0.04,
-      "box": [
-        0.1113,
-        0.3125,
-        0.7754,
-        0.6426
-      ],
-      "size": 0.78
+      "width": 1280
     }
   },
   "boar-shaman": {
-    "art": {
-      "height": 420,
+    "scene": {
+      "height": 886,
       "src": "/media/world/enemy-boar-shaman.webp",
-      "width": 420
-    },
-    "backdrop": {
-      "height": 442,
-      "src": "/media/world/backdrop-boar-shaman.webp",
-      "width": 600
-    },
-    "place": {
-      "back": 0.16,
-      "box": [
-        0.168,
-        0.293,
-        0.6582,
-        0.6816
-      ],
-      "size": 0.84
+      "width": 1280
     }
   },
   "club-ogre": {
-    "art": {
-      "height": 420,
+    "scene": {
+      "height": 886,
       "src": "/media/world/enemy-club-ogre.webp",
-      "width": 420
-    },
-    "backdrop": {
-      "height": 442,
-      "src": "/media/world/backdrop-club-ogre.webp",
-      "width": 600
-    },
-    "place": {
-      "back": 0.23,
-      "box": [
-        0.0645,
-        0.1914,
-        0.8711,
-        0.7578
-      ],
-      "size": 1.06
+      "width": 1280
     }
   },
   "crane-monk": {
-    "art": {
-      "height": 420,
+    "scene": {
+      "height": 886,
       "src": "/media/world/enemy-crane-monk.webp",
-      "width": 420
-    },
-    "backdrop": {
-      "height": 442,
-      "src": "/media/world/backdrop-crane-monk.webp",
-      "width": 600
-    },
-    "place": {
-      "back": 0.23,
-      "box": [
-        0.1895,
-        0.2715,
-        0.6191,
-        0.6855
-      ],
-      "size": 1.11
+      "width": 1280
     }
   },
   "gath-brute": {
-    "art": {
-      "height": 420,
+    "scene": {
+      "height": 886,
       "src": "/media/world/enemy-gath-brute.webp",
-      "width": 420
-    },
-    "backdrop": {
-      "height": 442,
-      "src": "/media/world/backdrop-gath-brute.webp",
-      "width": 600
-    },
-    "place": {
-      "back": 0.11,
-      "box": [
-        0.0605,
-        0.0742,
-        0.8633,
-        0.8848
-      ],
-      "size": 1
+      "width": 1280
     }
   },
   "goblin-hexer": {
-    "art": {
-      "height": 420,
+    "finale": {
+      "height": 775,
+      "src": "/media/world/finale-goblin-hexer.webp",
+      "width": 1120
+    },
+    "scene": {
+      "height": 886,
       "src": "/media/world/enemy-goblin-hexer.webp",
-      "width": 420
-    },
-    "backdrop": {
-      "height": 442,
-      "src": "/media/world/backdrop-goblin-hexer.webp",
-      "width": 600
-    },
-    "place": {
-      "back": 0.04,
-      "box": [
-        0.1855,
-        0.293,
-        0.627,
-        0.6797
-      ],
-      "size": 0.71
+      "width": 1280
     }
   },
   "hedge-wizard": {
-    "art": {
-      "height": 420,
+    "scene": {
+      "height": 886,
       "src": "/media/world/enemy-hedge-wizard.webp",
-      "width": 420
-    },
-    "backdrop": {
-      "height": 442,
-      "src": "/media/world/backdrop-hedge-wizard.webp",
-      "width": 600
-    },
-    "place": {
-      "back": 0.25,
-      "box": [
-        0.2344,
-        0.2129,
-        0.5293,
-        0.748
-      ],
-      "size": 0.9
+      "width": 1280
     }
   },
   "horned-goblin": {
-    "art": {
-      "height": 420,
+    "scene": {
+      "height": 886,
       "src": "/media/world/enemy-horned-goblin.webp",
-      "width": 420
-    },
-    "backdrop": {
-      "height": 442,
-      "src": "/media/world/backdrop-horned-goblin.webp",
-      "width": 600
-    },
-    "place": {
-      "back": -0.02,
-      "box": [
-        0.2305,
-        0.3867,
-        0.5918,
-        0.5703
-      ],
-      "size": 0.93
+      "width": 1280
     }
   },
   "lion-archer": {
-    "art": {
-      "height": 420,
+    "scene": {
+      "height": 886,
       "src": "/media/world/enemy-lion-archer.webp",
-      "width": 420
-    },
-    "backdrop": {
-      "height": 442,
-      "src": "/media/world/backdrop-lion-archer.webp",
-      "width": 600
-    },
-    "place": {
-      "back": 0.22,
-      "box": [
-        0.0625,
-        0.0938,
-        0.875,
-        0.875
-      ],
-      "size": 1
+      "width": 1280
     }
   },
   "marsh-treant": {
-    "art": {
-      "height": 420,
+    "scene": {
+      "height": 886,
       "src": "/media/world/enemy-marsh-treant.webp",
-      "width": 420
-    },
-    "backdrop": {
-      "height": 442,
-      "src": "/media/world/backdrop-marsh-treant.webp",
-      "width": 600
-    },
-    "place": {
-      "back": 0.13,
-      "box": [
-        0.0645,
-        0.0586,
-        0.8711,
-        0.9395
-      ],
-      "size": 0.91
+      "width": 1280
     }
   },
   "monkey-brawler": {
-    "art": {
-      "height": 420,
+    "scene": {
+      "height": 886,
       "src": "/media/world/enemy-monkey-brawler.webp",
-      "width": 420
-    },
-    "backdrop": {
-      "height": 442,
-      "src": "/media/world/backdrop-monkey-brawler.webp",
-      "width": 600
-    },
-    "place": {
-      "back": 0.18,
-      "box": [
-        0.1992,
-        0.2637,
-        0.6426,
-        0.6992
-      ],
-      "size": 0.8
+      "width": 1280
     }
   },
   "naga": {
-    "art": {
-      "height": 420,
+    "scene": {
+      "height": 886,
       "src": "/media/world/enemy-naga.webp",
-      "width": 420
-    },
-    "backdrop": {
-      "height": 442,
-      "src": "/media/world/backdrop-naga.webp",
-      "width": 600
-    },
-    "place": {
-      "back": 0.37,
-      "box": [
-        0.1465,
-        0.1016,
-        0.6816,
-        0.875
-      ],
-      "size": 0.8
+      "width": 1280
     }
   },
   "panda-fighter": {
-    "art": {
-      "height": 420,
+    "scene": {
+      "height": 886,
       "src": "/media/world/enemy-panda-fighter.webp",
-      "width": 420
-    },
-    "backdrop": {
-      "height": 442,
-      "src": "/media/world/backdrop-panda-fighter.webp",
-      "width": 600
-    },
-    "place": {
-      "back": 0.1,
-      "box": [
-        0.1035,
-        0.3008,
-        0.75,
-        0.6641
-      ],
-      "size": 0.8
+      "width": 1280
     }
   },
   "twin-ghoul": {
-    "art": {
-      "height": 420,
+    "scene": {
+      "height": 886,
       "src": "/media/world/enemy-twin-ghoul.webp",
-      "width": 420
-    },
-    "backdrop": {
-      "height": 442,
-      "src": "/media/world/backdrop-twin-ghoul.webp",
-      "width": 600
-    },
-    "place": {
-      "back": 0.14,
-      "box": [
-        0.1797,
-        0.0742,
-        0.6406,
-        0.8887
-      ],
-      "size": 1.15
+      "width": 1280
     }
   },
   "twin-ogre": {
-    "art": {
-      "height": 420,
+    "scene": {
+      "height": 886,
       "src": "/media/world/enemy-twin-ogre.webp",
-      "width": 420
-    },
-    "backdrop": {
-      "height": 442,
-      "src": "/media/world/backdrop-twin-ogre.webp",
-      "width": 600
-    },
-    "place": {
-      "back": 0.26,
-      "box": [
-        0.0625,
-        0.0391,
-        0.877,
-        0.9258
-      ],
-      "size": 0.94
+      "width": 1280
     }
   }
 } as const;
 
 export const cards = {
   "blinding_blade": {
-    "height": 518,
+    "height": 671,
     "src": "/media/cards/adept-blinding-blade.webp",
-    "width": 370
+    "width": 480
   },
   "cold_blaze": {
-    "height": 518,
+    "height": 671,
     "src": "/media/cards/adept-cold-blaze.webp",
-    "width": 370
+    "width": 480
   },
   "dragon_fire": {
-    "height": 556,
+    "height": 667,
     "src": "/media/cards/dragon-fire.webp",
-    "width": 400
+    "width": 480
   },
   "dragon_lightning": {
-    "height": 556,
+    "height": 667,
     "src": "/media/cards/dragon-lightning.webp",
-    "width": 400
+    "width": 480
   },
   "dragon_shadow": {
-    "height": 556,
+    "height": 667,
     "src": "/media/cards/dragon-shadow.webp",
-    "width": 400
+    "width": 480
   },
   "dragon_water": {
-    "height": 556,
+    "height": 667,
     "src": "/media/cards/dragon-water.webp",
-    "width": 400
+    "width": 480
   },
   "ember_dash": {
-    "height": 518,
+    "height": 671,
     "src": "/media/cards/adept-ember-dash.webp",
-    "width": 370
+    "width": 480
   },
   "lightning_step": {
-    "height": 518,
+    "height": 671,
     "src": "/media/cards/adept-lightning-step.webp",
-    "width": 370
+    "width": 480
   },
   "region1": {
-    "height": 687,
+    "height": 998,
     "src": "/media/cards/region-1.webp",
-    "width": 497
+    "width": 720
   },
   "region2": {
-    "height": 687,
+    "height": 998,
     "src": "/media/cards/region-2.webp",
-    "width": 497
+    "width": 720
   },
   "region3": {
-    "height": 687,
+    "height": 998,
     "src": "/media/cards/region-3.webp",
-    "width": 497
+    "width": 720
   },
   "region4": {
-    "height": 687,
+    "height": 998,
     "src": "/media/cards/region-4.webp",
-    "width": 497
+    "width": 720
   },
   "shadow_stride": {
-    "height": 518,
+    "height": 671,
     "src": "/media/cards/adept-shadow-stride.webp",
-    "width": 370
+    "width": 480
   },
   "static_rush": {
-    "height": 518,
+    "height": 671,
     "src": "/media/cards/adept-static-rush.webp",
-    "width": 370
+    "width": 480
   }
 } as const;
 

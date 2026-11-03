@@ -11,7 +11,7 @@
  *            build/app-store/ (default: the newest version folder)
  * --cards    the printed cards, as drawn by the game's card tool
  *            (default <game>/build/card-shots; make them with
- *            godot --path . --always-on-top -s tools/card_shots.gd -- build/card-shots adept region dragon)
+ *            godot --path . --always-on-top -s tools/card_shots.gd -- build/card-shots --scale 2 adept region dragon)
  *
  * Every input is checked before anything is written: if one is missing the
  * script names it and exits 1 with the site untouched. Output is identical
@@ -145,7 +145,7 @@ const hex = (h) => [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16) / 255);
  * along the edges that face where the light comes from. Done once here, at the
  * art's full size, so the site serves the lit picture.
  */
-async function litFigure(src, light, width) {
+async function lightFigure(src, light) {
   const { data, info } = await sharp(src).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
   const { width: w, height: h } = info;
   const out = Buffer.from(data);
@@ -181,66 +181,153 @@ async function litFigure(src, light, width) {
       }
     }
   }
-  return sharp(out, { raw: { width: w, height: h, channels: 4 } })
+  return sharp(out, { raw: { width: w, height: h, channels: 4 } }).png().toBuffer();
+}
+
+async function litFigure(src, light, width) {
+  return sharp(await lightFigure(src, light))
     .resize({ width, withoutEnlargement: true })
-    .webp({ quality: 82, alphaQuality: 90 })
+    .webp({ quality: ART_QUALITY, alphaQuality: 95 })
     .toBuffer();
 }
+
+/** A foe's panel is 0.445 of a Region Card's width by 0.22 of its height, the card 5 by 7
+ * (region_card.gd LAYOUT); its art fills the panel right of the badges, from 0.17 of its width. */
+const ENEMY_ASPECT = 0.445 / (0.22 * 1.4);
+const ENEMY_ART_LEFT = 0.17;
+
+/**
+ * Where a foe's square of art lies in a picture of aspect `ratio`, as shares of
+ * that picture (trial_face.gd enemy_crop, creature.gd art_rect): the picture's
+ * shape cut from the square's full height, set back left of the middle, then
+ * grown about the figure's feet by its size.
+ */
+function enemySquare(place, ratio) {
+  let cw = ratio;
+  let ch = 1;
+  let cx = 0.5 - cw / 2 + cw * place.back;
+  let cy = 0;
+  const [bx, by, bw, bh] = place.box;
+  if (place.size !== 1) {
+    const fx = bx + bw / 2;
+    const fy = by + bh;
+    const ax = (fx - cx) / cw;
+    const ay = (fy - cy) / ch;
+    cw /= place.size;
+    ch /= place.size;
+    cx = fx - ax * cw;
+    cy = fy - ay * ch;
+  }
+  return { left: -cx / cw, top: -cy / ch, width: 1 / cw, height: 1 / ch };
+}
+
+/**
+ * A foe on its scene as one picture, so it arrives whole: its backdrop filling
+ * a `width`-wide picture of the panel's shape, and in the art's part of it
+ * (from `artLeft` of the width) a glow of its attack's Essence behind the
+ * figure, lit as the game lights it, standing where the game stands it.
+ */
+async function enemyScene({ figure, backdrop, light, place, glow, artLeft, width }) {
+  const W = width;
+  const H = Math.round(W / ENEMY_ASPECT);
+  const x0 = Math.round(W * artLeft);
+  const aw = W - x0;
+  const sq = enemySquare(place, aw / H);
+  const layers = [];
+  if (glow) {
+    const [bx, by, bw, bh] = place.box;
+    const reach = 0.35;
+    const g = {
+      x: (sq.left + (bx - bw * reach) * sq.width) * aw,
+      y: (sq.top + (by - bh * reach) * sq.height) * H,
+      w: bw * (1 + 2 * reach) * sq.width * aw,
+      h: bh * (1 + 2 * reach) * sq.height * H,
+    };
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${aw}" height="${H}"><defs><radialGradient id="g">` +
+      `<stop offset="0" stop-color="#${glow}" stop-opacity="0.32"/><stop offset="1" stop-color="#${glow}" stop-opacity="0"/>` +
+      `</radialGradient></defs><rect x="${g.x}" y="${g.y}" width="${g.w}" height="${g.h}" fill="url(#g)"/></svg>`;
+    layers.push({ input: Buffer.from(svg), left: x0, top: 0 });
+  }
+  // The figure, drawn at its size and cut to the art's part of the picture.
+  const fw = Math.round(sq.width * aw);
+  const fh = Math.round(sq.height * H);
+  const fx = Math.round(sq.left * aw);
+  const fy = Math.round(sq.top * H);
+  const cut = { left: Math.max(0, -fx), top: Math.max(0, -fy) };
+  cut.width = Math.min(fw, aw - fx) - cut.left;
+  cut.height = Math.min(fh, H - fy) - cut.top;
+  if (cut.width > 0 && cut.height > 0) {
+    const drawn = await sharp(await lightFigure(figure, light)).resize(fw, fh, { kernel: "lanczos3" }).extract(cut).png().toBuffer();
+    layers.push({ input: drawn, left: x0 + fx + cut.left, top: fy + cut.top });
+  }
+  return sharp(backdrop).resize(W, H, { fit: "cover" }).composite(layers).webp({ quality: ART_QUALITY }).toBuffer();
+}
+
+/** WebP quality for painted art and cards: high, as the site serves these files as they are. */
+const ART_QUALITY = 90;
 
 async function cutCard(src, width) {
   const trimmed = await sharp(src).trim({ threshold: 6 }).resize({ width, withoutEnlargement: true }).toBuffer();
   const { width: w, height: h } = await sharp(trimmed).metadata();
   const r = Math.round(w * 0.04);
   const mask = Buffer.from(`<svg width="${w}" height="${h}"><rect width="${w}" height="${h}" rx="${r}" ry="${r}"/></svg>`);
-  return sharp(trimmed).ensureAlpha().composite([{ input: mask, blend: "dest-in" }]).webp({ quality: 86, alphaQuality: 95 }).toBuffer();
+  return sharp(trimmed).ensureAlpha().composite([{ input: mask, blend: "dest-in" }]).webp({ quality: ART_QUALITY, alphaQuality: 95 }).toBuffer();
 }
 
-function plan(game, version, cardsDir) {
+function plan(game, version, cardsDir, places, glows) {
   const shots = join(game, "build", "app-store", version);
   const cards = cardsDir ?? join(game, "build", "card-shots");
   const art = join(game, "art");
   const jobs = [];
-  const add = (key, src, out, make) => jobs.push({ key, src, out, make });
+  const add = (key, src, out, make, also = []) => jobs.push({ key, src, out, make, also });
   const lights = sceneLights(game);
 
   for (const [file, id] of SCREENSHOTS)
     add(`screenshots.${id}`, join(shots, "iphone-6.9", `${file}.png`), `public/media/screenshots/${id}.webp`,
-      (s) => s.resize({ width: 1920, withoutEnlargement: true }).webp({ quality: 80 }));
+      (s) => s.webp({ quality: 86 }));
 
   for (const id of DRAGONS) {
     // Every place the site shows a dragon's body, it stands in its own lair: lit as the game lights it there.
     add(`dragons.${id}.art`, join(art, "painted", "dragons", `dragon_${id}.png`), `public/media/dragons/${id}.webp`,
       { lit: lights.dragons[`dragon_${id}`], width: 1024 });
     add(`dragons.${id}.head`, join(art, "painted", "dragons", `dragon_${id}-head.png`), `public/media/dragons/${id}-head.webp`,
-      (s) => s.resize({ width: 512, withoutEnlargement: true }).webp({ quality: 82, alphaQuality: 90 }));
+      (s) => s.resize({ width: 512, withoutEnlargement: true }).webp({ quality: ART_QUALITY, alphaQuality: 95 }));
     add(`dragons.${id}.lair`, join(art, "painted", "lairs", `dragon_${id}.png`), `public/media/dragons/${id}-lair.webp`,
-      (s) => s.resize({ width: 832, withoutEnlargement: true }).webp({ quality: 78 }));
+      (s) => s.webp({ quality: 86 }));
   }
 
   for (const name of JOURNEYS)
     add(`journeys.${name}`, join(art, "painted", "journeys", `${name}.png`), `public/media/world/journey-${name}.webp`,
-      (s) => s.resize({ width: 420, withoutEnlargement: true }).webp({ quality: 78 }));
+      (s) => s.webp({ quality: ART_QUALITY }));
 
   // The hero's backdrop, as the game's dragon screen shows a Journey painting before a dragon
   // is chosen: full size, at its brightness of 0.45 (baked in, which also makes them smaller).
   for (const name of JOURNEYS)
     add(`scenes.${name}`, join(art, "painted", "journeys", `${name}.png`), `public/media/scenes/${name}.webp`,
-      (s) => s.resize({ width: 896, withoutEnlargement: true }).linear(0.45, 0).webp({ quality: 72 }));
+      (s) => s.linear(0.45, 0).webp({ quality: 80 }));
 
+  // Each foe on its scene, baked into one picture of its panel's shape, so the two never arrive
+  // apart. Drawn twice the width the road's highlight shows it at, for sharp screens.
   for (const name of ENEMIES) {
-    add(`enemies.${name}.art`, join(art, "painted", "enemies", `${name}.png`), `public/media/world/enemy-${name}.webp`,
-      { lit: lights.enemies[name], width: 420 });
-    add(`enemies.${name}.backdrop`, join(art, "painted", "backdrops", `${name}.png`), `public/media/world/backdrop-${name}.webp`,
-      (s) => s.resize({ width: 600, withoutEnlargement: true }).webp({ quality: 76 }));
+    const figure = join(art, "painted", "enemies", `${name}.png`);
+    const backdrop = join(art, "painted", "backdrops", `${name}.png`);
+    const scene = { figure, backdrop, light: lights.enemies[name], place: places[name] };
+    add(`enemies.${name}.scene`, figure, `public/media/world/enemy-${name}.webp`,
+      { scene: { ...scene, glow: glows[name], artLeft: ENEMY_ART_LEFT, width: 1280 } }, [backdrop]);
+    // The goblin hexer by its door, at the end of the page: the whole picture its own, no glow.
+    if (name === "goblin-hexer")
+      add(`enemies.${name}.finale`, figure, `public/media/world/finale-${name}.webp`,
+        { scene: { ...scene, glow: null, artLeft: 0, width: 1120 } }, [backdrop]);
   }
 
-  // The share image is drawn at build time by a renderer that reads PNG, not WebP.
+  // The cards at about twice the width the site shows them at, for sharp screens (the card tool's
+  // renders cap this: draw them at 2x or more). The share image is drawn at build time by a renderer that reads PNG, not WebP.
   for (const n of REGION_CARDS)
-    add(`cards.region${n}`, join(cards, "region", `region_${n}.png`), `public/media/cards/region-${n}.webp`, { card: 560 });
+    add(`cards.region${n}`, join(cards, "region", `region_${n}.png`), `public/media/cards/region-${n}.webp`, { card: 720 });
   for (const id of DRAGONS)
-    add(`cards.dragon_${id}`, join(cards, "dragon", `dragon_${id}.png`), `public/media/cards/dragon-${id}.webp`, { card: 400 });
+    add(`cards.dragon_${id}`, join(cards, "dragon", `dragon_${id}.png`), `public/media/cards/dragon-${id}.webp`, { card: 480 });
   for (const [file, name] of ADEPT_CARDS)
-    add(`cards.${name.replace(/-/g, "_")}`, join(cards, "adept", `${file}.png`), `public/media/cards/adept-${name}.webp`, { card: 400 });
+    add(`cards.${name.replace(/-/g, "_")}`, join(cards, "adept", `${file}.png`), `public/media/cards/adept-${name}.webp`, { card: 480 });
 
   add("og.lair", join(art, "painted", "lairs", "dragon_fire.png"), "assets/og-lair.png",
     (s) => s.resize({ width: 400 }).png({ compressionLevel: 9 }));
@@ -346,6 +433,8 @@ function regionStats(game) {
  * 0.2 opaque), as shares of the square: left, top, width, height.
  */
 async function enemyPlaces(game) {
+  const missing = ENEMIES.map((n) => join(game, "art", "painted", "enemies", `${n}.png`)).filter((p) => !existsSync(p));
+  if (missing.length) fail(`Missing source file(s), nothing written:\n  ${missing.join("\n  ")}`);
   const art = readFileSync(join(game, "ui", "model", "art.gd"), "utf8");
   const tokens = readFileSync(join(game, "ui", "theme", "tokens.gd"), "utf8");
   const table = (name) => {
@@ -372,6 +461,21 @@ async function enemyPlaces(game) {
     out[name] = { back: round(+setBack - (shift[name] ?? 0)), size: size[name] ?? 1, box: box.map(round) };
   }
   return out;
+}
+
+/**
+ * The glow behind each foe: the bright of its attack's Essence (ESSENCE in the
+ * game's ui/theme/tokens.gd), parchment when it has none. ENEMIES runs in the
+ * same order as data/cards.json lists the foes, region by region.
+ */
+function enemyGlows(game) {
+  const tokens = readFileSync(join(game, "ui", "theme", "tokens.gd"), "utf8");
+  const bright = Object.fromEntries([...tokens.matchAll(/"(\w+)": \{"base": Color\("[0-9a-f]{6}"\), "bright": Color\("([0-9a-f]{6})"\)\}/g)].map((m) => [m[1], m[2]]));
+  const parchment = /const PARCHMENT := Color\("([0-9a-f]{6})"\)/.exec(tokens)?.[1];
+  if (!parchment || Object.keys(bright).length !== 4) fail("No ESSENCE or PARCHMENT colours in ui/theme/tokens.gd.");
+  const foes = JSON.parse(readFileSync(join(game, "data", "cards.json"), "utf8")).regions.flatMap((r) => r.enemies);
+  if (foes.length !== ENEMIES.length) fail(`data/cards.json has ${foes.length} foes; the site knows ${ENEMIES.length}.`);
+  return Object.fromEntries(ENEMIES.map((name, i) => [name, bright[foes[i].attack.affinity] ?? parchment]));
 }
 
 function mediaModule(media, source, stats) {
@@ -404,9 +508,11 @@ async function main() {
   }
   if (!existsSync(args.game)) fail(`Game repository not found at ${args.game}. Pass --game <dir> or set GAME_DIR.`);
   const version = pickVersion(args.game, args.version);
-  const { jobs, manifest } = plan(args.game, version, args.cards && resolve(args.cards));
+  const places = await enemyPlaces(args.game);
+  const glows = enemyGlows(args.game);
+  const { jobs, manifest } = plan(args.game, version, args.cards && resolve(args.cards), places, glows);
 
-  const missing = jobs.map((j) => j.src).concat(manifest, join(args.game, "data", "cards.json"), join(args.game, "data", "text.json")).filter((p) => !existsSync(p));
+  const missing = jobs.flatMap((j) => [j.src, ...j.also]).concat(manifest, join(args.game, "data", "cards.json"), join(args.game, "data", "text.json")).filter((p) => !existsSync(p));
   if (missing.length) fail(`Missing source file(s), nothing written:\n  ${[...new Set(missing)].join("\n  ")}`);
 
   const made = /made (\d{4}-\d{2}-\d{2})/.exec(readFileSync(manifest, "utf8"))?.[1] ?? "unknown";
@@ -418,6 +524,7 @@ async function main() {
     if (job.make === "copy") data = readFileSync(job.src);
     else if (job.make === "ico") data = await makeIco(job.src);
     else if (job.make.card) data = await cutCard(job.src, job.make.card);
+    else if (job.make.scene) data = await enemyScene(job.make.scene);
     else if ("lit" in job.make) data = await litFigure(job.src, job.make.lit, job.make.width);
     else data = await job.make(sharp(job.src)).toBuffer();
     rendered.push({ ...job, data });
@@ -437,7 +544,6 @@ async function main() {
     }
   }
 
-  for (const [name, place] of Object.entries(await enemyPlaces(args.game))) media.enemies[name].place = place;
   const generated = mediaModule(media, { gameVersion: version, made }, regionStats(args.game));
   const changed = writeIfChanged("components/media.generated.ts", Buffer.from(generated));
   written += changed ? 1 : 0;

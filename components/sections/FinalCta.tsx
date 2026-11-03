@@ -1,15 +1,13 @@
 import Image from "next/image";
 import { enemies } from "../media.generated";
 import StoreButtons from "../StoreButtons";
-import { ENEMY_ASPECT, enemySquare } from "./TrialPanel";
 
 /**
  * The end of the road: the goblin hexer on the path by its door, set as its
  * Region Card sets it and faded into the ground, and where to get the game.
  */
 export default function FinalCta() {
-  const { art, backdrop, place } = enemies["goblin-hexer"];
-  const sq = enemySquare(place, ENEMY_ASPECT);
+  const { finale } = enemies["goblin-hexer"];
   return (
     <section aria-labelledby="cta-title" className="overflow-hidden bg-ground py-24 sm:py-32">
       <div className="mx-auto flex max-w-6xl flex-col items-start gap-4 px-6 md:flex-row md:items-center md:justify-center md:gap-0">
@@ -23,18 +21,9 @@ export default function FinalCta() {
         <div
           aria-hidden="true"
           className="relative w-full max-w-[560px] self-center overflow-hidden [mask-image:radial-gradient(closest-side,black_55%,transparent)]"
-          style={{ aspectRatio: ENEMY_ASPECT }}
         >
-          <Image src={backdrop.src} width={backdrop.width} height={backdrop.height} alt="" sizes="(min-width: 768px) 560px, 92vw" className="absolute inset-0 h-full w-full object-cover" />
-          <Image
-            src={art.src}
-            width={art.width}
-            height={art.height}
-            alt=""
-            sizes="(min-width: 768px) 560px, 92vw"
-            className="absolute max-w-none"
-            style={{ left: `${sq.left}%`, top: `${sq.top}%`, width: `${sq.width}%`, height: `${sq.height}%` }}
-          />
+          {/* The foe on its scene as one picture (sync-assets.mjs enemyScene). */}
+          <Image src={finale.src} width={finale.width} height={finale.height} alt="" className="h-auto w-full" />
         </div>
       </div>
     </section>

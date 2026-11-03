@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useState, type CSSProperties, type ReactNode } from "react";
-import { ENEMY_ASPECT, EnemyPanel, JourneyPanel, type EnemyPlace } from "./TrialPanel";
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import { ENEMY_ASPECT, EnemyPanel, JourneyPanel } from "./TrialPanel";
 
 type Img = { src: string; width: number; height: number };
 type Piece = { key: string; name: string; alt: string };
@@ -17,7 +17,7 @@ export type RoadRegion = {
   name: string;
   alt: string;
   card: Img;
-  enemies: (Piece & { art: Img; backdrop: Img; place: EnemyPlace; stats: EnemyStats })[];
+  enemies: (Piece & { scene: Img; stats: EnemyStats })[];
   journeys: (Piece & { art: Img; stats: JourneyStats })[];
 };
 
@@ -88,6 +88,7 @@ export default function Road({ regions, dragons }: { regions: RoadRegion[]; drag
             </>
           }
           first={{ kind: "enemy", region: r, piece: r.enemies[0] }}
+          preload={[...r.enemies.map((e) => e.scene.src), ...r.journeys.map((j) => j.art.src)]}
           card={(target) => (
             <div className="relative">
               <Image
@@ -149,15 +150,40 @@ function Row({
   ground,
   heading,
   first,
+  preload,
   card,
 }: {
   index: number;
   ground: string;
   heading: ReactNode;
   first: Focus;
+  /** Every picture the highlight can show, fetched as the row nears the screen. */
+  preload: string[];
   card: (target: Target) => ReactNode;
 }) {
   const [focus, setFocus] = useState<Focus>(first);
+  const row = useRef<HTMLLIElement>(null);
+  const preloadKey = preload.join("\n");
+
+  // Fetch and decode the row's pictures before the first hover, so a pick shows at once.
+  useEffect(() => {
+    const el = row.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((e) => e.isIntersecting)) return;
+        io.disconnect();
+        for (const src of preloadKey.split("\n")) {
+          const img = new window.Image();
+          img.src = src;
+          img.decode().catch(() => {});
+        }
+      },
+      { rootMargin: "800px 0px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [preloadKey]);
   const current = focusId(focus);
   const highlightId = `road-highlight-${index}`;
   const flip = index % 2 === 1;
@@ -186,7 +212,7 @@ function Row({
   };
 
   return (
-    <li className={`${ground} py-12 sm:py-16 md:pt-28`}>
+    <li ref={row} className={`${ground} py-12 sm:py-16 md:pt-28`}>
       <div className="mx-auto max-w-5xl px-6">
         <h3 className="font-display text-2xl font-semibold sm:text-3xl md:hidden">{heading}</h3>
         <div
@@ -218,7 +244,7 @@ function Highlight({ id, focus }: { id: string; focus: Focus }) {
   let name;
   if (focus.kind === "enemy") {
     const { piece: e } = focus;
-    stage = <EnemyPanel name={e.name} alt={e.alt} art={e.art} backdrop={e.backdrop} place={e.place} stats={e.stats} />;
+    stage = <EnemyPanel name={e.name} alt={e.alt} scene={e.scene} stats={e.stats} />;
     name = e.name;
   } else {
     const { piece: j } = focus;
