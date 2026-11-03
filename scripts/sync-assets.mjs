@@ -12,10 +12,6 @@
  * --cards    the printed cards, as drawn by the game's card tool
  *            (default <game>/build/card-shots; make them with
  *            godot --path . --always-on-top -s tools/card_shots.gd -- build/card-shots adept region dragon)
- * --dragon-card  the hero's Dragon Card in layers, as drawn by this site's
- *            scripts/dragon_card.gd (default <game>/build/site-dragon-card; make
- *            it from the game's folder with
- *            godot --path . --always-on-top -s <site>/scripts/dragon_card.gd -- build/site-dragon-card fire)
  *
  * Every input is checked before anything is written: if one is missing the
  * script names it and exits 1 with the site untouched. Output is identical
@@ -63,7 +59,7 @@ const ICONS = [
   "blight", "chill", "lumbering", "volley", "climb", "crumbling",
 ];
 /** The printed cards. Regions in road order, then a hand of Adept Cards (one
- * per Essence) and the two fire cards fanned under the hero's deck. */
+ * per Essence) and the cards fanned out from under the hero's deck. */
 const REGION_CARDS = [1, 2, 3, 4];
 const ADEPT_CARDS = [
   ["02_C15", "ember-dash"],
@@ -77,14 +73,13 @@ const ADEPT_CARDS = [
 // ---------------------------------------------------------------- arguments
 
 function parseArgs(argv) {
-  const out = { game: process.env.GAME_DIR || join(SITE, "..", "dragon-hunter"), version: null, cards: null, dragonCard: null };
+  const out = { game: process.env.GAME_DIR || join(SITE, "..", "dragon-hunter"), version: null, cards: null };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     if (a === "--help" || a === "-h") out.help = true;
     else if (a === "--game") out.game = argv[++i];
     else if (a === "--version") out.version = argv[++i];
     else if (a === "--cards") out.cards = argv[++i];
-    else if (a === "--dragon-card") out.dragonCard = argv[++i];
     else fail(`Unknown argument: ${a} (see --help)`);
   }
   out.game = resolve(out.game ?? "");
@@ -200,29 +195,7 @@ async function cutCard(src, width) {
   return sharp(trimmed).ensureAlpha().composite([{ input: mask, blend: "dest-in" }]).webp({ quality: 86, alphaQuality: 95 }).toBuffer();
 }
 
-/** The Dragon Card with its lair empty, its corners rounded as the game rounds them. */
-async function roundCard(src, radius) {
-  const { width: w, height: h } = await sharp(src).metadata();
-  const r = Math.round(w * radius);
-  const mask = Buffer.from(`<svg width="${w}" height="${h}"><rect width="${w}" height="${h}" rx="${r}" ry="${r}"/></svg>`);
-  return sharp(src).ensureAlpha().composite([{ input: mask, blend: "dest-in" }]).webp({ quality: 86, alphaQuality: 95 }).toBuffer();
-}
-
-/** The Dragon Card's figures alone: what differs between the card drawn with them
- * and without them, each pixel as opaque as it differs (fully past 30 of 255). */
-async function figuresOnly(withThem, without) {
-  const a = await sharp(withThem).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
-  const b = await sharp(without).ensureAlpha().raw().toBuffer();
-  const { width, height } = a.info;
-  const out = Buffer.from(a.data);
-  for (let i = 0; i < width * height; i++) {
-    const d = Math.max(Math.abs(a.data[i * 4] - b[i * 4]), Math.abs(a.data[i * 4 + 1] - b[i * 4 + 1]), Math.abs(a.data[i * 4 + 2] - b[i * 4 + 2]));
-    out[i * 4 + 3] = Math.min(255, Math.round((d * 255) / 30));
-  }
-  return sharp(out, { raw: { width, height, channels: 4 } }).webp({ quality: 88, alphaQuality: 90 }).toBuffer();
-}
-
-function plan(game, version, cardsDir, dragonCardDir) {
+function plan(game, version, cardsDir) {
   const shots = join(game, "build", "app-store", version);
   const cards = cardsDir ?? join(game, "build", "card-shots");
   const art = join(game, "art");
@@ -269,15 +242,6 @@ function plan(game, version, cardsDir, dragonCardDir) {
   for (const [file, name] of ADEPT_CARDS)
     add(`cards.${name.replace(/-/g, "_")}`, join(cards, "adept", `${file}.png`), `public/media/cards/adept-${name}.webp`, { card: 400 });
 
-  // The hero's Dragon Card, in layers: the card, the dragon over it, its figures over that.
-  const hero = dragonCardDir ?? join(game, "build", "site-dragon-card");
-  const place = join(hero, "place.json");
-  add("hero.card", join(hero, "card.png"), "public/media/hero/dragon-card.webp", { fn: () => roundCard(join(hero, "card.png"), JSON.parse(readFileSync(place, "utf8")).radius) });
-  add("hero.figures", join(hero, "figures.png"), "public/media/hero/dragon-card-figures.webp", { fn: () => figuresOnly(join(hero, "card.png"), join(hero, "figures.png")) });
-  add("hero.dragon", join(hero, "dragon.png"), "public/media/hero/dragon.webp",
-    (s) => s.webp({ quality: 84, alphaQuality: 90 }));
-  add("hero.place", place, null, "place");
-
   add("og.lair", join(art, "painted", "lairs", "dragon_fire.png"), "assets/og-lair.png",
     (s) => s.resize({ width: 400 }).png({ compressionLevel: 9 }));
   add("og.dragon", join(art, "painted", "dragons", "dragon_fire.png"), "assets/og-dragon.png",
@@ -293,7 +257,7 @@ function plan(game, version, cardsDir, dragonCardDir) {
   for (const name of ICONS)
     add(`ui.${name}`, join(art, "icons", `${name}.svg`), `public/media/icons/${name}.svg`, "copy");
 
-  return { jobs, manifest: join(shots, "manifest.txt"), place };
+  return { jobs, manifest: join(shots, "manifest.txt") };
 }
 
 // ---------------------------------------------------------------- outputs
@@ -425,8 +389,6 @@ function mediaModule(media, source, stats) {
     body("scenes", media.scenes),
     body("enemies", media.enemies),
     body("cards", media.cards),
-    "/** The hero's Dragon Card in layers, and where the dragon stands on it: art is its\n * box (left, top, width, height) and cutTop the foot of the name band, as shares\n * of the card's width and height; radius is the corners' share of its width. */",
-    body("hero", media.hero),
     "/** Each Region Card's foes and roads, in card order, as printed. */",
     `export const regionStats = ${JSON.stringify(stats, null, 2)} as const;\n`,
   ].join("\n");
@@ -442,7 +404,7 @@ async function main() {
   }
   if (!existsSync(args.game)) fail(`Game repository not found at ${args.game}. Pass --game <dir> or set GAME_DIR.`);
   const version = pickVersion(args.game, args.version);
-  const { jobs, manifest, place } = plan(args.game, version, args.cards && resolve(args.cards), args.dragonCard && resolve(args.dragonCard));
+  const { jobs, manifest } = plan(args.game, version, args.cards && resolve(args.cards));
 
   const missing = jobs.map((j) => j.src).concat(manifest, join(args.game, "data", "cards.json"), join(args.game, "data", "text.json")).filter((p) => !existsSync(p));
   if (missing.length) fail(`Missing source file(s), nothing written:\n  ${[...new Set(missing)].join("\n  ")}`);
@@ -452,11 +414,9 @@ async function main() {
   // Render everything in memory first, so a failure part-way writes nothing.
   const rendered = [];
   for (const job of jobs) {
-    if (job.make === "place") continue;
     let data;
     if (job.make === "copy") data = readFileSync(job.src);
     else if (job.make === "ico") data = await makeIco(job.src);
-    else if (job.make.fn) data = await job.make.fn();
     else if (job.make.card) data = await cutCard(job.src, job.make.card);
     else if ("lit" in job.make) data = await litFigure(job.src, job.make.lit, job.make.width);
     else data = await job.make(sharp(job.src)).toBuffer();
@@ -477,8 +437,6 @@ async function main() {
     }
   }
 
-  const p = JSON.parse(readFileSync(place, "utf8"));
-  media.hero.place = { art: p.art.map((v) => Math.round(v * 1e5) / 1e5), cutTop: Math.round(p.cut_top * 1e5) / 1e5, radius: Math.round(p.radius * 1e5) / 1e5 };
   for (const [name, place] of Object.entries(await enemyPlaces(args.game))) media.enemies[name].place = place;
   const generated = mediaModule(media, { gameVersion: version, made }, regionStats(args.game));
   const changed = writeIfChanged("components/media.generated.ts", Buffer.from(generated));

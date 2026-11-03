@@ -701,37 +701,6 @@ export const cards = {
   }
 } as const;
 
-/** The hero's Dragon Card in layers, and where the dragon stands on it: art is its
- * box (left, top, width, height) and cutTop the foot of the name band, as shares
- * of the card's width and height; radius is the corners' share of its width. */
-export const hero = {
-  "card": {
-    "height": 693,
-    "src": "/media/hero/dragon-card.webp",
-    "width": 495
-  },
-  "dragon": {
-    "height": 661,
-    "src": "/media/hero/dragon.webp",
-    "width": 661
-  },
-  "figures": {
-    "height": 693,
-    "src": "/media/hero/dragon-card-figures.webp",
-    "width": 495
-  },
-  "place": {
-    "art": [
-      -0.4379,
-      0.12772,
-      1.3358,
-      0.95414
-    ],
-    "cutTop": 0.105,
-    "radius": 0.07955
-  }
-} as const;
-
 /** Each Region Card's foes and roads, in card order, as printed. */
 export const regionStats = [
   {

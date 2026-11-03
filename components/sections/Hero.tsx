@@ -1,6 +1,5 @@
 import Image from "next/image";
-import type { CSSProperties } from "react";
-import { cards, hero, scenes } from "../media.generated";
+import { cards, scenes } from "../media.generated";
 import { site } from "../site";
 import StoreButtons from "../StoreButtons";
 import HeroHand, { type HandCard } from "./HeroHand";
@@ -25,20 +24,6 @@ const REGIONS = [
 ];
 const FAN: HandCard[] = [...ADEPTS, ...REGIONS];
 
-/**
- * Where the dragon stands on its card, and the cut that keeps it inside the
- * card's picture (under the name band, within the rounded corners) until it
- * breaks out: `--cut` as an inset of the dragon's own box.
- */
-const [ax, ay, aw, ah] = hero.place.art;
-const pct = (v: number) => `${(v * 100).toFixed(3)}%`;
-const DRAGON_STYLE = {
-  left: pct(ax),
-  top: pct(ay),
-  width: pct(aw),
-  "--cut": `inset(${pct((hero.place.cutTop - ay) / ah)} ${pct((ax + aw - 1) / aw)} ${pct((ay + ah - 1) / ah)} ${pct(-ax / aw)} round ${pct(hero.place.radius / aw)})`,
-} as CSSProperties;
-
 /** The Journey paintings the backdrop is drawn from, as in the game. */
 const SCENES = Object.values(scenes).map((s) => s.src);
 const DEFAULT_SCENE = scenes.volcano.src;
@@ -48,12 +33,13 @@ const DEFAULT_SCENE = scenes.volcano.src;
 const PICK_SCENE = `(function(){var s=${JSON.stringify(SCENES)};document.documentElement.style.setProperty("--hero-scene","url("+s[Math.floor(Math.random()*s.length)]+")")})()`;
 
 /**
- * Cindermaw in its burning lair, the top card of a deck: the game is a deck
+ * Cindermaw's Dragon Card, the top card of a deck: the game is a deck
  * of cards, and every part of it (the regions, the foes, the dragon, your own
  * powers) is dealt from one. Adept Cards and Region Cards fan out from under
- * the deck, then the dragon breaks out over the top card's edges. Behind it all is a Journey painting, dimmed and faded into the ground
- * as the game's dragon screen shows one before a dragon is chosen. This is the page's one orchestrated moment (see the motion
- * block in globals.css).
+ * the deck. Behind it all is a Journey painting, dimmed and faded into
+ * the ground as the game's dragon screen shows one before a dragon is chosen.
+ * This is the page's one orchestrated moment (see the motion block in
+ * globals.css).
  */
 export default function Hero() {
   return (
@@ -110,38 +96,15 @@ export default function Hero() {
                 aria-hidden="true"
                 className="absolute inset-0 translate-x-[1.5%] translate-y-[1.3%] rounded-[8%/5.7%] border border-card-edge-line bg-card-frame"
               />
-              {/* The card as the game prints it, its lair empty... */}
+              {/* The Dragon Card as the game prints it. */}
               <Image
-                src={hero.card.src}
-                width={hero.card.width}
-                height={hero.card.height}
-                alt=""
+                src={cards.dragon_fire.src}
+                width={cards.dragon_fire.width}
+                height={cards.dragon_fire.height}
+                alt="Cindermaw's Dragon Card, a red dragon with a crest of flame and its stats, on top of a deck between a hand of Adept Cards and the four Region Cards."
                 priority
                 sizes="(min-width: 1024px) 230px, 42vw"
                 className="relative w-full"
-              />
-              {/* ...the dragon standing where the card stands it, cut to the card's
-                  picture at first, then out over its edges... */}
-              <Image
-                src={hero.dragon.src}
-                width={hero.dragon.width}
-                height={hero.dragon.height}
-                alt="Cindermaw's Dragon Card on top of a deck, the red dragon breaking out over the card's edges, between a hand of Adept Cards and the four Region Cards."
-                priority
-                sizes="(min-width: 1024px) 310px, 60vw"
-                style={DRAGON_STYLE}
-                className="hero-dragon pointer-events-none absolute z-[2] max-w-none"
-              />
-              {/* ...and the card's figures, over the dragon as printed until it
-                  breaks out, then under it. */}
-              <Image
-                src={hero.figures.src}
-                width={hero.figures.width}
-                height={hero.figures.height}
-                alt=""
-                priority
-                sizes="(min-width: 1024px) 230px, 42vw"
-                className="absolute inset-0 z-[1] w-full"
               />
             </div>
           </div>
