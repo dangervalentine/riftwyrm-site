@@ -399,80 +399,400 @@ export const cards = {
     "src": "/media/cards/adept-void-slam-water.webp",
     "width": 480
   },
+  "adept_C01_L1": {
+    "height": 336,
+    "src": "/media/cards/levels/void-slam-water-l1.webp",
+    "width": 240
+  },
+  "adept_C01_L2": {
+    "height": 336,
+    "src": "/media/cards/levels/void-slam-water-l2.webp",
+    "width": 240
+  },
+  "adept_C01_L3": {
+    "height": 336,
+    "src": "/media/cards/levels/void-slam-water-l3.webp",
+    "width": 240
+  },
+  "adept_C01_L4": {
+    "height": 336,
+    "src": "/media/cards/levels/void-slam-water-l4.webp",
+    "width": 240
+  },
   "adept_C02": {
     "height": 671,
     "src": "/media/cards/adept-blinding-blade-water.webp",
     "width": 480
+  },
+  "adept_C02_L1": {
+    "height": 336,
+    "src": "/media/cards/levels/blinding-blade-water-l1.webp",
+    "width": 240
+  },
+  "adept_C02_L2": {
+    "height": 336,
+    "src": "/media/cards/levels/blinding-blade-water-l2.webp",
+    "width": 240
+  },
+  "adept_C02_L3": {
+    "height": 336,
+    "src": "/media/cards/levels/blinding-blade-water-l3.webp",
+    "width": 240
+  },
+  "adept_C02_L4": {
+    "height": 336,
+    "src": "/media/cards/levels/blinding-blade-water-l4.webp",
+    "width": 240
   },
   "adept_C03": {
     "height": 671,
     "src": "/media/cards/adept-scorch-water.webp",
     "width": 480
   },
+  "adept_C03_L1": {
+    "height": 336,
+    "src": "/media/cards/levels/scorch-water-l1.webp",
+    "width": 240
+  },
+  "adept_C03_L2": {
+    "height": 336,
+    "src": "/media/cards/levels/scorch-water-l2.webp",
+    "width": 240
+  },
+  "adept_C03_L3": {
+    "height": 336,
+    "src": "/media/cards/levels/scorch-water-l3.webp",
+    "width": 240
+  },
+  "adept_C03_L4": {
+    "height": 336,
+    "src": "/media/cards/levels/scorch-water-l4.webp",
+    "width": 240
+  },
   "adept_C04": {
     "height": 671,
     "src": "/media/cards/adept-cold-blaze-water.webp",
     "width": 480
+  },
+  "adept_C04_L1": {
+    "height": 336,
+    "src": "/media/cards/levels/cold-blaze-water-l1.webp",
+    "width": 240
+  },
+  "adept_C04_L2": {
+    "height": 336,
+    "src": "/media/cards/levels/cold-blaze-water-l2.webp",
+    "width": 240
+  },
+  "adept_C04_L3": {
+    "height": 336,
+    "src": "/media/cards/levels/cold-blaze-water-l3.webp",
+    "width": 240
+  },
+  "adept_C04_L4": {
+    "height": 336,
+    "src": "/media/cards/levels/cold-blaze-water-l4.webp",
+    "width": 240
   },
   "adept_C05": {
     "height": 671,
     "src": "/media/cards/adept-inferno-lightning.webp",
     "width": 480
   },
+  "adept_C05_L1": {
+    "height": 336,
+    "src": "/media/cards/levels/inferno-lightning-l1.webp",
+    "width": 240
+  },
+  "adept_C05_L2": {
+    "height": 336,
+    "src": "/media/cards/levels/inferno-lightning-l2.webp",
+    "width": 240
+  },
+  "adept_C05_L3": {
+    "height": 336,
+    "src": "/media/cards/levels/inferno-lightning-l3.webp",
+    "width": 240
+  },
+  "adept_C05_L4": {
+    "height": 336,
+    "src": "/media/cards/levels/inferno-lightning-l4.webp",
+    "width": 240
+  },
   "adept_C06": {
     "height": 671,
     "src": "/media/cards/adept-lightning-step-lightning.webp",
     "width": 480
+  },
+  "adept_C06_L1": {
+    "height": 336,
+    "src": "/media/cards/levels/lightning-step-lightning-l1.webp",
+    "width": 240
+  },
+  "adept_C06_L2": {
+    "height": 336,
+    "src": "/media/cards/levels/lightning-step-lightning-l2.webp",
+    "width": 240
+  },
+  "adept_C06_L3": {
+    "height": 336,
+    "src": "/media/cards/levels/lightning-step-lightning-l3.webp",
+    "width": 240
+  },
+  "adept_C06_L4": {
+    "height": 336,
+    "src": "/media/cards/levels/lightning-step-lightning-l4.webp",
+    "width": 240
   },
   "adept_C07": {
     "height": 671,
     "src": "/media/cards/adept-surge-lightning.webp",
     "width": 480
   },
+  "adept_C07_L1": {
+    "height": 336,
+    "src": "/media/cards/levels/surge-lightning-l1.webp",
+    "width": 240
+  },
+  "adept_C07_L2": {
+    "height": 336,
+    "src": "/media/cards/levels/surge-lightning-l2.webp",
+    "width": 240
+  },
+  "adept_C07_L3": {
+    "height": 336,
+    "src": "/media/cards/levels/surge-lightning-l3.webp",
+    "width": 240
+  },
+  "adept_C07_L4": {
+    "height": 336,
+    "src": "/media/cards/levels/surge-lightning-l4.webp",
+    "width": 240
+  },
   "adept_C08": {
     "height": 671,
     "src": "/media/cards/adept-swift-current-lightning.webp",
     "width": 480
+  },
+  "adept_C08_L1": {
+    "height": 336,
+    "src": "/media/cards/levels/swift-current-lightning-l1.webp",
+    "width": 240
+  },
+  "adept_C08_L2": {
+    "height": 336,
+    "src": "/media/cards/levels/swift-current-lightning-l2.webp",
+    "width": 240
+  },
+  "adept_C08_L3": {
+    "height": 336,
+    "src": "/media/cards/levels/swift-current-lightning-l3.webp",
+    "width": 240
+  },
+  "adept_C08_L4": {
+    "height": 336,
+    "src": "/media/cards/levels/swift-current-lightning-l4.webp",
+    "width": 240
   },
   "adept_C09": {
     "height": 671,
     "src": "/media/cards/adept-swift-current-shadow.webp",
     "width": 480
   },
+  "adept_C09_L1": {
+    "height": 336,
+    "src": "/media/cards/levels/swift-current-shadow-l1.webp",
+    "width": 240
+  },
+  "adept_C09_L2": {
+    "height": 336,
+    "src": "/media/cards/levels/swift-current-shadow-l2.webp",
+    "width": 240
+  },
+  "adept_C09_L3": {
+    "height": 336,
+    "src": "/media/cards/levels/swift-current-shadow-l3.webp",
+    "width": 240
+  },
+  "adept_C09_L4": {
+    "height": 336,
+    "src": "/media/cards/levels/swift-current-shadow-l4.webp",
+    "width": 240
+  },
   "adept_C10": {
     "height": 671,
     "src": "/media/cards/adept-inferno-shadow.webp",
     "width": 480
+  },
+  "adept_C10_L1": {
+    "height": 336,
+    "src": "/media/cards/levels/inferno-shadow-l1.webp",
+    "width": 240
+  },
+  "adept_C10_L2": {
+    "height": 336,
+    "src": "/media/cards/levels/inferno-shadow-l2.webp",
+    "width": 240
+  },
+  "adept_C10_L3": {
+    "height": 336,
+    "src": "/media/cards/levels/inferno-shadow-l3.webp",
+    "width": 240
+  },
+  "adept_C10_L4": {
+    "height": 336,
+    "src": "/media/cards/levels/inferno-shadow-l4.webp",
+    "width": 240
   },
   "adept_C11": {
     "height": 671,
     "src": "/media/cards/adept-shadow-stride-shadow.webp",
     "width": 480
   },
+  "adept_C11_L1": {
+    "height": 336,
+    "src": "/media/cards/levels/shadow-stride-shadow-l1.webp",
+    "width": 240
+  },
+  "adept_C11_L2": {
+    "height": 336,
+    "src": "/media/cards/levels/shadow-stride-shadow-l2.webp",
+    "width": 240
+  },
+  "adept_C11_L3": {
+    "height": 336,
+    "src": "/media/cards/levels/shadow-stride-shadow-l3.webp",
+    "width": 240
+  },
+  "adept_C11_L4": {
+    "height": 336,
+    "src": "/media/cards/levels/shadow-stride-shadow-l4.webp",
+    "width": 240
+  },
   "adept_C12": {
     "height": 671,
     "src": "/media/cards/adept-lightning-step-shadow.webp",
     "width": 480
+  },
+  "adept_C12_L1": {
+    "height": 336,
+    "src": "/media/cards/levels/lightning-step-shadow-l1.webp",
+    "width": 240
+  },
+  "adept_C12_L2": {
+    "height": 336,
+    "src": "/media/cards/levels/lightning-step-shadow-l2.webp",
+    "width": 240
+  },
+  "adept_C12_L3": {
+    "height": 336,
+    "src": "/media/cards/levels/lightning-step-shadow-l3.webp",
+    "width": 240
+  },
+  "adept_C12_L4": {
+    "height": 336,
+    "src": "/media/cards/levels/lightning-step-shadow-l4.webp",
+    "width": 240
   },
   "adept_C13": {
     "height": 671,
     "src": "/media/cards/adept-surge-fire.webp",
     "width": 480
   },
+  "adept_C13_L1": {
+    "height": 336,
+    "src": "/media/cards/levels/surge-fire-l1.webp",
+    "width": 240
+  },
+  "adept_C13_L2": {
+    "height": 336,
+    "src": "/media/cards/levels/surge-fire-l2.webp",
+    "width": 240
+  },
+  "adept_C13_L3": {
+    "height": 336,
+    "src": "/media/cards/levels/surge-fire-l3.webp",
+    "width": 240
+  },
+  "adept_C13_L4": {
+    "height": 336,
+    "src": "/media/cards/levels/surge-fire-l4.webp",
+    "width": 240
+  },
   "adept_C14": {
     "height": 671,
     "src": "/media/cards/adept-cold-blaze-fire.webp",
     "width": 480
+  },
+  "adept_C14_L1": {
+    "height": 336,
+    "src": "/media/cards/levels/cold-blaze-fire-l1.webp",
+    "width": 240
+  },
+  "adept_C14_L2": {
+    "height": 336,
+    "src": "/media/cards/levels/cold-blaze-fire-l2.webp",
+    "width": 240
+  },
+  "adept_C14_L3": {
+    "height": 336,
+    "src": "/media/cards/levels/cold-blaze-fire-l3.webp",
+    "width": 240
+  },
+  "adept_C14_L4": {
+    "height": 336,
+    "src": "/media/cards/levels/cold-blaze-fire-l4.webp",
+    "width": 240
   },
   "adept_C15": {
     "height": 671,
     "src": "/media/cards/adept-ember-dash-fire.webp",
     "width": 480
   },
+  "adept_C15_L1": {
+    "height": 336,
+    "src": "/media/cards/levels/ember-dash-fire-l1.webp",
+    "width": 240
+  },
+  "adept_C15_L2": {
+    "height": 336,
+    "src": "/media/cards/levels/ember-dash-fire-l2.webp",
+    "width": 240
+  },
+  "adept_C15_L3": {
+    "height": 336,
+    "src": "/media/cards/levels/ember-dash-fire-l3.webp",
+    "width": 240
+  },
+  "adept_C15_L4": {
+    "height": 336,
+    "src": "/media/cards/levels/ember-dash-fire-l4.webp",
+    "width": 240
+  },
   "adept_C16": {
     "height": 671,
     "src": "/media/cards/adept-static-rush-fire.webp",
     "width": 480
+  },
+  "adept_C16_L1": {
+    "height": 336,
+    "src": "/media/cards/levels/static-rush-fire-l1.webp",
+    "width": 240
+  },
+  "adept_C16_L2": {
+    "height": 336,
+    "src": "/media/cards/levels/static-rush-fire-l2.webp",
+    "width": 240
+  },
+  "adept_C16_L3": {
+    "height": 336,
+    "src": "/media/cards/levels/static-rush-fire-l3.webp",
+    "width": 240
+  },
+  "adept_C16_L4": {
+    "height": 336,
+    "src": "/media/cards/levels/static-rush-fire-l4.webp",
+    "width": 240
   },
   "blinding_blade": {
     "height": 671,
@@ -1306,6 +1626,80 @@ export const guideStats = {
       "deckLikely": 41,
       "firstStrike": 4,
       "speed": 10
+    }
+  },
+  "showdown": {
+    "fire": {
+      "C01": 13.8,
+      "C02": 9.7,
+      "C03": 14,
+      "C04": 27.3,
+      "C05": 16.5,
+      "C06": 16.5,
+      "C07": 15.8,
+      "C08": 22,
+      "C09": 23.7,
+      "C10": 22.8,
+      "C11": 25.7,
+      "C12": 22.1,
+      "C13": 16.5,
+      "C14": 18.8,
+      "C15": 16.9,
+      "C16": 21.6
+    },
+    "lightning": {
+      "C01": 7.9,
+      "C02": 8.5,
+      "C03": 6.5,
+      "C04": 19.1,
+      "C05": 7.8,
+      "C06": 10.1,
+      "C07": 10.6,
+      "C08": 12.3,
+      "C09": 9,
+      "C10": 13.1,
+      "C11": 15.5,
+      "C12": 20.4,
+      "C13": 9.5,
+      "C14": 13,
+      "C15": 4.6,
+      "C16": 16
+    },
+    "shadow": {
+      "C01": 13.9,
+      "C02": 11.1,
+      "C03": 11.6,
+      "C04": 19,
+      "C05": 22.3,
+      "C06": 11.5,
+      "C07": 15.8,
+      "C08": 14,
+      "C09": 15.7,
+      "C10": 25,
+      "C11": 20.1,
+      "C12": 14.9,
+      "C13": 17.1,
+      "C14": 17.2,
+      "C15": 7.1,
+      "C16": 16.8
+    },
+    "water": {
+      "C01": 12.3,
+      "C02": 6.2,
+      "C03": 9,
+      "C04": 18.2,
+      "C05": 13.5,
+      "C06": 10.2,
+      "C07": 12.4,
+      "C08": 18,
+      "C09": 22.1,
+      "C10": 19.9,
+      "C11": 14.7,
+      "C12": 15.2,
+      "C13": 9,
+      "C14": 14,
+      "C15": 7.1,
+      "C16": 14.3
     }
   }
 } as const;

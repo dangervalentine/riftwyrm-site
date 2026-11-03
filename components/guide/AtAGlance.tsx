@@ -5,8 +5,8 @@ import { guideStats } from "@/components/media.generated";
 /** The four dragons side by side, each row leading to its page. */
 export default function AtAGlance() {
   return (
-    <section id="at-a-glance" aria-labelledby="glance-h">
-      <h2 id="glance-h" className="guide-h2">The four dragons at a glance</h2>
+    <div id="at-a-glance">
+      <h3 className="guide-h3 mb-3">At a glance</h3>
       <table className="guide-table">
         <caption>Deck is the total Level to bring to the Showdown: for an even chance, and to win four in five</caption>
         <thead>
@@ -29,7 +29,7 @@ export default function AtAGlance() {
                   <Link href={`/guide/${slug}`}>{dragonOf(id).name}</Link>
                 </th>
                 <td data-label="Dire win" className="tabular-nums">{standing[id].dire}%</td>
-                <td data-label="Deck" className="tabular-nums">
+                <td data-label="Deck" className="whitespace-nowrap tabular-nums">
                   {s.deckEven} / {s.deckLikely}
                 </td>
                 <td data-label="Speed" className="tabular-nums">{s.speed}</td>
@@ -40,6 +40,6 @@ export default function AtAGlance() {
           })}
         </tbody>
       </table>
-    </section>
+    </div>
   );
 }

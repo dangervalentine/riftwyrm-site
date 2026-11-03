@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import AtAGlance from "@/components/guide/AtAGlance";
+import { lessons } from "@/components/guide";
 import ArticleJsonLd from "@/components/guide/ArticleJsonLd";
 import DragonIndex from "@/components/guide/DragonIndex";
 import EditionNote from "@/components/guide/EditionNote";
@@ -38,10 +38,9 @@ export default function Guide() {
           <StandingTable />
         </div>
         <DragonIndex />
+        <Lessons lessons={lessons} />
         <div className="guide-col guide-body">
-          <Lessons />
           <EmpowerTable />
-          <AtAGlance />
         </div>
         <EditionNote />
       </main>

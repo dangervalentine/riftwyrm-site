@@ -92,7 +92,16 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
+}
+/*
+ * Room for the sticky header when a link jumps to a spot on a page. Set on the
+ * targets, not as the page's scroll-padding: a scroll-padding puts the header
+ * (always at the very top) "above the fold", and Next then leaves a newly
+ * opened page at the old page's scroll position instead of at its top.
+ */
+[id],
+main {
+  scroll-margin-top: 5rem;
 }
 
 body {
@@ -410,15 +419,12 @@ body {
 }
 .guide-stats {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1.4fr 1fr 1fr;
   gap: 1px;
   background: var(--line);
   border: 1px solid var(--line);
   border-radius: 8px;
   overflow: hidden;
-}
-@media (min-width: 480px) {
-  .guide-stats { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 .guide-stats > div {
   background: var(--stone);
@@ -504,6 +510,44 @@ body {
   .guide-table td.guide-td-full { display: block; }
   .guide-table td.guide-td-full::before { content: none; }
 }
+/* A table that keeps its columns on a phone (it is narrow enough), scrolling inside its frame if it must. */
+.guide-frame {
+  overflow-x: auto;
+}
+.guide-table.guide-table-keep {
+  font-size: 0.875rem;
+}
+@media (max-width: 639px) {
+  .guide-table.guide-table-keep thead {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip-path: none;
+  }
+  .guide-table.guide-table-keep tr { display: table-row; padding: 0; }
+  .guide-table.guide-table-keep th,
+  .guide-table.guide-table-keep td {
+    display: table-cell;
+    padding: 0.5rem 0.4rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .guide-table.guide-table-keep tbody th { font-family: inherit; font-size: inherit; }
+  .guide-table.guide-table-keep td::before { content: none; }
+}
+.guide-sort {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+  cursor: pointer;
+}
+.guide-sort:hover { color: var(--brass-bright); }
+th[aria-sort="ascending"] .guide-sort,
+th[aria-sort="descending"] .guide-sort { color: var(--brass); }
+
 .guide-bar-track {
   display: block;
   height: 4px;

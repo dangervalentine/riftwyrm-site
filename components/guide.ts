@@ -287,6 +287,31 @@ export const lessons: Lesson[] = [
   },
 ];
 
+/**
+ * How much one more Level on each card changes the chance of winning against
+ * each dragon, in points, compared with a Level on an average card (below zero:
+ * worth less than average). Judged by which decks won over many whole hunts:
+ * playtest round 2. The Showdown's own values come from the game (guideStats.showdown).
+ */
+export const huntValue: Record<DragonId, Record<CardId, number>> = {
+  lightning: {
+    C16: 9.2, C06: 8.2, C09: 6.2, C04: 5.9, C14: 5.8, C08: 4.9, C05: 4.6, C15: 4.4,
+    C10: 3.9, C11: 3.4, C12: 2.3, C01: 1.7, C13: 1.7, C07: 1.6, C03: 1.2, C02: 1.1,
+  },
+  water: {
+    C09: 7.2, C08: 6.0, C11: 5.0, C04: 5.0, C05: 4.7, C06: 4.2, C16: 4.0, C10: 3.6,
+    C12: 3.1, C14: 3.1, C01: 2.5, C13: 1.1, C03: 0.7, C15: 0.2, C02: -0.3, C07: -0.3,
+  },
+  fire: {
+    C14: 7.5, C03: 7.3, C05: 6.9, C12: 6.4, C10: 6.2, C04: 6.1, C08: 6.0, C06: 5.5,
+    C15: 5.2, C09: 4.8, C11: 3.9, C16: 3.1, C02: 2.9, C01: 1.1, C13: 0.7, C07: 0.3,
+  },
+  shadow: {
+    C10: 8.8, C05: 7.8, C11: 7.5, C12: 6.5, C08: 5.4, C09: 4.8, C06: 4.4, C16: 3.6,
+    C14: 3.5, C13: 2.9, C04: 2.6, C03: 2.4, C01: 2.3, C02: 2.2, C07: 2.0, C15: -3.2,
+  },
+};
+
 /** Empower steps by card: 1 is Level 1 to 2, 2 is 2 to 3, 3 is 3 to 4. */
 export type Step = readonly [CardId, 1 | 2 | 3];
 
@@ -330,6 +355,11 @@ function check(ok: boolean, message: string) {
       const v = standing[id][diff.id];
       check(Number.isFinite(v) && v >= 0 && v <= 100, `${name}'s ${diff.label} win rate must be 0 to 100.`);
     }
+  }
+
+  for (const { id } of guideDragons) {
+    const v = huntValue[id];
+    check(Object.keys(v).length === ids.size && [...ids].every((c) => c in v), `${dragonOf(id).name}'s card values must cover all ${ids.size} cards.`);
   }
 
   for (const s of [...empowerNotes.best, ...empowerNotes.poorest]) check(ids.has(s[0]), `Empower step names card ${s[0]}, which the game does not have.`);

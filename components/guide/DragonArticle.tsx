@@ -3,6 +3,7 @@ import type { DragonId } from "@/components/content";
 import { dragonGuides, dragonOf, essenceLabel, lessons, standing } from "@/components/guide";
 import { dragons as dragonArt, guideStats } from "@/components/media.generated";
 import CardChip from "./CardChip";
+import DragonValueTable from "./DragonValueTable";
 import GuideHeader from "./GuideHeader";
 
 /** Each Essence's bright shade, written out so Tailwind sees every class. */
@@ -44,12 +45,13 @@ export default function DragonArticle({ id }: { id: DragonId }) {
           <h2 id="deck-h" className="sr-only">The deck to bring</h2>
           <dl className="guide-stats">
             <div>
-              <dt>Deck for an even chance</dt>
-              <dd>{s.deckEven}</dd>
-            </div>
-            <div>
-              <dt>Deck to win four in five</dt>
-              <dd>{s.deckLikely}</dd>
+              <dt>Deck to bring</dt>
+              <dd>
+                <span className="whitespace-nowrap">
+                  {s.deckEven} <span className="text-faint">/</span> {s.deckLikely}
+                </span>
+                <span className="mt-0.5 block font-sans text-xs font-normal text-muted">even chance / four in five</span>
+              </dd>
             </div>
             <div>
               <dt>Speed to beat</dt>
@@ -105,6 +107,8 @@ export default function DragonArticle({ id }: { id: DragonId }) {
             </>
           )}
         </section>
+
+        <DragonValueTable id={id} />
 
         <section id="tips" aria-labelledby="tips-h">
           <h2 id="tips-h" className="guide-h2">Tips for {dragon.name}</h2>

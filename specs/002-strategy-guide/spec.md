@@ -27,6 +27,14 @@ figures move to the site.
 
 - Q: Should the guide be one long page, or a main guide page plus a separate page for each dragon? → A: A main guide page plus four dragon pages. `/guide` holds the overview, win chances, lessons, Empower reference, at-a-glance comparison and a dragon index; `/guide/thrallis`, `/guide/glaciarch`, `/guide/cindermaw` and `/guide/vesperath` each hold one dragon's full section, with previous/next dragon links and a link back to the guide.
 
+### Revisions after the first build (2026-11-03)
+
+- Dragon pages show the deck targets as one figure ("43 / 46"), and add a table of all sixteen cards against that dragon, sortable, by two measures: value over a whole hunt (report) and Showdown value Level 1 to 4 (the game's data), with each card's advice tag.
+- The main guide page's strength table is sortable by the strength at each Level; its best and poorest buys show the printed card before and after the step (cards drawn at every Level by the game's `tools/card_level_shots.gd`).
+- The lessons are one component: side tabs on wide screens, an accordion on phones, every lesson listed when scripts are off; `/guide#lesson-<id>` opens that lesson.
+- The at-a-glance comparison sits with the dragon index ("Choose your dragon").
+- Opening a new page starts at its top; Back returns to the place left. FR-016 now reads: the full content is available without JavaScript; sorting, tabs and the accordion are added by script.
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - A player stuck on one dragon learns how to beat it (Priority: P1)

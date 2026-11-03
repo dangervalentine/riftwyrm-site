@@ -1,101 +1,117 @@
-import { Fragment } from "react";
-import { cardLabel, empowerNotes, stepOf, type CardId, type Step } from "@/components/guide";
-import { guideStats } from "@/components/media.generated";
+import Image from "next/image";
+import { empowerNotes, stepOf, type CardId, type Step } from "@/components/guide";
+import { cards, guideStats } from "@/components/media.generated";
+import CardName from "./CardName";
+import SortableTable, { type SortRow } from "./SortableTable";
 
 const ESSENCE_ORDER = ["water", "lightning", "shadow", "fire"] as const;
-const key = ([c, s]: Step) => `${c}:${s}`;
+const LEVELS = [1, 2, 3, 4] as const;
 
-function describe(s: Step) {
-  const { gain, cost, from, to } = stepOf(s);
-  return `${cardLabel(s[0])}, Level ${from} to ${to}: +${gain} strength for ${cost} XP`;
+/** The card's face at a Level, as the game prints it there. */
+function Face({ card, level, label }: { card: CardId; level: number; label: string }) {
+  const f = cards[`adept_${card}_L${level}` as keyof typeof cards] as { src: string; width: number; height: number };
+  return <Image src={f.src} width={f.width} height={f.height} alt={label} sizes="88px" className="h-auto w-[4.5rem] sm:w-[5.5rem]" />;
 }
 
-/** How much strength each Empowerment buys, card by card, with the best and poorest buys marked. */
+/** One Empowerment shown on the printed card: the card before, the card after, and what it bought. */
+function Buy({ step, tone }: { step: Step; tone: "best" | "poor" }) {
+  const [card] = step;
+  const { gain, cost, from, to } = stepOf(step);
+  const name = guideStats.cards[card].name;
+  return (
+    <li className={`flex items-center gap-3 rounded-lg border p-3 ${tone === "best" ? "border-jade/40" : "border-line"} bg-stone`}>
+      <div className="flex flex-none items-center gap-1">
+        <Face card={card} level={from} label={`${name} at Level ${from}`} />
+        <span aria-hidden="true" className="text-faint">→</span>
+        <Face card={card} level={to} label={`${name} at Level ${to}`} />
+      </div>
+      <div className="min-w-0 text-sm leading-snug">
+        <p className="font-semibold text-parchment">
+          <CardName card={card} />
+        </p>
+        <p className="mt-1 text-muted">
+          Level {from} → {to}
+        </p>
+        <p className={`mt-1 font-display text-lg font-bold ${tone === "best" ? "text-jade" : "text-muted"}`}>
+          +{gain} for {cost} XP
+        </p>
+      </div>
+    </li>
+  );
+}
+
+/** How much strength each Empowerment buys: every card by Level, sortable, then the best and poorest buys on the cards themselves. */
 export default function EmpowerTable() {
-  const best = new Set(empowerNotes.best.map(key));
-  const poor = new Set(empowerNotes.poorest.map(key));
   const ids = (Object.keys(guideStats.cards) as CardId[]).sort(
     (a, b) =>
       ESSENCE_ORDER.indexOf(guideStats.cards[a].essence) - ESSENCE_ORDER.indexOf(guideStats.cards[b].essence) ||
       a.localeCompare(b),
   );
+  const best = new Set(empowerNotes.best.map(([c, s]) => `${c}:${s}`));
+  const poor = new Set(empowerNotes.poorest.map(([c, s]) => `${c}:${s}`));
+
+  const rows: SortRow[] = ids.map((id) => {
+    const c = guideStats.cards[id];
+    return {
+      key: id,
+      sort: [`${ESSENCE_ORDER.indexOf(c.essence)} ${c.name}`, ...c.strength],
+      cells: [
+        <CardName key="n" card={id} />,
+        ...LEVELS.map((level) => {
+          const v = c.strength[level - 1];
+          if (level === 1) return <span key={level} className="font-semibold text-parchment">{v}</span>;
+          const k = `${id}:${level - 1}`;
+          const { gain, cost } = stepOf([id, (level - 1) as 1 | 2 | 3]);
+          const tone = best.has(k) ? "font-bold text-jade" : poor.has(k) ? "text-faint" : "text-muted";
+          return (
+            <span key={level} className="block">
+              <span className="font-semibold text-parchment">{v}</span>
+              <span className={`block whitespace-nowrap text-[0.6875rem] leading-tight sm:text-xs ${tone}`}>
+                +{gain}/{cost} XP
+                {best.has(k) && <span className="sr-only"> (best value)</span>}
+                {poor.has(k) && <span className="sr-only"> (poor value)</span>}
+              </span>
+            </span>
+          );
+        }),
+      ],
+    };
+  });
+
   return (
     <section id="empower" aria-labelledby="empower-h">
       <h2 id="empower-h" className="guide-h2">Where your XP goes furthest</h2>
       <p>
         A card&rsquo;s strength is its best Spell figure plus its Boost. The best Empowerment is the one that buys the
-        most strength for its XP, and the table shows every card&rsquo;s strength at each Level, with what each step
-        adds and costs.
+        most strength for its XP. Under each Level is what the step to it adds, and its cost.
       </p>
       <div className="mt-8">
-        <table className="guide-table">
-          <caption>Strength at each Level, and what each step adds for its XP</caption>
-          <thead>
-            <tr>
-              <th scope="col">Card</th>
-              <th scope="col">Strength, Level 1 to 4</th>
-            </tr>
-          </thead>
-          <tbody>
-            {ids.map((id) => {
-              const c = guideStats.cards[id];
-              return (
-                <tr key={id}>
-                  <th scope="row" className="font-normal text-parchment">{cardLabel(id)}</th>
-                  <td data-label="Strength" className="guide-td-full tabular-nums">
-                    <span className="flex flex-wrap items-start gap-x-2 gap-y-1">
-                      {c.strength.map((v, i) => (
-                        <Fragment key={i}>
-                          {i > 0 && (() => {
-                            const step = [id, i] as unknown as Step;
-                            const { gain, cost } = stepOf(step);
-                            const isBest = best.has(key(step));
-                            const isPoor = poor.has(key(step));
-                            return (
-                              <span
-                                className={`text-center text-xs leading-tight ${
-                                  isBest ? "font-bold text-jade" : isPoor ? "text-faint" : "text-muted"
-                                }`}
-                              >
-                                <span aria-hidden="true">→</span>
-                                <span className="block">
-                                  +{gain}/{cost} XP
-                                </span>
-                                {isBest && <span className="sr-only"> (best value)</span>}
-                                {isPoor && <span className="sr-only"> (poor value)</span>}
-                              </span>
-                            );
-                          })()}
-                          <span className="font-semibold text-parchment">{v}</span>
-                        </Fragment>
-                      ))}
-                    </span>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        <SortableTable
+          caption="Every card's strength at each Level."
+          columns={[
+            { label: "Card" },
+            { label: "Lv 1", numeric: true },
+            { label: "Lv 2", numeric: true },
+            { label: "Lv 3", numeric: true },
+            { label: "Lv 4", numeric: true },
+          ]}
+          rows={rows}
+        />
       </div>
-      <div className="mt-8 grid gap-6 sm:grid-cols-2">
-        <div>
-          <h3 className="guide-h3 text-jade">Best buys</h3>
-          <ul className="mt-2 list-disc space-y-1 pl-5 text-[0.9375rem]">
-            {empowerNotes.best.map((s) => (
-              <li key={key(s)}>{describe(s)}</li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h3 className="guide-h3 text-muted">Poorest buys</h3>
-          <ul className="mt-2 list-disc space-y-1 pl-5 text-[0.9375rem]">
-            {empowerNotes.poorest.map((s) => (
-              <li key={key(s)}>{describe(s)}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-      <p className="guide-tip mt-6">
+
+      <h3 className="guide-h3 mt-12 text-jade">Best buys</h3>
+      <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+        {empowerNotes.best.map((s) => (
+          <Buy key={`${s[0]}:${s[1]}`} step={s} tone="best" />
+        ))}
+      </ul>
+      <h3 className="guide-h3 mt-10 text-muted">Poorest buys</h3>
+      <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+        {empowerNotes.poorest.map((s) => (
+          <Buy key={`${s[0]}:${s[1]}`} step={s} tone="poor" />
+        ))}
+      </ul>
+      <p className="guide-tip mt-8">
         Rule of thumb: an expensive step that buys a big jump beats a cheap one that buys little. Pay 3 to 5 XP for +4
         or +5 rather than 1 XP for +2.
       </p>

@@ -12,6 +12,8 @@
  * --cards    the printed cards, as drawn by the game's card tool
  *            (default <game>/build/card-shots; make them with
  *            godot --path . --always-on-top -s tools/card_shots.gd -- build/card-shots --scale 2 adept region dragon)
+ *            and each Adept Card at every Level, for the strategy guide, with
+ *            godot --path . -s tools/card_level_shots.gd -- build/card-shots --scale 2 adept
  *
  * Every input is checked before anything is written: if one is missing the
  * script names it and exits 1 with the site untouched. Output is identical
@@ -333,6 +335,12 @@ function plan(game, version, cardsDir, places, glows) {
   // with its place in the hand, NN_, which is not the card's identity).
   for (const { id, file, slug } of guideCards(game, cards))
     add(`cards.adept_${id}`, join(cards, "adept", file), `public/media/cards/adept-${slug}.webp`, { card: 480 });
+  // And each at every Level, small, for the guide's before-and-after of an Empowerment
+  // (drawn by the game's tools/card_level_shots.gd into <cards>/adept-levels/<id>_L<n>.png).
+  for (const { id, slug } of guideCards(game, cards))
+    for (const level of [1, 2, 3, 4])
+      add(`cards.adept_${id}_L${level}`, join(cards, "adept-levels", `${id}_L${level}.png`),
+        `public/media/cards/levels/${slug}-l${level}.webp`, { card: 240 });
 
   // Each dragon's share-image art for its guide page, drawn as the home page's share image is.
   for (const id of DRAGONS) {
@@ -458,7 +466,18 @@ function guideStats(game) {
     strength: c.levels.map((l) => Math.max(l.basic.value, l.enhanced.value) + l.boost),
     stepCost: c.levels.slice(0, 3).map((l) => l.level_up_cost),
   }]));
-  return { dragons, cards: adepts };
+  // What each Level of each card adds to the Showdown against each dragon, in points of win
+  // chance, Level 1 to 4 (data/advisor_showdown.json: Trashed to 1, then 1 to 2, 2 to 3, 3 to 4).
+  const solved = JSON.parse(readFileSync(join(game, "data", "advisor_showdown.json"), "utf8")).dragons;
+  const showdown = Object.fromEntries(DRAGONS.map((id) => {
+    const per = solved[`dragon_${id}`];
+    if (!per) fail(`No dragon_${id} in data/advisor_showdown.json.`);
+    return [id, Object.fromEntries(Object.keys(adepts).map((c) => {
+      if (!per[c] || per[c].length !== 4) fail(`data/advisor_showdown.json has no four steps for ${c} against dragon_${id}.`);
+      return [c, Math.round((per[c][1] + per[c][2] + per[c][3]) * 10) / 10];
+    }))];
+  }));
+  return { dragons, cards: adepts, showdown };
 }
 
 /**
@@ -580,7 +599,7 @@ async function main() {
   const glows = enemyGlows(args.game);
   const { jobs, manifest } = plan(args.game, version, args.cards && resolve(args.cards), places, glows);
 
-  const missing = jobs.flatMap((j) => [j.src, ...j.also]).concat(manifest, join(args.game, "data", "cards.json"), join(args.game, "data", "text.json"), join(args.game, "data", "deck_guide.json")).filter((p) => !existsSync(p));
+  const missing = jobs.flatMap((j) => [j.src, ...j.also]).concat(manifest, join(args.game, "data", "cards.json"), join(args.game, "data", "text.json"), join(args.game, "data", "deck_guide.json"), join(args.game, "data", "advisor_showdown.json")).filter((p) => !existsSync(p));
   if (missing.length) fail(`Missing source file(s), nothing written:\n  ${[...new Set(missing)].join("\n  ")}`);
 
   const made = /made (\d{4}-\d{2}-\d{2})/.exec(readFileSync(manifest, "utf8"))?.[1] ?? "unknown";
