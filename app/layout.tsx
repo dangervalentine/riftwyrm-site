@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Source_Sans_3, Spectral } from "next/font/google";
 import "./globals.css";
 import { palette } from "@/components/palette";
+import ScrollToTop from "@/components/ScrollToTop";
 import { site } from "@/components/site";
 
 /** The game's two faces: Spectral for headings, Source Sans 3 for text. */
@@ -54,7 +55,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
       className={`${spectral.variable} ${sourceSans.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <ScrollToTop />
+        {children}
+      </body>
     </html>
   );
 }
