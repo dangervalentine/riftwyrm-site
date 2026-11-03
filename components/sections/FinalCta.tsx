@@ -1,10 +1,10 @@
 import Image from "next/image";
-import { dragons } from "../media.generated";
+import { enemies } from "../media.generated";
 import StoreButtons from "../StoreButtons";
 
-/** The end of the road: the last dragon watching, and where to get the game. */
+/** The end of the road: a goblin hexer watching, and where to get the game. */
 export default function FinalCta() {
-  const head = dragons.shadow.head;
+  const hexer = enemies["goblin-hexer"].art;
   return (
     <section aria-labelledby="cta-title" className="ground-lair overflow-hidden py-24 sm:py-32">
       <div className="mx-auto flex max-w-6xl flex-col items-start gap-10 px-6 md:flex-row md:items-center md:justify-between">
@@ -16,12 +16,12 @@ export default function FinalCta() {
           <StoreButtons className="mt-8" />
         </div>
         <Image
-          src={head.src}
-          width={head.width}
-          height={head.height}
+          src={hexer.src}
+          width={hexer.width}
+          height={hexer.height}
           alt=""
           sizes="(min-width: 768px) 320px, 60vw"
-          className="w-[60vw] max-w-[320px] self-end -scale-x-100 opacity-90 drop-shadow-[0_20px_40px_var(--well)] md:self-auto"
+          className="w-[60vw] max-w-[320px] self-end -scale-x-100 md:self-auto"
         />
       </div>
     </section>

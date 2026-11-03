@@ -190,6 +190,89 @@ export const journeys = {
   }
 } as const;
 
+export const scenes = {
+  "burning-forest": {
+    "height": 1152,
+    "src": "/media/scenes/burning-forest.webp",
+    "width": 896
+  },
+  "cave-entrance": {
+    "height": 1152,
+    "src": "/media/scenes/cave-entrance.webp",
+    "width": 896
+  },
+  "cliff-crossing": {
+    "height": 1152,
+    "src": "/media/scenes/cliff-crossing.webp",
+    "width": 896
+  },
+  "desert": {
+    "height": 1152,
+    "src": "/media/scenes/desert.webp",
+    "width": 896
+  },
+  "forest-entrance": {
+    "height": 1152,
+    "src": "/media/scenes/forest-entrance.webp",
+    "width": 896
+  },
+  "lava": {
+    "height": 1152,
+    "src": "/media/scenes/lava.webp",
+    "width": 896
+  },
+  "mountain-road": {
+    "height": 1152,
+    "src": "/media/scenes/mountain-road.webp",
+    "width": 896
+  },
+  "peaks": {
+    "height": 1152,
+    "src": "/media/scenes/peaks.webp",
+    "width": 896
+  },
+  "river": {
+    "height": 1152,
+    "src": "/media/scenes/river.webp",
+    "width": 896
+  },
+  "rope-bridge": {
+    "height": 1152,
+    "src": "/media/scenes/rope-bridge.webp",
+    "width": 896
+  },
+  "stone-path": {
+    "height": 1152,
+    "src": "/media/scenes/stone-path.webp",
+    "width": 896
+  },
+  "swamp": {
+    "height": 1152,
+    "src": "/media/scenes/swamp.webp",
+    "width": 896
+  },
+  "underground-cave": {
+    "height": 1152,
+    "src": "/media/scenes/underground-cave.webp",
+    "width": 896
+  },
+  "volcano": {
+    "height": 1152,
+    "src": "/media/scenes/volcano.webp",
+    "width": 896
+  },
+  "waterfall": {
+    "height": 1152,
+    "src": "/media/scenes/waterfall.webp",
+    "width": 896
+  },
+  "willow-tree": {
+    "height": 1152,
+    "src": "/media/scenes/willow-tree.webp",
+    "width": 896
+  }
+} as const;
+
 export const enemies = {
   "antler-horror": {
     "art": {
@@ -201,6 +284,16 @@ export const enemies = {
       "height": 442,
       "src": "/media/world/backdrop-antler-horror.webp",
       "width": 600
+    },
+    "place": {
+      "back": 0.08,
+      "box": [
+        0.0469,
+        0.0918,
+        0.7754,
+        0.8633
+      ],
+      "size": 0.89
     }
   },
   "axe-gnome": {
@@ -213,6 +306,16 @@ export const enemies = {
       "height": 442,
       "src": "/media/world/backdrop-axe-gnome.webp",
       "width": 600
+    },
+    "place": {
+      "back": 0.04,
+      "box": [
+        0.1113,
+        0.3125,
+        0.7754,
+        0.6426
+      ],
+      "size": 0.78
     }
   },
   "boar-shaman": {
@@ -225,6 +328,16 @@ export const enemies = {
       "height": 442,
       "src": "/media/world/backdrop-boar-shaman.webp",
       "width": 600
+    },
+    "place": {
+      "back": 0.16,
+      "box": [
+        0.168,
+        0.293,
+        0.6582,
+        0.6816
+      ],
+      "size": 0.84
     }
   },
   "club-ogre": {
@@ -237,6 +350,16 @@ export const enemies = {
       "height": 442,
       "src": "/media/world/backdrop-club-ogre.webp",
       "width": 600
+    },
+    "place": {
+      "back": 0.23,
+      "box": [
+        0.0645,
+        0.1914,
+        0.8711,
+        0.7578
+      ],
+      "size": 1.06
     }
   },
   "crane-monk": {
@@ -249,6 +372,16 @@ export const enemies = {
       "height": 442,
       "src": "/media/world/backdrop-crane-monk.webp",
       "width": 600
+    },
+    "place": {
+      "back": 0.23,
+      "box": [
+        0.1895,
+        0.2715,
+        0.6191,
+        0.6855
+      ],
+      "size": 1.11
     }
   },
   "gath-brute": {
@@ -261,6 +394,16 @@ export const enemies = {
       "height": 442,
       "src": "/media/world/backdrop-gath-brute.webp",
       "width": 600
+    },
+    "place": {
+      "back": 0.11,
+      "box": [
+        0.0605,
+        0.0742,
+        0.8633,
+        0.8848
+      ],
+      "size": 1
     }
   },
   "goblin-hexer": {
@@ -273,6 +416,16 @@ export const enemies = {
       "height": 442,
       "src": "/media/world/backdrop-goblin-hexer.webp",
       "width": 600
+    },
+    "place": {
+      "back": 0.04,
+      "box": [
+        0.1855,
+        0.293,
+        0.627,
+        0.6797
+      ],
+      "size": 0.71
     }
   },
   "hedge-wizard": {
@@ -285,6 +438,16 @@ export const enemies = {
       "height": 442,
       "src": "/media/world/backdrop-hedge-wizard.webp",
       "width": 600
+    },
+    "place": {
+      "back": 0.25,
+      "box": [
+        0.2344,
+        0.2129,
+        0.5293,
+        0.748
+      ],
+      "size": 0.9
     }
   },
   "horned-goblin": {
@@ -297,6 +460,16 @@ export const enemies = {
       "height": 442,
       "src": "/media/world/backdrop-horned-goblin.webp",
       "width": 600
+    },
+    "place": {
+      "back": -0.02,
+      "box": [
+        0.2305,
+        0.3867,
+        0.5918,
+        0.5703
+      ],
+      "size": 0.93
     }
   },
   "lion-archer": {
@@ -309,6 +482,16 @@ export const enemies = {
       "height": 442,
       "src": "/media/world/backdrop-lion-archer.webp",
       "width": 600
+    },
+    "place": {
+      "back": 0.22,
+      "box": [
+        0.0625,
+        0.0938,
+        0.875,
+        0.875
+      ],
+      "size": 1
     }
   },
   "marsh-treant": {
@@ -321,6 +504,16 @@ export const enemies = {
       "height": 442,
       "src": "/media/world/backdrop-marsh-treant.webp",
       "width": 600
+    },
+    "place": {
+      "back": 0.13,
+      "box": [
+        0.0645,
+        0.0586,
+        0.8711,
+        0.9395
+      ],
+      "size": 0.91
     }
   },
   "monkey-brawler": {
@@ -333,6 +526,16 @@ export const enemies = {
       "height": 442,
       "src": "/media/world/backdrop-monkey-brawler.webp",
       "width": 600
+    },
+    "place": {
+      "back": 0.18,
+      "box": [
+        0.1992,
+        0.2637,
+        0.6426,
+        0.6992
+      ],
+      "size": 0.8
     }
   },
   "naga": {
@@ -345,6 +548,16 @@ export const enemies = {
       "height": 442,
       "src": "/media/world/backdrop-naga.webp",
       "width": 600
+    },
+    "place": {
+      "back": 0.37,
+      "box": [
+        0.1465,
+        0.1016,
+        0.6816,
+        0.875
+      ],
+      "size": 0.8
     }
   },
   "panda-fighter": {
@@ -357,6 +570,16 @@ export const enemies = {
       "height": 442,
       "src": "/media/world/backdrop-panda-fighter.webp",
       "width": 600
+    },
+    "place": {
+      "back": 0.1,
+      "box": [
+        0.1035,
+        0.3008,
+        0.75,
+        0.6641
+      ],
+      "size": 0.8
     }
   },
   "twin-ghoul": {
@@ -369,6 +592,16 @@ export const enemies = {
       "height": 442,
       "src": "/media/world/backdrop-twin-ghoul.webp",
       "width": 600
+    },
+    "place": {
+      "back": 0.14,
+      "box": [
+        0.1797,
+        0.0742,
+        0.6406,
+        0.8887
+      ],
+      "size": 1.15
     }
   },
   "twin-ogre": {
@@ -381,6 +614,16 @@ export const enemies = {
       "height": 442,
       "src": "/media/world/backdrop-twin-ogre.webp",
       "width": 600
+    },
+    "place": {
+      "back": 0.26,
+      "box": [
+        0.0625,
+        0.0391,
+        0.877,
+        0.9258
+      ],
+      "size": 0.94
     }
   }
 } as const;
@@ -438,6 +681,37 @@ export const cards = {
   }
 } as const;
 
+/** The hero's Dragon Card in layers, and where the dragon stands on it: art is its
+ * box (left, top, width, height) and cutTop the foot of the name band, as shares
+ * of the card's width and height; radius is the corners' share of its width. */
+export const hero = {
+  "card": {
+    "height": 693,
+    "src": "/media/hero/dragon-card.webp",
+    "width": 495
+  },
+  "dragon": {
+    "height": 661,
+    "src": "/media/hero/dragon.webp",
+    "width": 661
+  },
+  "figures": {
+    "height": 693,
+    "src": "/media/hero/dragon-card-figures.webp",
+    "width": 495
+  },
+  "place": {
+    "art": [
+      -0.4379,
+      0.12772,
+      1.3358,
+      0.95414
+    ],
+    "cutTop": 0.105,
+    "radius": 0.07955
+  }
+} as const;
+
 /** Each Region Card's foes and roads, in card order, as printed. */
 export const regionStats = [
   {
@@ -457,7 +731,8 @@ export const regionStats = [
           }
         ],
         "xp": 4,
-        "trait": null
+        "trait": null,
+        "traitIcon": null
       },
       {
         "hp": 11,
@@ -473,7 +748,8 @@ export const regionStats = [
           }
         ],
         "xp": 7,
-        "trait": null
+        "trait": null,
+        "traitIcon": null
       },
       {
         "hp": 9,
@@ -489,7 +765,8 @@ export const regionStats = [
           }
         ],
         "xp": 5,
-        "trait": null
+        "trait": null,
+        "traitIcon": null
       },
       {
         "hp": 13,
@@ -505,7 +782,8 @@ export const regionStats = [
           }
         ],
         "xp": 8,
-        "trait": null
+        "trait": null,
+        "traitIcon": null
       }
     ],
     "journeys": [
@@ -516,7 +794,8 @@ export const regionStats = [
         },
         "delay": 2,
         "xp": 5,
-        "obstacle": null
+        "obstacle": null,
+        "obstacleIcon": null
       },
       {
         "mp": {
@@ -525,7 +804,8 @@ export const regionStats = [
         },
         "delay": 1,
         "xp": 3,
-        "obstacle": null
+        "obstacle": null,
+        "obstacleIcon": null
       },
       {
         "mp": {
@@ -534,7 +814,8 @@ export const regionStats = [
         },
         "delay": 2,
         "xp": 4,
-        "obstacle": null
+        "obstacle": null,
+        "obstacleIcon": null
       },
       {
         "mp": {
@@ -543,7 +824,8 @@ export const regionStats = [
         },
         "delay": 1,
         "xp": 3,
-        "obstacle": null
+        "obstacle": null,
+        "obstacleIcon": null
       }
     ]
   },
@@ -564,7 +846,8 @@ export const regionStats = [
           }
         ],
         "xp": 5,
-        "trait": "Reach"
+        "trait": "Reach",
+        "traitIcon": "volley"
       },
       {
         "hp": 10,
@@ -580,7 +863,8 @@ export const regionStats = [
           }
         ],
         "xp": 4,
-        "trait": null
+        "trait": null,
+        "traitIcon": null
       },
       {
         "hp": 15,
@@ -596,7 +880,8 @@ export const regionStats = [
           }
         ],
         "xp": 8,
-        "trait": "Lumbering"
+        "trait": "Lumbering",
+        "traitIcon": "lumbering"
       },
       {
         "hp": 13,
@@ -612,7 +897,8 @@ export const regionStats = [
           }
         ],
         "xp": 7,
-        "trait": "Frostbite"
+        "trait": "Frostbite",
+        "traitIcon": "chill"
       }
     ],
     "journeys": [
@@ -623,7 +909,8 @@ export const regionStats = [
         },
         "delay": 2,
         "xp": 4,
-        "obstacle": "Crumbling"
+        "obstacle": "Crumbling",
+        "obstacleIcon": "crumbling"
       },
       {
         "mp": {
@@ -632,7 +919,8 @@ export const regionStats = [
         },
         "delay": 2,
         "xp": 7,
-        "obstacle": null
+        "obstacle": null,
+        "obstacleIcon": null
       },
       {
         "mp": {
@@ -641,7 +929,8 @@ export const regionStats = [
         },
         "delay": 3,
         "xp": 5,
-        "obstacle": null
+        "obstacle": null,
+        "obstacleIcon": null
       },
       {
         "mp": {
@@ -650,7 +939,8 @@ export const regionStats = [
         },
         "delay": 2,
         "xp": 4,
-        "obstacle": "Uphill"
+        "obstacle": "Uphill",
+        "obstacleIcon": "climb"
       }
     ]
   },
@@ -671,7 +961,8 @@ export const regionStats = [
           }
         ],
         "xp": 9,
-        "trait": null
+        "trait": null,
+        "traitIcon": null
       },
       {
         "hp": 14,
@@ -687,7 +978,8 @@ export const regionStats = [
           }
         ],
         "xp": 8,
-        "trait": "Lumbering"
+        "trait": "Lumbering",
+        "traitIcon": "lumbering"
       },
       {
         "hp": 11,
@@ -703,7 +995,8 @@ export const regionStats = [
           }
         ],
         "xp": 7,
-        "trait": "Toxic"
+        "trait": "Toxic",
+        "traitIcon": "blight"
       },
       {
         "hp": 9,
@@ -719,7 +1012,8 @@ export const regionStats = [
           }
         ],
         "xp": 5,
-        "trait": "Reach"
+        "trait": "Reach",
+        "traitIcon": "volley"
       }
     ],
     "journeys": [
@@ -730,7 +1024,8 @@ export const regionStats = [
         },
         "delay": 2,
         "xp": 7,
-        "obstacle": "Uphill"
+        "obstacle": "Uphill",
+        "obstacleIcon": "climb"
       },
       {
         "mp": {
@@ -739,7 +1034,8 @@ export const regionStats = [
         },
         "delay": 3,
         "xp": 6,
-        "obstacle": null
+        "obstacle": null,
+        "obstacleIcon": null
       },
       {
         "mp": {
@@ -748,7 +1044,8 @@ export const regionStats = [
         },
         "delay": 3,
         "xp": 5,
-        "obstacle": "Crumbling"
+        "obstacle": "Crumbling",
+        "obstacleIcon": "crumbling"
       },
       {
         "mp": {
@@ -757,7 +1054,8 @@ export const regionStats = [
         },
         "delay": 2,
         "xp": 5,
-        "obstacle": null
+        "obstacle": null,
+        "obstacleIcon": null
       }
     ]
   },
@@ -782,7 +1080,8 @@ export const regionStats = [
           }
         ],
         "xp": 7,
-        "trait": "Toxic"
+        "trait": "Toxic",
+        "traitIcon": "blight"
       },
       {
         "hp": 9,
@@ -798,7 +1097,8 @@ export const regionStats = [
           }
         ],
         "xp": 5,
-        "trait": "Reach"
+        "trait": "Reach",
+        "traitIcon": "volley"
       },
       {
         "hp": 14,
@@ -818,7 +1118,8 @@ export const regionStats = [
           }
         ],
         "xp": 8,
-        "trait": "Frostbite"
+        "trait": "Frostbite",
+        "traitIcon": "chill"
       },
       {
         "hp": 17,
@@ -838,7 +1139,8 @@ export const regionStats = [
           }
         ],
         "xp": 9,
-        "trait": null
+        "trait": null,
+        "traitIcon": null
       }
     ],
     "journeys": [
@@ -849,7 +1151,8 @@ export const regionStats = [
         },
         "delay": 2,
         "xp": 7,
-        "obstacle": "Crumbling"
+        "obstacle": "Crumbling",
+        "obstacleIcon": "crumbling"
       },
       {
         "mp": {
@@ -858,7 +1161,8 @@ export const regionStats = [
         },
         "delay": 3,
         "xp": 6,
-        "obstacle": null
+        "obstacle": null,
+        "obstacleIcon": null
       },
       {
         "mp": {
@@ -867,7 +1171,8 @@ export const regionStats = [
         },
         "delay": 2,
         "xp": 5,
-        "obstacle": null
+        "obstacle": null,
+        "obstacleIcon": null
       },
       {
         "mp": {
@@ -876,7 +1181,8 @@ export const regionStats = [
         },
         "delay": 3,
         "xp": 5,
-        "obstacle": "Uphill"
+        "obstacle": "Uphill",
+        "obstacleIcon": "climb"
       }
     ]
   }

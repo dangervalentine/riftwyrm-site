@@ -6,6 +6,7 @@ export const site = {
   shortName: "Riftwyrm",
   url: "https://riftwyrm.dangervalentine.com",
   developer: "Danger Valentine",
+  developerUrl: "https://dangervalentine.com",
   github: "https://github.com/dangervalentine",
   email: "victor@dangervalentine.com",
   /** One sentence in plain words, at most 160 characters: it doubles as the

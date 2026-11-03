@@ -17,7 +17,7 @@ export default function JsonLd() {
     gamePlatform: ["Android", "iOS"],
     operatingSystem: "Android, iOS",
     applicationCategory: "GameApplication",
-    author: { "@type": "Person", name: site.developer },
+    author: { "@type": "Person", name: site.developer, url: site.developerUrl },
     // No price is stated: none has been decided, and a wrong one is worse than none.
     ...(installUrl ? { installUrl } : {}),
   };
