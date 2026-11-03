@@ -400,3 +400,4 @@ Verification:
 - **Follow-up**: the dragon no longer scales; it breaks out at the size the card prints it.
 - **Follow-up**: no special animation for the Dragon Card and no dragon outside its borders: the top card is the game's printed Dragon Card (`cards.dragon_fire`, from `tools/card_shots.gd ... dragon`), rising with the deck like the rest. The layered capture (`scripts/dragon_card.gd`, `public/media/hero/`) is removed.
 - **Follow-up**: the Dragon Card lifts like the hand's cards: pointed at (or tapped), the top card rises off the deck with the same lift and brass edge while every other card dims. The deck moved into `HeroHand`, so the nine cards share one lifted state; the deck's edges stay put.
+- **Follow-up**: no deck behind the Dragon Card: the stacked card edges are gone, and the card stands on its own in the middle of the hand with the same shadow as the others.

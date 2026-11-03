@@ -231,8 +231,8 @@ body {
 /* ------------------------------------------------------------ motion */
 
 /*
- * One orchestrated moment: on load the deck rises out of the dark, Adept
- * Cards and Region Cards fan out from under it one after another.
+ * One orchestrated moment: on load the Dragon Card rises out of the dark, and
+ * Adept Cards and Region Cards fan out from behind it one after another.
  * Everything else on the page holds still except where a person acts on it.
  */
 @keyframes rise {
@@ -253,7 +253,7 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .hero-fan { transform: rotate(var(--fan-r)); }
 }
-/* Pointed at, a card in the hand, or the deck's top card, lifts and comes in
+/* Pointed at, a card in the hand, or the Dragon Card, lifts and comes in
  * front; the rest dim (HeroHand sets data-on and data-dim). */
 .hero-fan-card,
 .hero-top { transition: transform 220ms ease-out, filter 220ms ease-out; }
@@ -263,7 +263,7 @@ body {
   filter: drop-shadow(0 0 1px var(--brass)) drop-shadow(0 18px 26px var(--well));
 }
 .hero-fan[data-dim] .hero-fan-card { filter: brightness(0.6) drop-shadow(0 12px 18px var(--well)); }
-.hero-card[data-dim] .hero-top { filter: brightness(0.6); }
+.hero-card[data-dim] .hero-top { filter: brightness(0.6) drop-shadow(0 12px 18px var(--well)); }
 .hero-copy { animation: fade 700ms 200ms ease-out both; }
 
 /* The four dragons come up one after another as their row scrolls in. */

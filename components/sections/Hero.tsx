@@ -5,7 +5,7 @@ import StoreButtons from "../StoreButtons";
 import HeroHand, { type HandCard } from "./HeroHand";
 
 /**
- * The hand fanned out from under the deck, each card turned about a point well
+ * The hand fanned out from behind the Dragon Card, each card turned about a point well
  * below it so their tops spread apart: four Adept Cards (your powers) to the
  * left, the four Region Cards to the right. On each side the outermost card is
  * drawn first, so a strip of every card shows past the one inside it.
@@ -33,10 +33,10 @@ const DEFAULT_SCENE = scenes.volcano.src;
 const PICK_SCENE = `(function(){var s=${JSON.stringify(SCENES)};document.documentElement.style.setProperty("--hero-scene","url("+s[Math.floor(Math.random()*s.length)]+")")})()`;
 
 /**
- * Cindermaw's Dragon Card, the top card of a deck: the game is a deck
- * of cards, and every part of it (the regions, the foes, the dragon, your own
- * powers) is dealt from one. Adept Cards and Region Cards fan out from under
- * the deck. Behind it all is a Journey painting, dimmed and faded into
+ * Cindermaw's Dragon Card at the heart of a hand: the game is a deck of cards,
+ * and every part of it (the regions, the foes, the dragon, your own powers) is
+ * dealt from one. Adept Cards and Region Cards fan out from behind it. Behind
+ * it all is a Journey painting, dimmed and faded into
  * the ground as the game's dragon screen shows one before a dragon is chosen.
  * This is the page's one orchestrated moment (see the motion block in
  * globals.css).
@@ -82,29 +82,21 @@ export default function Hero() {
 
         <div className="order-1 flex justify-center lg:order-2 lg:justify-end">
           <div className="relative w-[72vw] pb-[5%] min-[360px]:w-[min(88vw,420px)] sm:w-[min(64vw,460px)] lg:w-full lg:max-w-[480px]">
-            {/* Adept Cards and Region Cards fanned out from under the deck.
-                Pointed at, a card (the deck's top card too) lifts and the rest dim. */}
+            {/* Adept Cards and Region Cards fanned out from behind the Dragon Card.
+                Pointed at, a card (the Dragon Card too) lifts and the rest dim. */}
             <HeroHand
               cards={FAN}
-              deck={
+              dragon={
                 <>
-                  <div
-                    aria-hidden="true"
-                    className="absolute inset-0 translate-x-[3%] translate-y-[2.6%] rounded-[8%/5.7%] bg-card-frame shadow-[0_3px_0_0_var(--card-edge-line),0_5px_0_0_var(--card-frame),0_8px_0_0_var(--card-edge-line),0_10px_0_0_var(--card-frame),0_13px_0_0_var(--card-edge-line),0_40px_80px_-20px_var(--well)]"
-                  />
-                  <div
-                    aria-hidden="true"
-                    className="absolute inset-0 translate-x-[1.5%] translate-y-[1.3%] rounded-[8%/5.7%] border border-card-edge-line bg-card-frame"
-                  />
                   {/* The Dragon Card as the game prints it. */}
                   <Image
                     src={cards.dragon_fire.src}
                     width={cards.dragon_fire.width}
                     height={cards.dragon_fire.height}
-                    alt="Cindermaw's Dragon Card, a red dragon with a crest of flame and its stats, on top of a deck between a hand of Adept Cards and the four Region Cards."
+                    alt="Cindermaw's Dragon Card, a red dragon with a crest of flame and its stats, between a hand of Adept Cards and the four Region Cards."
                     priority
                     sizes="(min-width: 1024px) 230px, 42vw"
-                    className="hero-top relative w-full"
+                    className="hero-top relative w-full drop-shadow-[0_12px_18px_var(--well)]"
                   />
                 </>
               }

@@ -6,23 +6,22 @@ import type { MediaImage } from "../media.generated";
 
 export type HandCard = { card: MediaImage; r: number };
 
-/** Which card is lifted: one of the hand's, by index, or the deck's top card. */
-type Lifted = number | "deck" | null;
+/** Which card is lifted: one of the hand's, by index, or the Dragon Card. */
+type Lifted = number | "dragon" | null;
 
 /**
- * The hand fanned out from under the hero's deck. Pointing at a card (or
- * tapping it) lifts it out of the hand, in front of the deck, and dims the
- * rest.
+ * The hand fanned out from behind the hero's Dragon Card. Pointing at a card
+ * (or tapping it) lifts it in front of the others and dims them.
  *
  * Each card is drawn twice: its picture, which lifts and ignores the pointer,
  * and an invisible target that stays where the card rests, in the order the
  * cards rest in. So which card the pointer is on is always decided by the hand
  * at rest: a lifted card never covers the cards next to it.
  *
- * The deck (`deck`, its top card marked `hero-top`) lifts the same way, its own
- * top card rising off it.
+ * The Dragon Card in the middle (`dragon`, the card marked `hero-top`) lifts the
+ * same way.
  */
-export default function HeroHand({ cards, deck }: { cards: HandCard[]; deck: ReactNode }) {
+export default function HeroHand({ cards, dragon }: { cards: HandCard[]; dragon: ReactNode }) {
   const [on, setOn] = useState<Lifted>(null);
   const point = (id: Exclude<Lifted, null>) => ({
     onPointerEnter: (e: PointerEvent) => e.pointerType === "mouse" && setOn(id),
@@ -66,14 +65,14 @@ export default function HeroHand({ cards, deck }: { cards: HandCard[]; deck: Rea
           />
         ))}
       </div>
-      {/* The deck: the Dragon Card on top, with the edges of the cards under it. */}
+      {/* The Dragon Card, in the middle of the hand. */}
       <div
         className="hero-card relative mx-auto w-[44%]"
-        data-on={on === "deck" || undefined}
-        data-dim={dim("deck")}
-        {...point("deck")}
+        data-on={on === "dragon" || undefined}
+        data-dim={dim("dragon")}
+        {...point("dragon")}
       >
-        {deck}
+        {dragon}
       </div>
     </>
   );
