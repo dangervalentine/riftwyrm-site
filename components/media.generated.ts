@@ -400,24 +400,24 @@ export const cards = {
     "width": 480
   },
   "adept_C01_L1": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/void-slam-water-l1.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C01_L2": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/void-slam-water-l2.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C01_L3": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/void-slam-water-l3.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C01_L4": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/void-slam-water-l4.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C02": {
     "height": 671,
@@ -425,24 +425,24 @@ export const cards = {
     "width": 480
   },
   "adept_C02_L1": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/blinding-blade-water-l1.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C02_L2": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/blinding-blade-water-l2.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C02_L3": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/blinding-blade-water-l3.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C02_L4": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/blinding-blade-water-l4.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C03": {
     "height": 671,
@@ -450,24 +450,24 @@ export const cards = {
     "width": 480
   },
   "adept_C03_L1": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/scorch-water-l1.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C03_L2": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/scorch-water-l2.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C03_L3": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/scorch-water-l3.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C03_L4": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/scorch-water-l4.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C04": {
     "height": 671,
@@ -475,24 +475,24 @@ export const cards = {
     "width": 480
   },
   "adept_C04_L1": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/cold-blaze-water-l1.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C04_L2": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/cold-blaze-water-l2.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C04_L3": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/cold-blaze-water-l3.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C04_L4": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/cold-blaze-water-l4.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C05": {
     "height": 671,
@@ -500,24 +500,24 @@ export const cards = {
     "width": 480
   },
   "adept_C05_L1": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/inferno-lightning-l1.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C05_L2": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/inferno-lightning-l2.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C05_L3": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/inferno-lightning-l3.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C05_L4": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/inferno-lightning-l4.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C06": {
     "height": 671,
@@ -525,24 +525,24 @@ export const cards = {
     "width": 480
   },
   "adept_C06_L1": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/lightning-step-lightning-l1.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C06_L2": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/lightning-step-lightning-l2.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C06_L3": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/lightning-step-lightning-l3.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C06_L4": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/lightning-step-lightning-l4.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C07": {
     "height": 671,
@@ -550,24 +550,24 @@ export const cards = {
     "width": 480
   },
   "adept_C07_L1": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/surge-lightning-l1.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C07_L2": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/surge-lightning-l2.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C07_L3": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/surge-lightning-l3.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C07_L4": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/surge-lightning-l4.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C08": {
     "height": 671,
@@ -575,24 +575,24 @@ export const cards = {
     "width": 480
   },
   "adept_C08_L1": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/swift-current-lightning-l1.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C08_L2": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/swift-current-lightning-l2.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C08_L3": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/swift-current-lightning-l3.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C08_L4": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/swift-current-lightning-l4.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C09": {
     "height": 671,
@@ -600,24 +600,24 @@ export const cards = {
     "width": 480
   },
   "adept_C09_L1": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/swift-current-shadow-l1.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C09_L2": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/swift-current-shadow-l2.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C09_L3": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/swift-current-shadow-l3.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C09_L4": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/swift-current-shadow-l4.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C10": {
     "height": 671,
@@ -625,24 +625,24 @@ export const cards = {
     "width": 480
   },
   "adept_C10_L1": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/inferno-shadow-l1.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C10_L2": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/inferno-shadow-l2.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C10_L3": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/inferno-shadow-l3.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C10_L4": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/inferno-shadow-l4.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C11": {
     "height": 671,
@@ -650,24 +650,24 @@ export const cards = {
     "width": 480
   },
   "adept_C11_L1": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/shadow-stride-shadow-l1.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C11_L2": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/shadow-stride-shadow-l2.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C11_L3": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/shadow-stride-shadow-l3.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C11_L4": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/shadow-stride-shadow-l4.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C12": {
     "height": 671,
@@ -675,24 +675,24 @@ export const cards = {
     "width": 480
   },
   "adept_C12_L1": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/lightning-step-shadow-l1.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C12_L2": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/lightning-step-shadow-l2.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C12_L3": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/lightning-step-shadow-l3.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C12_L4": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/lightning-step-shadow-l4.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C13": {
     "height": 671,
@@ -700,24 +700,24 @@ export const cards = {
     "width": 480
   },
   "adept_C13_L1": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/surge-fire-l1.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C13_L2": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/surge-fire-l2.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C13_L3": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/surge-fire-l3.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C13_L4": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/surge-fire-l4.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C14": {
     "height": 671,
@@ -725,24 +725,24 @@ export const cards = {
     "width": 480
   },
   "adept_C14_L1": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/cold-blaze-fire-l1.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C14_L2": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/cold-blaze-fire-l2.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C14_L3": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/cold-blaze-fire-l3.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C14_L4": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/cold-blaze-fire-l4.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C15": {
     "height": 671,
@@ -750,24 +750,24 @@ export const cards = {
     "width": 480
   },
   "adept_C15_L1": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/ember-dash-fire-l1.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C15_L2": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/ember-dash-fire-l2.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C15_L3": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/ember-dash-fire-l3.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C15_L4": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/ember-dash-fire-l4.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C16": {
     "height": 671,
@@ -775,24 +775,24 @@ export const cards = {
     "width": 480
   },
   "adept_C16_L1": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/static-rush-fire-l1.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C16_L2": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/static-rush-fire-l2.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C16_L3": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/static-rush-fire-l3.webp",
-    "width": 240
+    "width": 400
   },
   "adept_C16_L4": {
-    "height": 336,
+    "height": 559,
     "src": "/media/cards/levels/static-rush-fire-l4.webp",
-    "width": 240
+    "width": 400
   },
   "blinding_blade": {
     "height": 671,
@@ -1348,6 +1348,80 @@ export const guideStats = {
     "C01": {
       "essence": "water",
       "image": "/media/cards/adept-void-slam-water.webp",
+      "levels": [
+        {
+          "speed": 1,
+          "basic": {
+            "type": "move",
+            "value": 2
+          },
+          "attuned": {
+            "type": "attack",
+            "value": 4,
+            "essence": "shadow"
+          },
+          "boost": 2,
+          "armor": {
+            "value": 1,
+            "essence": null
+          },
+          "empower": 1
+        },
+        {
+          "speed": 1,
+          "basic": {
+            "type": "move",
+            "value": 3
+          },
+          "attuned": {
+            "type": "attack",
+            "value": 5,
+            "essence": "shadow"
+          },
+          "boost": 3,
+          "armor": {
+            "value": 2,
+            "essence": null
+          },
+          "empower": 3
+        },
+        {
+          "speed": 2,
+          "basic": {
+            "type": "move",
+            "value": 5
+          },
+          "attuned": {
+            "type": "attack",
+            "value": 9,
+            "essence": "shadow"
+          },
+          "boost": 4,
+          "armor": {
+            "value": 2,
+            "essence": "shadow"
+          },
+          "empower": 4
+        },
+        {
+          "speed": 3,
+          "basic": {
+            "type": "move",
+            "value": 6
+          },
+          "attuned": {
+            "type": "attack",
+            "value": 11,
+            "essence": "shadow"
+          },
+          "boost": 5,
+          "armor": {
+            "value": 3,
+            "essence": "shadow"
+          },
+          "empower": null
+        }
+      ],
       "name": "Void Slam",
       "stepCost": [
         1,
@@ -1364,6 +1438,80 @@ export const guideStats = {
     "C02": {
       "essence": "water",
       "image": "/media/cards/adept-blinding-blade-water.webp",
+      "levels": [
+        {
+          "speed": 4,
+          "basic": {
+            "type": "attack",
+            "value": 2
+          },
+          "attuned": {
+            "type": "attack",
+            "value": 4,
+            "essence": "lightning"
+          },
+          "boost": 2,
+          "armor": {
+            "value": 1,
+            "essence": null
+          },
+          "empower": 2
+        },
+        {
+          "speed": 6,
+          "basic": {
+            "type": "attack",
+            "value": 3
+          },
+          "attuned": {
+            "type": "attack",
+            "value": 6,
+            "essence": "lightning"
+          },
+          "boost": 2,
+          "armor": {
+            "value": 2,
+            "essence": null
+          },
+          "empower": 3
+        },
+        {
+          "speed": 8,
+          "basic": {
+            "type": "attack",
+            "value": 4
+          },
+          "attuned": {
+            "type": "attack",
+            "value": 7,
+            "essence": "lightning"
+          },
+          "boost": 3,
+          "armor": {
+            "value": 3,
+            "essence": null
+          },
+          "empower": 4
+        },
+        {
+          "speed": 10,
+          "basic": {
+            "type": "attack",
+            "value": 6
+          },
+          "attuned": {
+            "type": "attack",
+            "value": 10,
+            "essence": "lightning"
+          },
+          "boost": 4,
+          "armor": {
+            "value": 4,
+            "essence": null
+          },
+          "empower": null
+        }
+      ],
       "name": "Blinding Blade",
       "stepCost": [
         2,
@@ -1380,6 +1528,80 @@ export const guideStats = {
     "C03": {
       "essence": "water",
       "image": "/media/cards/adept-scorch-water.webp",
+      "levels": [
+        {
+          "speed": 1,
+          "basic": {
+            "type": "attack",
+            "value": 2
+          },
+          "attuned": {
+            "type": "attack",
+            "value": 6,
+            "essence": "fire"
+          },
+          "boost": 1,
+          "armor": {
+            "value": 1,
+            "essence": null
+          },
+          "empower": 2
+        },
+        {
+          "speed": 1,
+          "basic": {
+            "type": "attack",
+            "value": 3
+          },
+          "attuned": {
+            "type": "attack",
+            "value": 8,
+            "essence": "fire"
+          },
+          "boost": 2,
+          "armor": {
+            "value": 1,
+            "essence": null
+          },
+          "empower": 4
+        },
+        {
+          "speed": 2,
+          "basic": {
+            "type": "attack",
+            "value": 5
+          },
+          "attuned": {
+            "type": "attack",
+            "value": 10,
+            "essence": "fire"
+          },
+          "boost": 2,
+          "armor": {
+            "value": 2,
+            "essence": "fire"
+          },
+          "empower": 5
+        },
+        {
+          "speed": 3,
+          "basic": {
+            "type": "attack",
+            "value": 6
+          },
+          "attuned": {
+            "type": "attack",
+            "value": 13,
+            "essence": "fire"
+          },
+          "boost": 3,
+          "armor": {
+            "value": 3,
+            "essence": "fire"
+          },
+          "empower": null
+        }
+      ],
       "name": "Scorch",
       "stepCost": [
         2,
@@ -1396,6 +1618,80 @@ export const guideStats = {
     "C04": {
       "essence": "water",
       "image": "/media/cards/adept-cold-blaze-water.webp",
+      "levels": [
+        {
+          "speed": 4,
+          "basic": {
+            "type": "attack",
+            "value": 2
+          },
+          "attuned": {
+            "type": "attack",
+            "value": 3,
+            "essence": "water"
+          },
+          "boost": 1,
+          "armor": {
+            "value": 2,
+            "essence": null
+          },
+          "empower": 1
+        },
+        {
+          "speed": 5,
+          "basic": {
+            "type": "attack",
+            "value": 3
+          },
+          "attuned": {
+            "type": "attack",
+            "value": 5,
+            "essence": "water"
+          },
+          "boost": 2,
+          "armor": {
+            "value": 2,
+            "essence": "water"
+          },
+          "empower": 3
+        },
+        {
+          "speed": 6,
+          "basic": {
+            "type": "attack",
+            "value": 4
+          },
+          "attuned": {
+            "type": "attack",
+            "value": 7,
+            "essence": "water"
+          },
+          "boost": 4,
+          "armor": {
+            "value": 4,
+            "essence": "water"
+          },
+          "empower": 4
+        },
+        {
+          "speed": 7,
+          "basic": {
+            "type": "attack",
+            "value": 6
+          },
+          "attuned": {
+            "type": "attack",
+            "value": 10,
+            "essence": "water"
+          },
+          "boost": 5,
+          "armor": {
+            "value": 6,
+            "essence": "water"
+          },
+          "empower": null
+        }
+      ],
       "name": "Cold Blaze",
       "stepCost": [
         1,
@@ -1412,6 +1708,80 @@ export const guideStats = {
     "C05": {
       "essence": "lightning",
       "image": "/media/cards/adept-inferno-lightning.webp",
+      "levels": [
+        {
+          "speed": 2,
+          "basic": {
+            "type": "attack",
+            "value": 3
+          },
+          "attuned": {
+            "type": "attack",
+            "value": 6,
+            "essence": "fire"
+          },
+          "boost": 1,
+          "armor": {
+            "value": 2,
+            "essence": null
+          },
+          "empower": 1
+        },
+        {
+          "speed": 3,
+          "basic": {
+            "type": "attack",
+            "value": 5
+          },
+          "attuned": {
+            "type": "attack",
+            "value": 8,
+            "essence": "fire"
+          },
+          "boost": 1,
+          "armor": {
+            "value": 2,
+            "essence": null
+          },
+          "empower": 3
+        },
+        {
+          "speed": 3,
+          "basic": {
+            "type": "attack",
+            "value": 6
+          },
+          "attuned": {
+            "type": "attack",
+            "value": 11,
+            "essence": "fire"
+          },
+          "boost": 2,
+          "armor": {
+            "value": 3,
+            "essence": null
+          },
+          "empower": 4
+        },
+        {
+          "speed": 4,
+          "basic": {
+            "type": "attack",
+            "value": 7
+          },
+          "attuned": {
+            "type": "attack",
+            "value": 14,
+            "essence": "fire"
+          },
+          "boost": 3,
+          "armor": {
+            "value": 5,
+            "essence": null
+          },
+          "empower": null
+        }
+      ],
       "name": "Inferno",
       "stepCost": [
         1,
@@ -1428,6 +1798,80 @@ export const guideStats = {
     "C06": {
       "essence": "lightning",
       "image": "/media/cards/adept-lightning-step-lightning.webp",
+      "levels": [
+        {
+          "speed": 5,
+          "basic": {
+            "type": "move",
+            "value": 3
+          },
+          "attuned": {
+            "type": "move",
+            "value": 5,
+            "essence": "lightning"
+          },
+          "boost": 1,
+          "armor": {
+            "value": 2,
+            "essence": null
+          },
+          "empower": 2
+        },
+        {
+          "speed": 5,
+          "basic": {
+            "type": "move",
+            "value": 5
+          },
+          "attuned": {
+            "type": "move",
+            "value": 9,
+            "essence": "lightning"
+          },
+          "boost": 2,
+          "armor": {
+            "value": 3,
+            "essence": null
+          },
+          "empower": 4
+        },
+        {
+          "speed": 6,
+          "basic": {
+            "type": "move",
+            "value": 6
+          },
+          "attuned": {
+            "type": "move",
+            "value": 11,
+            "essence": "lightning"
+          },
+          "boost": 4,
+          "armor": {
+            "value": 3,
+            "essence": "lightning"
+          },
+          "empower": 6
+        },
+        {
+          "speed": 7,
+          "basic": {
+            "type": "move",
+            "value": 8
+          },
+          "attuned": {
+            "type": "move",
+            "value": 14,
+            "essence": "lightning"
+          },
+          "boost": 5,
+          "armor": {
+            "value": 4,
+            "essence": "lightning"
+          },
+          "empower": null
+        }
+      ],
       "name": "Lightning Step",
       "stepCost": [
         2,
@@ -1444,6 +1888,80 @@ export const guideStats = {
     "C07": {
       "essence": "lightning",
       "image": "/media/cards/adept-surge-lightning.webp",
+      "levels": [
+        {
+          "speed": 2,
+          "basic": {
+            "type": "flex",
+            "value": 2
+          },
+          "attuned": {
+            "type": "flex",
+            "value": 3,
+            "essence": "shadow"
+          },
+          "boost": 2,
+          "armor": {
+            "value": 1,
+            "essence": null
+          },
+          "empower": 2
+        },
+        {
+          "speed": 3,
+          "basic": {
+            "type": "flex",
+            "value": 3
+          },
+          "attuned": {
+            "type": "flex",
+            "value": 5,
+            "essence": "shadow"
+          },
+          "boost": 3,
+          "armor": {
+            "value": 2,
+            "essence": null
+          },
+          "empower": 3
+        },
+        {
+          "speed": 4,
+          "basic": {
+            "type": "flex",
+            "value": 4
+          },
+          "attuned": {
+            "type": "flex",
+            "value": 7,
+            "essence": "shadow"
+          },
+          "boost": 4,
+          "armor": {
+            "value": 3,
+            "essence": null
+          },
+          "empower": 4
+        },
+        {
+          "speed": 4,
+          "basic": {
+            "type": "flex",
+            "value": 6
+          },
+          "attuned": {
+            "type": "flex",
+            "value": 9,
+            "essence": "shadow"
+          },
+          "boost": 5,
+          "armor": {
+            "value": 3,
+            "essence": "shadow"
+          },
+          "empower": null
+        }
+      ],
       "name": "Surge",
       "stepCost": [
         2,
@@ -1460,6 +1978,80 @@ export const guideStats = {
     "C08": {
       "essence": "lightning",
       "image": "/media/cards/adept-swift-current-lightning.webp",
+      "levels": [
+        {
+          "speed": 5,
+          "basic": {
+            "type": "move",
+            "value": 2
+          },
+          "attuned": {
+            "type": "move",
+            "value": 4,
+            "essence": "water"
+          },
+          "boost": 1,
+          "armor": {
+            "value": 2,
+            "essence": null
+          },
+          "empower": 2
+        },
+        {
+          "speed": 6,
+          "basic": {
+            "type": "move",
+            "value": 3
+          },
+          "attuned": {
+            "type": "move",
+            "value": 6,
+            "essence": "water"
+          },
+          "boost": 2,
+          "armor": {
+            "value": 2,
+            "essence": null
+          },
+          "empower": 4
+        },
+        {
+          "speed": 8,
+          "basic": {
+            "type": "move",
+            "value": 5
+          },
+          "attuned": {
+            "type": "move",
+            "value": 9,
+            "essence": "water"
+          },
+          "boost": 3,
+          "armor": {
+            "value": 5,
+            "essence": null
+          },
+          "empower": 5
+        },
+        {
+          "speed": 9,
+          "basic": {
+            "type": "move",
+            "value": 8
+          },
+          "attuned": {
+            "type": "move",
+            "value": 12,
+            "essence": "water"
+          },
+          "boost": 5,
+          "armor": {
+            "value": 5,
+            "essence": "water"
+          },
+          "empower": null
+        }
+      ],
       "name": "Swift Current",
       "stepCost": [
         2,
@@ -1476,6 +2068,80 @@ export const guideStats = {
     "C09": {
       "essence": "shadow",
       "image": "/media/cards/adept-swift-current-shadow.webp",
+      "levels": [
+        {
+          "speed": 5,
+          "basic": {
+            "type": "move",
+            "value": 2
+          },
+          "attuned": {
+            "type": "move",
+            "value": 4,
+            "essence": "water"
+          },
+          "boost": 1,
+          "armor": {
+            "value": 2,
+            "essence": null
+          },
+          "empower": 2
+        },
+        {
+          "speed": 6,
+          "basic": {
+            "type": "move",
+            "value": 3
+          },
+          "attuned": {
+            "type": "move",
+            "value": 6,
+            "essence": "water"
+          },
+          "boost": 2,
+          "armor": {
+            "value": 2,
+            "essence": null
+          },
+          "empower": 4
+        },
+        {
+          "speed": 8,
+          "basic": {
+            "type": "move",
+            "value": 5
+          },
+          "attuned": {
+            "type": "move",
+            "value": 9,
+            "essence": "water"
+          },
+          "boost": 3,
+          "armor": {
+            "value": 5,
+            "essence": null
+          },
+          "empower": 5
+        },
+        {
+          "speed": 9,
+          "basic": {
+            "type": "move",
+            "value": 8
+          },
+          "attuned": {
+            "type": "move",
+            "value": 12,
+            "essence": "water"
+          },
+          "boost": 5,
+          "armor": {
+            "value": 5,
+            "essence": "water"
+          },
+          "empower": null
+        }
+      ],
       "name": "Swift Current",
       "stepCost": [
         2,
@@ -1492,6 +2158,80 @@ export const guideStats = {
     "C10": {
       "essence": "shadow",
       "image": "/media/cards/adept-inferno-shadow.webp",
+      "levels": [
+        {
+          "speed": 2,
+          "basic": {
+            "type": "attack",
+            "value": 3
+          },
+          "attuned": {
+            "type": "attack",
+            "value": 6,
+            "essence": "fire"
+          },
+          "boost": 1,
+          "armor": {
+            "value": 2,
+            "essence": null
+          },
+          "empower": 1
+        },
+        {
+          "speed": 3,
+          "basic": {
+            "type": "attack",
+            "value": 5
+          },
+          "attuned": {
+            "type": "attack",
+            "value": 8,
+            "essence": "fire"
+          },
+          "boost": 1,
+          "armor": {
+            "value": 2,
+            "essence": null
+          },
+          "empower": 3
+        },
+        {
+          "speed": 3,
+          "basic": {
+            "type": "attack",
+            "value": 6
+          },
+          "attuned": {
+            "type": "attack",
+            "value": 11,
+            "essence": "fire"
+          },
+          "boost": 2,
+          "armor": {
+            "value": 3,
+            "essence": null
+          },
+          "empower": 4
+        },
+        {
+          "speed": 4,
+          "basic": {
+            "type": "attack",
+            "value": 7
+          },
+          "attuned": {
+            "type": "attack",
+            "value": 14,
+            "essence": "fire"
+          },
+          "boost": 3,
+          "armor": {
+            "value": 5,
+            "essence": null
+          },
+          "empower": null
+        }
+      ],
       "name": "Inferno",
       "stepCost": [
         1,
@@ -1508,6 +2248,80 @@ export const guideStats = {
     "C11": {
       "essence": "shadow",
       "image": "/media/cards/adept-shadow-stride-shadow.webp",
+      "levels": [
+        {
+          "speed": 2,
+          "basic": {
+            "type": "attack",
+            "value": 3
+          },
+          "attuned": {
+            "type": "move",
+            "value": 5,
+            "essence": "shadow"
+          },
+          "boost": 2,
+          "armor": {
+            "value": 2,
+            "essence": null
+          },
+          "empower": 2
+        },
+        {
+          "speed": 3,
+          "basic": {
+            "type": "attack",
+            "value": 4
+          },
+          "attuned": {
+            "type": "move",
+            "value": 7,
+            "essence": "shadow"
+          },
+          "boost": 3,
+          "armor": {
+            "value": 3,
+            "essence": null
+          },
+          "empower": 3
+        },
+        {
+          "speed": 4,
+          "basic": {
+            "type": "attack",
+            "value": 5
+          },
+          "attuned": {
+            "type": "move",
+            "value": 9,
+            "essence": "shadow"
+          },
+          "boost": 5,
+          "armor": {
+            "value": 3,
+            "essence": null
+          },
+          "empower": 5
+        },
+        {
+          "speed": 5,
+          "basic": {
+            "type": "attack",
+            "value": 5
+          },
+          "attuned": {
+            "type": "move",
+            "value": 12,
+            "essence": "shadow"
+          },
+          "boost": 6,
+          "armor": {
+            "value": 4,
+            "essence": "shadow"
+          },
+          "empower": null
+        }
+      ],
       "name": "Shadow Stride",
       "stepCost": [
         2,
@@ -1524,6 +2338,80 @@ export const guideStats = {
     "C12": {
       "essence": "shadow",
       "image": "/media/cards/adept-lightning-step-shadow.webp",
+      "levels": [
+        {
+          "speed": 5,
+          "basic": {
+            "type": "move",
+            "value": 3
+          },
+          "attuned": {
+            "type": "move",
+            "value": 5,
+            "essence": "lightning"
+          },
+          "boost": 1,
+          "armor": {
+            "value": 2,
+            "essence": null
+          },
+          "empower": 2
+        },
+        {
+          "speed": 5,
+          "basic": {
+            "type": "move",
+            "value": 5
+          },
+          "attuned": {
+            "type": "move",
+            "value": 9,
+            "essence": "lightning"
+          },
+          "boost": 2,
+          "armor": {
+            "value": 3,
+            "essence": null
+          },
+          "empower": 4
+        },
+        {
+          "speed": 6,
+          "basic": {
+            "type": "move",
+            "value": 6
+          },
+          "attuned": {
+            "type": "move",
+            "value": 11,
+            "essence": "lightning"
+          },
+          "boost": 4,
+          "armor": {
+            "value": 3,
+            "essence": "lightning"
+          },
+          "empower": 6
+        },
+        {
+          "speed": 7,
+          "basic": {
+            "type": "move",
+            "value": 8
+          },
+          "attuned": {
+            "type": "move",
+            "value": 14,
+            "essence": "lightning"
+          },
+          "boost": 5,
+          "armor": {
+            "value": 4,
+            "essence": "lightning"
+          },
+          "empower": null
+        }
+      ],
       "name": "Lightning Step",
       "stepCost": [
         2,
@@ -1540,6 +2428,80 @@ export const guideStats = {
     "C13": {
       "essence": "fire",
       "image": "/media/cards/adept-surge-fire.webp",
+      "levels": [
+        {
+          "speed": 2,
+          "basic": {
+            "type": "flex",
+            "value": 2
+          },
+          "attuned": {
+            "type": "flex",
+            "value": 3,
+            "essence": "shadow"
+          },
+          "boost": 2,
+          "armor": {
+            "value": 1,
+            "essence": null
+          },
+          "empower": 2
+        },
+        {
+          "speed": 3,
+          "basic": {
+            "type": "flex",
+            "value": 3
+          },
+          "attuned": {
+            "type": "flex",
+            "value": 5,
+            "essence": "shadow"
+          },
+          "boost": 3,
+          "armor": {
+            "value": 2,
+            "essence": null
+          },
+          "empower": 3
+        },
+        {
+          "speed": 4,
+          "basic": {
+            "type": "flex",
+            "value": 4
+          },
+          "attuned": {
+            "type": "flex",
+            "value": 7,
+            "essence": "shadow"
+          },
+          "boost": 4,
+          "armor": {
+            "value": 3,
+            "essence": null
+          },
+          "empower": 4
+        },
+        {
+          "speed": 4,
+          "basic": {
+            "type": "flex",
+            "value": 6
+          },
+          "attuned": {
+            "type": "flex",
+            "value": 9,
+            "essence": "shadow"
+          },
+          "boost": 5,
+          "armor": {
+            "value": 3,
+            "essence": "shadow"
+          },
+          "empower": null
+        }
+      ],
       "name": "Surge",
       "stepCost": [
         2,
@@ -1556,6 +2518,80 @@ export const guideStats = {
     "C14": {
       "essence": "fire",
       "image": "/media/cards/adept-cold-blaze-fire.webp",
+      "levels": [
+        {
+          "speed": 4,
+          "basic": {
+            "type": "attack",
+            "value": 2
+          },
+          "attuned": {
+            "type": "attack",
+            "value": 3,
+            "essence": "water"
+          },
+          "boost": 1,
+          "armor": {
+            "value": 2,
+            "essence": null
+          },
+          "empower": 1
+        },
+        {
+          "speed": 5,
+          "basic": {
+            "type": "attack",
+            "value": 3
+          },
+          "attuned": {
+            "type": "attack",
+            "value": 5,
+            "essence": "water"
+          },
+          "boost": 2,
+          "armor": {
+            "value": 2,
+            "essence": "water"
+          },
+          "empower": 3
+        },
+        {
+          "speed": 6,
+          "basic": {
+            "type": "attack",
+            "value": 4
+          },
+          "attuned": {
+            "type": "attack",
+            "value": 7,
+            "essence": "water"
+          },
+          "boost": 4,
+          "armor": {
+            "value": 4,
+            "essence": "water"
+          },
+          "empower": 4
+        },
+        {
+          "speed": 7,
+          "basic": {
+            "type": "attack",
+            "value": 6
+          },
+          "attuned": {
+            "type": "attack",
+            "value": 10,
+            "essence": "water"
+          },
+          "boost": 5,
+          "armor": {
+            "value": 6,
+            "essence": "water"
+          },
+          "empower": null
+        }
+      ],
       "name": "Cold Blaze",
       "stepCost": [
         1,
@@ -1572,6 +2608,80 @@ export const guideStats = {
     "C15": {
       "essence": "fire",
       "image": "/media/cards/adept-ember-dash-fire.webp",
+      "levels": [
+        {
+          "speed": 1,
+          "basic": {
+            "type": "move",
+            "value": 2
+          },
+          "attuned": {
+            "type": "move",
+            "value": 4,
+            "essence": "fire"
+          },
+          "boost": 1,
+          "armor": {
+            "value": 1,
+            "essence": null
+          },
+          "empower": 2
+        },
+        {
+          "speed": 1,
+          "basic": {
+            "type": "move",
+            "value": 3
+          },
+          "attuned": {
+            "type": "move",
+            "value": 5,
+            "essence": "fire"
+          },
+          "boost": 2,
+          "armor": {
+            "value": 1,
+            "essence": null
+          },
+          "empower": 4
+        },
+        {
+          "speed": 2,
+          "basic": {
+            "type": "move",
+            "value": 4
+          },
+          "attuned": {
+            "type": "move",
+            "value": 7,
+            "essence": "fire"
+          },
+          "boost": 2,
+          "armor": {
+            "value": 2,
+            "essence": "fire"
+          },
+          "empower": 5
+        },
+        {
+          "speed": 3,
+          "basic": {
+            "type": "move",
+            "value": 5
+          },
+          "attuned": {
+            "type": "move",
+            "value": 9,
+            "essence": "fire"
+          },
+          "boost": 3,
+          "armor": {
+            "value": 3,
+            "essence": "fire"
+          },
+          "empower": null
+        }
+      ],
       "name": "Ember Dash",
       "stepCost": [
         2,
@@ -1588,6 +2698,80 @@ export const guideStats = {
     "C16": {
       "essence": "fire",
       "image": "/media/cards/adept-static-rush-fire.webp",
+      "levels": [
+        {
+          "speed": 4,
+          "basic": {
+            "type": "move",
+            "value": 2
+          },
+          "attuned": {
+            "type": "move",
+            "value": 4,
+            "essence": "lightning"
+          },
+          "boost": 1,
+          "armor": {
+            "value": 2,
+            "essence": null
+          },
+          "empower": 1
+        },
+        {
+          "speed": 5,
+          "basic": {
+            "type": "move",
+            "value": 4
+          },
+          "attuned": {
+            "type": "move",
+            "value": 8,
+            "essence": "lightning"
+          },
+          "boost": 2,
+          "armor": {
+            "value": 2,
+            "essence": "lightning"
+          },
+          "empower": 3
+        },
+        {
+          "speed": 7,
+          "basic": {
+            "type": "move",
+            "value": 5
+          },
+          "attuned": {
+            "type": "move",
+            "value": 10,
+            "essence": "lightning"
+          },
+          "boost": 3,
+          "armor": {
+            "value": 3,
+            "essence": "lightning"
+          },
+          "empower": 4
+        },
+        {
+          "speed": 9,
+          "basic": {
+            "type": "move",
+            "value": 6
+          },
+          "attuned": {
+            "type": "move",
+            "value": 12,
+            "essence": "lightning"
+          },
+          "boost": 5,
+          "armor": {
+            "value": 5,
+            "essence": "lightning"
+          },
+          "empower": null
+        }
+      ],
       "name": "Static Rush",
       "stepCost": [
         1,

@@ -1,29 +1,23 @@
-import Image from "next/image";
 import { empowerNotes, stepOf, type CardId, type Step } from "@/components/guide";
-import { cards, guideStats } from "@/components/media.generated";
+import { guideStats } from "@/components/media.generated";
 import CardName from "./CardName";
+import CardThumb from "./CardThumb";
 import SortableTable, { type SortRow } from "./SortableTable";
 
 const ESSENCE_ORDER = ["water", "lightning", "shadow", "fire"] as const;
 const LEVELS = [1, 2, 3, 4] as const;
 
-/** The card's face at a Level, as the game prints it there. */
-function Face({ card, level, label }: { card: CardId; level: number; label: string }) {
-  const f = cards[`adept_${card}_L${level}` as keyof typeof cards] as { src: string; width: number; height: number };
-  return <Image src={f.src} width={f.width} height={f.height} alt={label} sizes="88px" className="h-auto w-[4.5rem] sm:w-[5.5rem]" />;
-}
 
 /** One Empowerment shown on the printed card: the card before, the card after, and what it bought. */
 function Buy({ step, tone }: { step: Step; tone: "best" | "poor" }) {
   const [card] = step;
   const { gain, cost, from, to } = stepOf(step);
-  const name = guideStats.cards[card].name;
   return (
     <li className={`flex items-center gap-3 rounded-lg border p-3 ${tone === "best" ? "border-jade/40" : "border-line"} bg-stone`}>
       <div className="flex flex-none items-center gap-1">
-        <Face card={card} level={from} label={`${name} at Level ${from}`} />
+        <CardThumb card={card} level={from} className="w-[4.5rem] sm:w-[5.5rem]" />
         <span aria-hidden="true" className="text-faint">→</span>
-        <Face card={card} level={to} label={`${name} at Level ${to}`} />
+        <CardThumb card={card} level={to} className="w-[4.5rem] sm:w-[5.5rem]" />
       </div>
       <div className="min-w-0 text-sm leading-snug">
         <p className="font-semibold text-parchment">
@@ -56,7 +50,10 @@ export default function EmpowerTable() {
       key: id,
       sort: [`${ESSENCE_ORDER.indexOf(c.essence)} ${c.name}`, ...c.strength],
       cells: [
-        <CardName key="n" card={id} />,
+        <span key="n" className="flex items-center gap-2.5">
+          <CardThumb card={id} />
+          <CardName card={id} />
+        </span>,
         ...LEVELS.map((level) => {
           const v = c.strength[level - 1];
           if (level === 1) return <span key={level} className="font-semibold text-parchment">{v}</span>;
@@ -83,7 +80,8 @@ export default function EmpowerTable() {
       <h2 id="empower-h" className="guide-h2">Where your XP goes furthest</h2>
       <p>
         A card&rsquo;s strength is its best Spell figure plus its Boost. The best Empowerment is the one that buys the
-        most strength for its XP. Under each Level is what the step to it adds, and its cost.
+        most strength for its XP. Under each Level is what the step to it adds, and its cost. Press a card to see it at
+        every Level.
       </p>
       <div className="mt-8">
         <SortableTable

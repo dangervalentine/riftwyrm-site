@@ -4,6 +4,8 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { dragonBySlug, dragonGuides, dragonOf, guideDragons } from "@/components/guide";
 import ArticleJsonLd from "@/components/guide/ArticleJsonLd";
+import CardViewer from "@/components/guide/CardViewer";
+import { cardViewerItems } from "@/components/guide/cardViewerItems";
 import DragonArticle from "@/components/guide/DragonArticle";
 import DragonNav, { Breadcrumb } from "@/components/guide/DragonNav";
 import EditionNote from "@/components/guide/EditionNote";
@@ -46,7 +48,9 @@ export default async function DragonPage({ params }: PageProps<"/guide/[dragon]"
       <Header />
       <main className="flex-1">
         <Breadcrumb id={id} />
-        <DragonArticle id={id} />
+        <CardViewer items={cardViewerItems()}>
+          <DragonArticle id={id} />
+        </CardViewer>
         <DragonNav id={id} />
         <EditionNote />
       </main>

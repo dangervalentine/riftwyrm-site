@@ -340,7 +340,7 @@ function plan(game, version, cardsDir, places, glows) {
   for (const { id, slug } of guideCards(game, cards))
     for (const level of [1, 2, 3, 4])
       add(`cards.adept_${id}_L${level}`, join(cards, "adept-levels", `${id}_L${level}.png`),
-        `public/media/cards/levels/${slug}-l${level}.webp`, { card: 240 });
+        `public/media/cards/levels/${slug}-l${level}.webp`, { card: 400 });
 
   // Each dragon's share-image art for its guide page, drawn as the home page's share image is.
   for (const id of DRAGONS) {
@@ -465,6 +465,15 @@ function guideStats(game) {
     image: `/media/cards/adept-${c.slug}.webp`,
     strength: c.levels.map((l) => Math.max(l.basic.value, l.enhanced.value) + l.boost),
     stepCost: c.levels.slice(0, 3).map((l) => l.level_up_cost),
+    // Every figure printed at each Level, for the guide's card viewer (as the game's card detail spells them out).
+    levels: c.levels.map((l) => ({
+      speed: l.initiative,
+      basic: { type: l.basic.type, value: l.basic.value },
+      attuned: { type: l.enhanced.type, value: l.enhanced.value, essence: l.enhanced.affinity },
+      boost: l.boost,
+      armor: { value: l.armor.value, essence: l.armor.affinity ?? null },
+      empower: l.level_up_cost ?? null,
+    })),
   }]));
   // What each Level of each card adds to the Showdown against each dragon, in points of win
   // chance, Level 1 to 4 (data/advisor_showdown.json: Trashed to 1, then 1 to 2, 2 to 3, 3 to 4).

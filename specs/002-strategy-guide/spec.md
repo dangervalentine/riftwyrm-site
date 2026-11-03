@@ -33,6 +33,7 @@ figures move to the site.
 - The main guide page's strength table is sortable by the strength at each Level; its best and poorest buys show the printed card before and after the step (cards drawn at every Level by the game's `tools/card_level_shots.gd`).
 - The lessons are one component: side tabs on wide screens, an accordion on phones, every lesson listed when scripts are off; `/guide#lesson-<id>` opens that lesson.
 - The at-a-glance comparison sits with the dragon index ("Choose your dragon").
+- Every card shown on the guide pages (both tables, the featured cards, the buys) is a small printed card; pressing it opens a card viewer with the card at all four Levels side by side and the chosen Level's figures spelled out, as the game's card detail does. Escape or Back closes it; without scripts the small card opens its picture.
 - Opening a new page starts at its top; Back returns to the place left. FR-016 now reads: the full content is available without JavaScript; sorting, tabs and the accordion are added by script.
 
 ## User Scenarios & Testing *(mandatory)*

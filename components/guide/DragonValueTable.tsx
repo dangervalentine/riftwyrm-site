@@ -2,6 +2,7 @@ import type { DragonId } from "@/components/content";
 import { dragonGuides, dragonOf, huntValue, type CardId } from "@/components/guide";
 import { guideStats } from "@/components/media.generated";
 import CardName from "./CardName";
+import CardThumb from "./CardThumb";
 import SortableTable, { type SortRow } from "./SortableTable";
 
 const PICK = {
@@ -31,9 +32,12 @@ export default function DragonValueTable({ id }: { id: DragonId }) {
       key: c,
       sort: [guideStats.cards[c].name, hunt[c], solved[c]],
       cells: [
-        <span key="n" className="block">
-          <CardName card={c} />
-          {p.label && <span className={`mt-0.5 block pl-5 text-xs font-semibold ${p.className}`}>{p.label}</span>}
+        <span key="n" className="flex items-center gap-2.5">
+          <CardThumb card={c} />
+          <span>
+            <CardName card={c} />
+            {p.label && <span className={`mt-0.5 block pl-5 text-xs font-semibold ${p.className}`}>{p.label}</span>}
+          </span>
         </span>,
         <span key="h" className={hunt[c] < 0 ? "text-danger" : "text-parchment"}>{signed(hunt[c])}</span>,
         <span key="s" className="text-parchment">{solved[c].toFixed(1)}</span>,

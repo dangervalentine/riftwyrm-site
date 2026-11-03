@@ -3,6 +3,8 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { lessons } from "@/components/guide";
 import ArticleJsonLd from "@/components/guide/ArticleJsonLd";
+import CardViewer from "@/components/guide/CardViewer";
+import { cardViewerItems } from "@/components/guide/cardViewerItems";
 import DragonIndex from "@/components/guide/DragonIndex";
 import EditionNote from "@/components/guide/EditionNote";
 import EmpowerTable from "@/components/guide/EmpowerTable";
@@ -39,9 +41,11 @@ export default function Guide() {
         </div>
         <DragonIndex />
         <Lessons lessons={lessons} />
-        <div className="guide-col guide-body">
-          <EmpowerTable />
-        </div>
+        <CardViewer items={cardViewerItems()}>
+          <div className="guide-col guide-body">
+            <EmpowerTable />
+          </div>
+        </CardViewer>
         <EditionNote />
       </main>
       <Footer />

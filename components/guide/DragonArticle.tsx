@@ -79,7 +79,7 @@ export default function DragonArticle({ id }: { id: DragonId }) {
 
         <section id="raise" aria-labelledby="raise-h">
           <h2 id="raise-h" className="guide-h2">Cards to raise</h2>
-          <p className="text-muted">Put your XP here first. The first card is the one to lead with.</p>
+          <p className="text-muted">Put your XP here first. The first card is the one to lead with. Press a card to see it at every Level.</p>
           <ul className="mt-4 space-y-1">
             {g.raise.map((p) => (
               <CardChip key={p.card} card={p.card} reason={p.why} tone="raise" />
