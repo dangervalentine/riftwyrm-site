@@ -27,15 +27,26 @@ const FAN: CSSProperties[] = [
   { transform: "translateY(10%) rotate(12deg)" },
 ];
 
+/** Where each Region Card sits as the road sets off: in the order they are
+ * crossed, each a step further down, tilting one way then the other as a road
+ * winds. The hand's fan, mirrored. */
+const ROAD: CSSProperties[] = [
+  { transform: "translateY(-6%) rotate(-5deg)" },
+  { transform: "translateY(4%) rotate(3deg)" },
+  { transform: "translateY(14%) rotate(-3deg)" },
+  { transform: "translateY(24%) rotate(5deg)" },
+];
+
 /**
- * The deck is the world. The road is the four printed Region Cards in the
- * order they are crossed, each holding its foes and roads, and the four
+ * The deck is the world. Your hand comes first, your Adept Cards, your powers
+ * and your resources at once; then the road, the four printed Region Cards in
+ * the order they are crossed, each holding its foes and roads, and the four
  * dragons at its end; anything on them can be looked at up close (Road.tsx).
- * Your hand is your Adept Cards, your powers and your resources at once.
+ * The road runs to the section's foot, ending on the lair's ground.
  */
 export default function Deck() {
   return (
-    <section aria-labelledby="deck-title" className="ground-1 overflow-hidden py-24 sm:py-32">
+    <section aria-labelledby="deck-title" className="ground-1 overflow-hidden pt-24 sm:pt-32">
       <div className="mx-auto max-w-6xl px-6">
         <div className="max-w-3xl">
           <h2 id="deck-title" className="font-display text-4xl leading-tight font-semibold sm:text-5xl">
@@ -43,19 +54,10 @@ export default function Deck() {
           </h2>
           <p className="mt-6 text-xl leading-relaxed text-muted">{site.pitch}</p>
         </div>
-
-        {/* The road: four regions, then the dragon. */}
-        <h3 className="mt-16 font-display text-2xl font-semibold">The road</h3>
-        <p className="mt-2 max-w-[60ch] text-muted">
-          Each Region Card is a country of its own: four foes to face and four roads to cross. Draw your
-          hand from beneath it, and the card that leads names what you meet next. Hover or tap anything on
-          the cards to see it up close.
-        </p>
       </div>
-      <Road regions={roadRegions} dragons={roadDragons} />
 
       {/* Your hand. */}
-      <div className="mx-auto mt-20 grid max-w-6xl items-center gap-12 px-6 md:grid-cols-[1fr_1.1fr]">
+      <div className="mx-auto mt-16 grid max-w-6xl items-center gap-12 px-6 md:grid-cols-[1fr_1.1fr]">
         <div>
           <h3 className="font-display text-2xl font-semibold">Your hand</h3>
           <p className="mt-3 max-w-[52ch] text-lg leading-relaxed text-muted">
@@ -82,6 +84,33 @@ export default function Deck() {
           })}
         </ul>
       </div>
+
+      {/* The road: its four Region Cards beside its words, a foil to the hand above. */}
+      <div className="mx-auto mt-20 grid max-w-6xl items-center gap-12 px-6 md:grid-cols-[1.1fr_1fr]">
+        <ul className="order-2 flex justify-center pt-4 pb-14 md:order-none" aria-label="The four Region Cards, in the order they are crossed">
+          {roadRegions.map((r, i) => (
+            <li key={r.n} className="-mx-[0.5%] w-[25%] max-w-[170px]" style={ROAD[i]}>
+              <Image
+                src={r.card.src}
+                width={r.card.width}
+                height={r.card.height}
+                alt={`The ${r.name} Region Card, region ${r.n}`}
+                sizes="(min-width: 768px) 170px, 26vw"
+                className="h-auto w-full drop-shadow-[0_16px_20px_var(--well)]"
+              />
+            </li>
+          ))}
+        </ul>
+        <div className="order-1 md:order-none">
+          <h3 className="font-display text-2xl font-semibold">The road</h3>
+          <p className="mt-3 max-w-[52ch] text-lg leading-relaxed text-muted">
+            Each Region Card is a country of its own: four foes to face and four roads to cross. Draw your
+            hand from beneath it, and the card that leads names what you meet next. Hover or tap anything on
+            the cards below to see it up close.
+          </p>
+        </div>
+      </div>
+      <Road regions={roadRegions} dragons={roadDragons} />
     </section>
   );
 }

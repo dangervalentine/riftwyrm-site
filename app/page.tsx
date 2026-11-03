@@ -3,7 +3,6 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import JsonLd from "@/components/JsonLd";
 import Deck from "@/components/sections/Deck";
-import Dragons from "@/components/sections/Dragons";
 import Features from "@/components/sections/Features";
 import FinalCta from "@/components/sections/FinalCta";
 import Gallery from "@/components/sections/Gallery";
@@ -16,8 +15,9 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-/** The page walks the game's road: the deck first, since everything is dealt
- * from it, then each section on the next Region's ground, ending at the lair. */
+/** The game in play first, just below the fold; then the page walks the game's
+ * road: the deck, since everything is dealt from it, its road running region
+ * by region on each Region's ground to the lair. */
 export default function Home() {
   return (
     <>
@@ -25,9 +25,8 @@ export default function Home() {
       <Header overlay />
       <main>
         <Hero />
-        <Deck />
         <Gallery />
-        <Dragons />
+        <Deck />
         <Features />
         <FinalCta />
       </main>

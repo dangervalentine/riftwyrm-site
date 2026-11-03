@@ -228,7 +228,7 @@ function Frame({ aspect, colour, children, className = "", style }: { aspect: nu
  * art_rect): the panel's shape cut from the square's full height, set back
  * left of the middle, then grown about the figure's feet by its size.
  */
-function enemySquare(place: EnemyPlace, ratio: number) {
+export function enemySquare(place: EnemyPlace, ratio: number) {
   let cw = ratio;
   let ch = 1;
   let cx = 0.5 - cw / 2 + cw * place.back;

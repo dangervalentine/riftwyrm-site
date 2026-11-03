@@ -26,6 +26,7 @@ export type RoadDragon = {
   order: number;
   name: string;
   title: string;
+  line: string;
   card: Img;
 };
 
@@ -53,11 +54,15 @@ const pct = (s: { left: number; top: number; width: number; height: number }): C
   height: `${s.height}%`,
 });
 
+/** Each dragon's Essence, its bright shade for its name: written out so Tailwind sees every class. */
+const INK = { lightning: "text-lightning-bright", water: "text-water-bright", fire: "text-fire-bright", shadow: "text-shadow-bright" };
+
 const focusId = (f: Focus) => `${f.kind}-${f.piece.key}`;
 
 /**
  * The road, walked one card at a time: a row for each Region Card in the order
- * they are crossed, then the four Dragon Cards side by side at its end. Each
+ * they are crossed, then the four Dragon Cards side by side at its end, each
+ * with its name, title and line, in the order beating one wakes the next. Each
  * Region's row keeps its card and a highlight of the one thing picked on it in
  * view together. Every foe and road on a card is a target: hover it with a
  * mouse, tap it, or move to it with the keyboard, and the row's highlight
@@ -103,10 +108,14 @@ export default function Road({ regions, dragons }: { regions: RoadRegion[]; drag
           )}
         />
       ))}
-      <li className="ground-lair py-12 sm:py-16 md:pt-28">
+      <li id="dragons" className="ground-lair py-12 sm:py-16 md:pt-28">
         <div className="mx-auto max-w-5xl px-6">
           <h3 className="font-display text-2xl font-semibold text-fire-bright sm:text-3xl">Then the dragon</h3>
-          <ul className="mt-5 grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-4">
+          <p className="mt-3 max-w-[60ch] text-muted">
+            Every hunt starts with Thrallis. Win on Normal or harder and the next dragon wakes, each one harder to
+            bring down than the last.
+          </p>
+          <ol className="mt-8 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4">
             {dragons.map((d) => (
               <li key={d.id}>
                 <Image
@@ -117,9 +126,15 @@ export default function Road({ regions, dragons }: { regions: RoadRegion[]; drag
                   sizes="(min-width: 1024px) 230px, (min-width: 768px) 22vw, 44vw"
                   className="h-auto w-full drop-shadow-[0_18px_28px_var(--well)]"
                 />
+                <h4 className={`mt-4 font-display text-xl font-semibold sm:text-2xl ${INK[d.id]}`}>
+                  <span className="sr-only">Dragon {d.order}: </span>
+                  {d.name}
+                </h4>
+                <p className="mt-0.5 font-display text-parchment">{d.title}</p>
+                <p className="mt-2 font-display leading-relaxed text-muted italic">{d.line}</p>
               </li>
             ))}
-          </ul>
+          </ol>
         </div>
       </li>
     </ol>

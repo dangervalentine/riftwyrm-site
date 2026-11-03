@@ -62,7 +62,7 @@ export const features: { title: string; body: string; icon: string }[] = [
     icon: "/media/icons/trophy.svg",
   },
   {
-    title: "27 achievements",
+    title: "52 achievements",
     body: "From your first win to every dragon and difficulty unlocked, and a hunt won in under nine minutes.",
     icon: "/media/icons/star.svg",
   },
