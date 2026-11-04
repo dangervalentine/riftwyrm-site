@@ -25,7 +25,7 @@ export const site = {
    * turns its button into a live link everywhere it appears. */
   stores: {
     googlePlay: "",
-    appStore: "",
+    appStore: "https://apps.apple.com/us/app/riftwyrm/id6828668910",
   },
   /** The Android beta: a closed testing track whose testers are an open
    * Google Group. Joining the group, then opting in, is all a tester does;

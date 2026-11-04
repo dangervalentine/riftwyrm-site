@@ -8,7 +8,7 @@ import { site } from "@/components/site";
 
 export const metadata: Metadata = {
   title: "Join the beta",
-  description: `Play ${site.name} before it is released: sign up to test it on iPhone, iPad or Android.`,
+  description: `Get sneak previews of ${site.name}: sign up to test beta builds on iPhone, iPad or Android.`,
   alternates: { canonical: "/beta" },
 };
 
@@ -19,13 +19,17 @@ export default function Beta() {
       <Prose>
         <h1>Join the beta</h1>
         <p className="lede">
-          Play {site.name} before it comes out, and help shape it. Leave the address your device
-          uses for its store and you will be invited when a test build is ready.
+          Play new builds of {site.name} before anyone else, and help shape them. Leave the
+          address your device uses for its store and you will be invited when a test build is
+          ready.
         </p>
         <ul>
           <li>
-            <strong>iPhone and iPad:</strong> testing runs through Apple&rsquo;s TestFlight app, so
-            we need the email address of your Apple ID.
+            <strong>iPhone and iPad:</strong> {site.name} is out now. Sign up here if you would
+            like sneak previews of beta builds through Apple&rsquo;s TestFlight app (we need the
+            email address of your Apple ID), or{" "}
+            <a href={site.stores.appStore}>download it from the App Store</a> if you would rather
+            play the released game.
           </li>
           <li>
             <strong>Android:</strong> testing runs through Google Play, so we need the email

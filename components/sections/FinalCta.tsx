@@ -16,7 +16,7 @@ export default function FinalCta() {
           <h2 id="cta-title" className="font-display text-4xl leading-tight font-semibold text-shadow-bright [text-shadow:0_0_28px_color-mix(in_oklab,var(--shadow)_80%,transparent),0_0_64px_color-mix(in_oklab,var(--shadow-bright)_35%,transparent)] sm:text-5xl">
             The dragons are waiting.
           </h2>
-          <p className="mt-4 text-lg text-muted">Coming to iPhone, iPad and Android.</p>
+          <p className="mt-4 text-lg text-muted">Out now on iPhone and iPad. Coming soon to Android.</p>
           <StoreButtons className="mt-8" />
           <p className="mt-6 text-muted">
             Want to play it first?{" "}

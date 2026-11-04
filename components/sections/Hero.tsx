@@ -77,7 +77,7 @@ export default function Hero() {
           </p>
           <p className="mt-3 max-w-[52ch] leading-relaxed text-muted sm:mt-4 sm:text-lg">{site.tagline}</p>
           <StoreButtons className="mt-6 sm:mt-10" />
-          <p className="mt-4 text-sm text-muted">Coming to iPhone, iPad and Android.</p>
+          <p className="mt-4 text-sm text-muted">Out now on iPhone and iPad. Coming soon to Android.</p>
         </div>
 
         <div className="order-1 flex justify-center lg:order-2 lg:justify-end">
