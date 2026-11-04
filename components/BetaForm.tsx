@@ -53,11 +53,20 @@ function FormBody({
         {state.google && (
           <p className="text-muted">
             <strong className="text-parchment">Android:</strong>{" "}
+            {state.androidAdded
+              ? "you have been added to the Android test. "
+              : ""}
             {state.androidMailed
-              ? "you have been added to the Android test. An email with the link to join it is on its way to "
-              : "you will be added to the Android test, and an email with the link to join it will be sent to "}
+              ? state.androidAdded
+                ? "We've emailed the link to install it from Google Play to "
+                : "We've emailed two links to "
+              : "An email with the link to join will be sent to "}
             <span className="text-parchment">{state.google}</span>
-            {state.androidMailed ? "" : " shortly"}.
+            {state.androidMailed
+              ? state.androidAdded
+                ? "."
+                : ": join the tester group, then opt in on Google Play."
+              : " shortly."}
           </p>
         )}
         {!state.apple && !state.google && (

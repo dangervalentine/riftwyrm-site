@@ -2,13 +2,21 @@
 
 import { addSignup, type Signup } from "@/lib/beta";
 import { notifySignup, sendAndroidInvite } from "@/lib/notify";
+import { addToGroup, groupConfig } from "@/lib/googleGroup";
 import { inviteTester, splitName, testflightConfig } from "@/lib/testflight";
 
 export type BetaState =
   | { status: "idle" }
-  /** testflight: the Apple ID is in the TestFlight group; androidMailed: the
-   * Android join links have been emailed. */
-  | { status: "done"; apple: string; google: string; testflight: boolean; androidMailed: boolean }
+  /** testflight: the Apple ID is in the TestFlight group; androidAdded: the Google
+   * account is in the Android tester group; androidMailed: its invitation is sent. */
+  | {
+      status: "done";
+      apple: string;
+      google: string;
+      testflight: boolean;
+      androidAdded: boolean;
+      androidMailed: boolean;
+    }
   | {
       status: "error";
       message: string;
@@ -30,7 +38,7 @@ function field(form: FormData, name: string, max = 254): string {
 export async function joinBeta(_prev: BetaState, form: FormData): Promise<BetaState> {
   // The hidden "website" box is left empty by people and filled in by bots.
   // A bot is told it succeeded and nothing is kept.
-  if (field(form, "website")) return { status: "done", apple: "", google: "", testflight: false, androidMailed: false };
+  if (field(form, "website")) return { status: "done", apple: "", google: "", testflight: false, androidAdded: false, androidMailed: false };
 
   const ios = form.get("ios") === "on";
   const android = form.get("android") === "on";
@@ -61,6 +69,7 @@ export async function joinBeta(_prev: BetaState, form: FormData): Promise<BetaSt
   // never shown: the visitor is on the list either way.
   let invited = false;
   let mailed = false;
+  let added = false;
   if (total !== null) {
     const notes: string[] = [];
     if (apple) {
@@ -69,9 +78,18 @@ export async function joinBeta(_prev: BetaState, form: FormData): Promise<BetaSt
       notes.push(`TestFlight: ${tf.note}`);
     }
     if (google) {
+      const g = await androidGroup(google);
+      added = g.ok;
+      notes.push(`Android group: ${g.note}`);
       try {
-        mailed = await sendAndroidInvite(google, name);
-        notes.push(mailed ? "Android: emailed them the group and opt-in links." : "Android: mail is not set up; nothing was sent.");
+        // With the managed group set up, the email is one step even if adding failed:
+        // the open group no longer leads to the track, and the failure is retried by hand.
+        mailed = await sendAndroidInvite(google, name, groupConfig() !== null);
+        notes.push(
+          mailed
+            ? `Android: emailed them ${groupConfig() ? "the Play opt-in link" : "the group and opt-in links"}.`
+            : "Android: mail is not set up; nothing was sent.",
+        );
       } catch (e) {
         console.error("Android invite email failed", e);
         notes.push(`Android: invite email FAILED (${e instanceof Error ? e.message : e}); run npm run android-invite -- ${google}`);
@@ -79,7 +97,20 @@ export async function joinBeta(_prev: BetaState, form: FormData): Promise<BetaSt
     }
     await notifySignup(signup, total, notes).catch((e) => console.error("beta sign-up email failed", e));
   }
-  return { status: "done", apple, google, testflight: invited, androidMailed: mailed };
+  return { status: "done", apple, google, testflight: invited, androidAdded: added, androidMailed: mailed };
+}
+
+/** Adds the Google account to the Android tester group and says how it went. */
+async function androidGroup(email: string): Promise<{ ok: boolean; note: string }> {
+  const cfg = groupConfig();
+  if (!cfg) return { ok: false, note: "not set up; they were sent the open group's join link." };
+  try {
+    const r = await addToGroup(cfg, email);
+    return { ok: true, note: r === "added" ? `added to ${cfg.group}.` : `already in ${cfg.group}.` };
+  } catch (e) {
+    console.error("Android group add failed", e);
+    return { ok: false, note: `FAILED (${e instanceof Error ? e.message : e}); run npm run android-group -- sync` };
+  }
 }
 
 /** Adds the Apple ID to the TestFlight group and says how it went. */

@@ -51,14 +51,34 @@ export async function notifySignup(s: Signup, total: number, notes: string[] = [
 }
 
 /**
- * The Android tester's invitation: join the Google Group with the account
- * they gave, then opt in on Google Play. Returns false when mail is not set up
- * (nothing sent); throws when sending fails.
+ * The Android tester's invitation. With the managed tester group set up
+ * (`inGroup`, lib/googleGroup.ts), the site puts them in it, so it is one step:
+ * opt in on Google Play. Otherwise two: join the open group, then opt in. Returns false when mail
+ * is not set up (nothing sent); throws when sending fails.
  */
-export async function sendAndroidInvite(to: string, name: string): Promise<boolean> {
+export async function sendAndroidInvite(to: string, name: string, inGroup = false): Promise<boolean> {
   const m = mailer();
   if (!m) return false;
   const first = name.split(/\s+/).filter(Boolean)[0];
+  const steps = inGroup
+    ? [
+        `Thanks for signing up to test ${site.name} on Android. You're on the tester list. One step left: while signed in to Google as ${to}, open this link, tap "Become a tester", and install ${site.name} from Google Play:`,
+        "",
+        `   ${site.androidBeta.optIn}`,
+        "",
+        "If it says the app isn't available yet, give it a few minutes and try again.",
+      ]
+    : [
+        `Thanks for signing up to test ${site.name} on Android. Two steps, both while signed in to Google as ${to}:`,
+        "",
+        `1. Join the tester group (click "Join group"):`,
+        `   ${site.androidBeta.group}`,
+        "",
+        `2. Then become a tester on Google Play and install ${site.name} from there:`,
+        `   ${site.androidBeta.optIn}`,
+        "",
+        "If step 2 says the app isn't available yet, give it a few minutes after joining the group and try again.",
+      ];
   await m.transport.sendMail({
     from: `${site.name} <${m.user}>`,
     replyTo: site.email,
@@ -67,15 +87,7 @@ export async function sendAndroidInvite(to: string, name: string): Promise<boole
     text: [
       first ? `Hi ${first},` : "Hi,",
       "",
-      `Thanks for signing up to test ${site.name} on Android. Two steps, both while signed in to Google as ${to}:`,
-      "",
-      `1. Join the tester group (click "Join group"):`,
-      `   ${site.androidBeta.group}`,
-      "",
-      `2. Then become a tester on Google Play and install ${site.name} from there:`,
-      `   ${site.androidBeta.optIn}`,
-      "",
-      "If step 2 says the app isn't available yet, give it a few minutes after joining the group and try again.",
+      ...steps,
       "",
       `Questions, or something not working? Just reply to this email.`,
       "",
