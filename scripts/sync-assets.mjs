@@ -186,8 +186,10 @@ async function lightFigure(src, light) {
   return sharp(out, { raw: { width: w, height: h, channels: 4 } }).png().toBuffer();
 }
 
-async function litFigure(src, light, width) {
-  return sharp(await lightFigure(src, light))
+async function litFigure(src, light, width, trim = false) {
+  // Trimmed to the figure's own edges when asked, so the picture's corners are the figure's.
+  const lit = trim ? await sharp(await lightFigure(src, light)).trim().toBuffer() : await lightFigure(src, light);
+  return sharp(lit)
     .resize({ width, withoutEnlargement: true })
     .webp({ quality: ART_QUALITY, alphaQuality: 95 })
     .toBuffer();
@@ -317,9 +319,13 @@ function plan(game, version, cardsDir, places, glows) {
     add(`enemies.${name}.scene`, figure, `public/media/world/enemy-${name}.webp`,
       { scene: { ...scene, glow: glows[name], artLeft: ENEMY_ART_LEFT, width: 1280 } }, [backdrop]);
     // The goblin hexer by its door, at the end of the page: the whole picture its own, no glow.
-    if (name === "goblin-hexer")
+    if (name === "goblin-hexer") {
       add(`enemies.${name}.finale`, figure, `public/media/world/finale-${name}.webp`,
         { scene: { ...scene, glow: null, artLeft: 0, width: 1120 } }, [backdrop]);
+      // And by the beta form on its own, no backdrop: lit as on its scene, cut to its edges.
+      add(`enemies.${name}.figure`, figure, `public/media/world/figure-${name}.webp`,
+        { lit: lights.enemies[name], width: 640, trim: true });
+    }
   }
 
   // The cards at about twice the width the site shows them at, for sharp screens (the card tool's
@@ -621,7 +627,7 @@ async function main() {
     else if (job.make === "ico") data = await makeIco(job.src);
     else if (job.make.card) data = await cutCard(job.src, job.make.card);
     else if (job.make.scene) data = await enemyScene(job.make.scene);
-    else if ("lit" in job.make) data = await litFigure(job.src, job.make.lit, job.make.width);
+    else if ("lit" in job.make) data = await litFigure(job.src, job.make.lit, job.make.width, job.make.trim);
     else data = await job.make(sharp(job.src)).toBuffer();
     rendered.push({ ...job, data });
   }

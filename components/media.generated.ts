@@ -317,6 +317,11 @@ export const enemies = {
     }
   },
   "goblin-hexer": {
+    "figure": {
+      "height": 693,
+      "src": "/media/world/figure-goblin-hexer.webp",
+      "width": 640
+    },
     "finale": {
       "height": 775,
       "src": "/media/world/finale-goblin-hexer.webp",

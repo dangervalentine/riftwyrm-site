@@ -2,19 +2,39 @@
 
 import { useActionState } from "react";
 import { joinBeta, type BetaState } from "@/app/beta/actions";
+import BetaHexer from "./BetaHexer";
 
 const input =
   "mt-1.5 block w-full rounded-md border border-line bg-well px-3 py-2.5 text-parchment placeholder:text-faint " +
   "focus:border-brass focus:outline-none aria-[invalid=true]:border-danger";
 
 /**
- * The sign-up form. It works without JavaScript: the server action runs on a
- * plain post, and each platform's email box is shown by CSS when its box is
- * ticked (.beta-form in globals.css), not by script.
+ * The sign-up form, with the goblin hexer beside it, facing it, whose staff
+ * throws glitter once a sign-up goes through. It works without JavaScript: the
+ * server action runs on a plain post, and each platform's email box is shown
+ * by CSS when its box is ticked (.beta-form in globals.css), not by script.
  */
 export default function BetaForm() {
   const [state, action, pending] = useActionState<BetaState, FormData>(joinBeta, { status: "idle" });
+  return (
+    <div className="grid items-start gap-8 sm:grid-cols-[minmax(0,13rem)_minmax(0,1fr)] md:gap-12">
+      <BetaHexer casting={state.status === "done"} className="mx-auto w-40 sm:w-full" />
+      <div>
+        <FormBody state={state} action={action} pending={pending} />
+      </div>
+    </div>
+  );
+}
 
+function FormBody({
+  state,
+  action,
+  pending,
+}: {
+  state: BetaState;
+  action: (form: FormData) => void;
+  pending: boolean;
+}) {
   if (state.status === "done") {
     return (
       <div role="status" className="space-y-3 rounded-lg border border-line bg-stone p-6">
