@@ -27,4 +27,11 @@ export const site = {
     googlePlay: "",
     appStore: "",
   },
+  /** The Android beta: a closed testing track whose testers are an open
+   * Google Group. Joining the group, then opting in, is all a tester does;
+   * the site emails both links to each Android sign-up (lib/notify.ts). */
+  androidBeta: {
+    group: "https://groups.google.com/g/riftwyrm-beta",
+    optIn: "https://play.google.com/apps/testing/com.dangervalentine.dragonhunter",
+  },
 } as const;

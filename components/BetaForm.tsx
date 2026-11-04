@@ -32,9 +32,12 @@ export default function BetaForm() {
         )}
         {state.google && (
           <p className="text-muted">
-            <strong className="text-parchment">Android:</strong> you will be added to the Android
-            test, and an email with the link to join it will be sent to{" "}
-            <span className="text-parchment">{state.google}</span> shortly.
+            <strong className="text-parchment">Android:</strong>{" "}
+            {state.androidMailed
+              ? "you have been added to the Android test. An email with the link to join it is on its way to "
+              : "you will be added to the Android test, and an email with the link to join it will be sent to "}
+            <span className="text-parchment">{state.google}</span>
+            {state.androidMailed ? "" : " shortly"}. Check your spam folder if it hasn&rsquo;t arrived.
           </p>
         )}
         {!state.apple && !state.google && (

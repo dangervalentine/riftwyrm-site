@@ -71,13 +71,20 @@ added. `npm run testflight -- sync` puts every Apple ID on the list into the
 group (safe to repeat): run it once after setting the key, or after a failed
 invite (the notification email says so).
 
-**Android: by hand.** Google Play's API cannot edit a track's tester email
-list, so each Android sign-up is told they will be emailed a link shortly, and
-the notification email reminds you to do it. `npm run beta-export` writes
-`beta-export/google-play.csv` (one email per line) for Play Console → Testing →
-Closed testing → Testers → an email list → Upload CSV file. Once they are on the
-list, send them the track's opt-in link. (It also writes `testflight.csv` for
-TestFlight's Import from CSV, should the API be unavailable.)
+**Android: automatic, by email.** Google Play's API cannot edit a track's
+tester email list, so the "Closed testing - Public Beta" track takes its testers
+from an open Google Group, riftwyrm-beta@googlegroups.com (anyone with the link
+can join; only managers see members). Each new Android sign-up is emailed both
+links at once: join the group, then opt in on Google Play (`site.androidBeta` in
+`components/site.ts`, mail in `lib/notify.ts`). To mail them by hand, for
+sign-ups from before this or a failed send:
+
+```sh
+npm run android-invite -- someone@gmail.com
+```
+
+`npm run beta-export` still writes both lists (`google-play.csv`,
+`testflight.csv`) for importing by hand.
 
 To remove someone, delete their line from the sign-ups file.
 

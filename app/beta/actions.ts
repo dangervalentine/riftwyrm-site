@@ -1,13 +1,14 @@
 "use server";
 
 import { addSignup, type Signup } from "@/lib/beta";
-import { notifySignup } from "@/lib/notify";
+import { notifySignup, sendAndroidInvite } from "@/lib/notify";
 import { inviteTester, splitName, testflightConfig } from "@/lib/testflight";
 
 export type BetaState =
   | { status: "idle" }
-  /** testflight: whether the Apple ID is already in the TestFlight group. */
-  | { status: "done"; apple: string; google: string; testflight: boolean }
+  /** testflight: the Apple ID is in the TestFlight group; androidMailed: the
+   * Android join links have been emailed. */
+  | { status: "done"; apple: string; google: string; testflight: boolean; androidMailed: boolean }
   | {
       status: "error";
       message: string;
@@ -29,7 +30,7 @@ function field(form: FormData, name: string, max = 254): string {
 export async function joinBeta(_prev: BetaState, form: FormData): Promise<BetaState> {
   // The hidden "website" box is left empty by people and filled in by bots.
   // A bot is told it succeeded and nothing is kept.
-  if (field(form, "website")) return { status: "done", apple: "", google: "", testflight: false };
+  if (field(form, "website")) return { status: "done", apple: "", google: "", testflight: false, androidMailed: false };
 
   const ios = form.get("ios") === "on";
   const android = form.get("android") === "on";
@@ -59,6 +60,7 @@ export async function joinBeta(_prev: BetaState, form: FormData): Promise<BetaSt
   // The sign-up is already kept, so from here a failure is logged and mailed,
   // never shown: the visitor is on the list either way.
   let invited = false;
+  let mailed = false;
   if (total !== null) {
     const notes: string[] = [];
     if (apple) {
@@ -66,10 +68,18 @@ export async function joinBeta(_prev: BetaState, form: FormData): Promise<BetaSt
       invited = tf.ok;
       notes.push(`TestFlight: ${tf.note}`);
     }
-    if (google) notes.push("Android: add them to the Play closed testing list, then email them the opt-in link.");
+    if (google) {
+      try {
+        mailed = await sendAndroidInvite(google, name);
+        notes.push(mailed ? "Android: emailed them the group and opt-in links." : "Android: mail is not set up; nothing was sent.");
+      } catch (e) {
+        console.error("Android invite email failed", e);
+        notes.push(`Android: invite email FAILED (${e instanceof Error ? e.message : e}); run npm run android-invite -- ${google}`);
+      }
+    }
     await notifySignup(signup, total, notes).catch((e) => console.error("beta sign-up email failed", e));
   }
-  return { status: "done", apple, google, testflight: invited };
+  return { status: "done", apple, google, testflight: invited, androidMailed: mailed };
 }
 
 /** Adds the Apple ID to the TestFlight group and says how it went. */

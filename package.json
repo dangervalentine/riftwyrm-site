@@ -9,7 +9,8 @@
     "lint": "eslint",
     "sync-assets": "node scripts/sync-assets.mjs",
     "beta-export": "node scripts/beta-export.mjs",
-    "testflight": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/testflight.mts"
+    "testflight": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/testflight.mts",
+    "android-invite": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/android-invite.mts"
   },
   "dependencies": {
     "embla-carousel-react": "^8.6.0",
