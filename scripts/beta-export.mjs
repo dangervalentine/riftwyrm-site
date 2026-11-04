@@ -10,10 +10,14 @@
  *   npm run beta-export                 # writes to beta-export/ (git ignores it)
  *   npm run beta-export -- --out <dir>
  *
- * Reads BETA_SIGNUPS_FILE if set, as the site does. Each address is listed once.
+ * Reads BETA_SIGNUPS_FILE from the environment or .env.local, as the site
+ * does. Each address is listed once.
  */
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
+import nextEnv from "@next/env";
+
+nextEnv.loadEnvConfig(process.cwd());
 
 const args = process.argv.slice(2);
 const outAt = args.indexOf("--out");
