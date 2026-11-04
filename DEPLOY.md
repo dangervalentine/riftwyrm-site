@@ -40,7 +40,13 @@ and make sure the user running the site can write there:
 BETA_SIGNUPS_FILE=/var/lib/riftwyrm/beta-signups.jsonl NODE_ENV=production npm run start
 ```
 
-Unset, it falls back to `data/beta-signups.jsonl` inside the clone. Run
+Unset, it falls back to `data/beta-signups.jsonl` inside the clone.
+
+To get an email for each sign-up, also set `GMAIL_USER` and
+`GMAIL_APP_PASSWORD` (the Gmail account and app password NextQuest's tester
+email uses, in its `app/scripts/deploy/config.json`) and optionally
+`BETA_NOTIFY_TO`. Put them in the service's environment or in `.env.local`
+in the clone; never commit them. Run
 `npm run beta-export` with the same `BETA_SIGNUPS_FILE` to get the lists for
 TestFlight and Google Play (see the README).
 

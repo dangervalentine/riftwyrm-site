@@ -68,3 +68,10 @@ npm run beta-export        # writes beta-export/testflight.csv and beta-export/g
   → Testers → an email list → Upload CSV file.
 
 To remove someone, delete their line from the sign-ups file.
+
+Each new sign-up is also emailed, through Gmail with an app password, the same
+account NextQuest sends from. Set `GMAIL_USER` and `GMAIL_APP_PASSWORD`
+(and optionally `BETA_NOTIFY_TO`, which defaults to `GMAIL_USER`) in the
+site's environment, or in `.env.local` (git ignores it). Without them,
+sign-ups are still kept, just not mailed. A failed send is logged and the
+sign-up still succeeds.

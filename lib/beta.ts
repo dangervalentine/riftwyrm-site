@@ -9,7 +9,7 @@ import path from "node:path";
  * `npm run beta-export` turns it into TestFlight and Google Play lists.
  */
 export const signupsFile = path.resolve(
-  process.env.BETA_SIGNUPS_FILE || path.join(process.cwd(), "data", "beta-signups.jsonl"),
+  process.env.BETA_SIGNUPS_FILE || path.join(/* turbopackIgnore: true */ process.cwd(), "data", "beta-signups.jsonl"),
 );
 
 export type Signup = {
@@ -39,11 +39,13 @@ export async function readSignups(): Promise<Signup[]> {
   });
 }
 
-/** Adds a sign-up, unless every address in it is already on the list. */
-export async function addSignup(s: Signup): Promise<void> {
+/** Adds a sign-up, unless every address in it is already on the list.
+ * Returns how many sign-ups there now are, or null if this one was not new. */
+export async function addSignup(s: Signup): Promise<number | null> {
   const have = await readSignups();
   const known = (key: "apple" | "google") => !s[key] || have.some((h) => h[key] === s[key]);
-  if (known("apple") && known("google")) return;
+  if (known("apple") && known("google")) return null;
   await mkdir(path.dirname(signupsFile), { recursive: true });
   await appendFile(signupsFile, JSON.stringify(s) + "\n", "utf8");
+  return have.length + 1;
 }

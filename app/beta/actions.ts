@@ -1,6 +1,7 @@
 "use server";
 
-import { addSignup } from "@/lib/beta";
+import { addSignup, type Signup } from "@/lib/beta";
+import { notifySignup } from "@/lib/notify";
 
 export type BetaState =
   | { status: "idle" }
@@ -45,11 +46,17 @@ export async function joinBeta(_prev: BetaState, form: FormData): Promise<BetaSt
     return { status: "error", field: "google", message: "Enter the email address of your Google account.", values };
   }
 
+  const signup: Signup = { at: new Date().toISOString(), name, apple, google };
+  let total: number | null;
   try {
-    await addSignup({ at: new Date().toISOString(), name, apple, google });
+    total = await addSignup(signup);
   } catch (e) {
     console.error("beta sign-up could not be saved", e);
     return { status: "error", message: "Something went wrong saving that. Please try again in a little while.", values };
+  }
+  // The sign-up is already kept; a mail that fails is logged, not shown.
+  if (total !== null) {
+    await notifySignup(signup, total).catch((e) => console.error("beta sign-up email failed", e));
   }
   return {
     status: "done",
