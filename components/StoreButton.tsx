@@ -10,7 +10,8 @@ export type StoreButtonProps = {
   label: "App Store" | "Google Play";
   /** The small line above the name: "Download on the" / "Get it on". */
   eyebrow: string;
-  /** The listing. "" while the game is not in that store yet. */
+  /** The listing, or a page on this site (opened in the same tab). "" while
+   * the game is not in that store yet. */
   href: string;
 };
 
@@ -108,8 +109,7 @@ export function StoreButton({ label, eyebrow, href }: StoreButtonProps) {
     return (
       <a
         href={href}
-        target="_blank"
-        rel="noreferrer"
+        {...(href.startsWith("/") ? {} : { target: "_blank", rel: "noreferrer" })}
         className={`${shape} ${tone.edge} ${tone.name} transition-colors hover:border-white/35 hover:bg-[#04192a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brass`}
       >
         {contents}
