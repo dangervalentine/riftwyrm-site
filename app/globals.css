@@ -571,3 +571,16 @@ th[aria-sort="descending"] .guide-sort { color: var(--brass); }
   border-color: var(--brass-deep);
   background: var(--stone-raised);
 }
+
+/* ------------------------------------------------------------ beta form */
+
+/* Each platform's email box shows only while its box is ticked; done in CSS
+   so the form works the same without JavaScript. */
+.beta-form .beta-ios,
+.beta-form .beta-android {
+  display: none;
+}
+.beta-form:has(#ios:checked) .beta-ios,
+.beta-form:has(#android:checked) .beta-android {
+  display: block;
+}

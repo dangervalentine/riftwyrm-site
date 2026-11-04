@@ -30,6 +30,20 @@ only through a reverse proxy on the same machine. Run it under a process
 manager or service wrapper (systemd, pm2, NSSM, etc.) so it restarts on crash
 and on reboot.
 
+### Beta sign-ups
+
+The `/beta` form writes sign-ups to a file on this machine. Point
+`BETA_SIGNUPS_FILE` at a path outside the clone, so redeploys never touch it,
+and make sure the user running the site can write there:
+
+```sh
+BETA_SIGNUPS_FILE=/var/lib/riftwyrm/beta-signups.jsonl NODE_ENV=production npm run start
+```
+
+Unset, it falls back to `data/beta-signups.jsonl` inside the clone. Run
+`npm run beta-export` with the same `BETA_SIGNUPS_FILE` to get the lists for
+TestFlight and Google Play (see the README).
+
 ## 3. Expose it
 
 Put a reverse proxy or tunnel in front of `http://localhost:3200` for the
@@ -41,6 +55,7 @@ site's hostname, terminate TLS there, and point the domain's DNS at it.
 curl -I https://riftwyrm.dangervalentine.com/
 curl -I https://riftwyrm.dangervalentine.com/privacy
 curl -I https://riftwyrm.dangervalentine.com/support
+curl -I https://riftwyrm.dangervalentine.com/beta
 ```
 
 The store listings need the privacy policy URL

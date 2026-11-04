@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Prose from "@/components/Prose";
@@ -11,9 +12,10 @@ export const metadata: Metadata = {
 };
 
 /** Stated as narrowly as the app behaves: progress on the device, and the
- * player's own choice to use Google Play Games or Apple Game Center. Nothing
- * here may claim collection the game does not do. */
-const EFFECTIVE = "October 29, 2026";
+ * player's own choice to use Google Play Games or Apple Game Center, and on
+ * the website the beta sign-up form (app/beta). Nothing here may claim
+ * collection the game or the site does not do. */
+const EFFECTIVE = "November 3, 2026";
 
 export default function Privacy() {
   const mail = <a href={`mailto:${site.email}`}>{site.email}</a>;
@@ -27,7 +29,9 @@ export default function Privacy() {
         <p>
           This policy explains how {site.name} (&ldquo;the game&rdquo;), made by {site.developer}{" "}
           (&ldquo;we&rdquo;, &ldquo;us&rdquo;), handles information. In short: the game keeps your
-          progress on your device, and we do not collect, sell or share your personal data.
+          progress on your device, and we do not collect, sell or share your personal data. The one
+          exception is the beta sign-up on this website, which keeps the email address you give it
+          so we can invite you to test the game.
         </p>
 
         <h2>Information stored on your device</h2>
@@ -43,7 +47,7 @@ export default function Privacy() {
           <li>The game contains no analytics and no tracking.</li>
           <li>We do not sell your data or share it with anyone for advertising.</li>
           <li>The game has no account system of its own; you never create an account with us.</li>
-          <li>We run no server that receives player data.</li>
+          <li>The game sends no data to any server of ours.</li>
         </ul>
 
         <h2>Optional: Google Play Games and Apple Game Center</h2>
@@ -76,6 +80,26 @@ export default function Privacy() {
           they show developers in aggregate, such as leaderboard entries.
         </p>
 
+        <h2 id="beta">Beta sign-ups on this website</h2>
+        <p>
+          If you sign up on the <Link href="/beta">beta page</Link>, we keep what you enter: your
+          name if you give one, and the email address of your Apple ID, your Google account, or
+          both, with the date you signed up. It is stored on our own server, not with a form or
+          mailing-list service.
+        </p>
+        <ul>
+          <li>
+            We use it only to invite you to test the game: we add your address to Apple TestFlight
+            or Google Play&rsquo;s testing program, which then send you the invitation. Apple and
+            Google handle it there under their own privacy policies.
+          </li>
+          <li>We do not use it for marketing, and we do not sell or share it with anyone else.</li>
+          <li>
+            To be removed from the list, email {mail}. We delete it, and remove you from the test
+            groups, once you ask or once the beta ends.
+          </li>
+        </ul>
+
         <h2>Children</h2>
         <p>
           The game is intended for players aged 13 and over. It is not directed at children under
@@ -98,6 +122,9 @@ export default function Privacy() {
             <strong>Apple Game Center and iCloud:</strong> you can manage or delete your data in
             Settings on your device (Game Center, and iCloud &rarr; Manage Storage) and through{" "}
             <a href="https://privacy.apple.com/">Apple&rsquo;s Data and Privacy page</a>.
+          </li>
+          <li>
+            <strong>Beta sign-ups:</strong> email {mail} and we will delete your sign-up.
           </li>
           <li>
             <strong>Need help?</strong> Email {mail} and we will walk you through it.

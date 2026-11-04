@@ -21,3 +21,7 @@ npm-debug.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# beta sign-ups (personal data, kept on the host only) and their exports
+/data/
+/beta-export/

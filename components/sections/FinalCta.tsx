@@ -18,6 +18,13 @@ export default function FinalCta() {
           </h2>
           <p className="mt-4 text-lg text-muted">Coming to iPhone, iPad and Android.</p>
           <StoreButtons className="mt-8" />
+          <p className="mt-6 text-muted">
+            Want to play it first?{" "}
+            <Link href="/beta" className="text-brass underline underline-offset-4 hover:text-brass-bright">
+              Join the beta
+            </Link>
+            .
+          </p>
         </div>
         {/* The hexer keeps the strategy guide: the picture is its only way in, with no
             mark of it until it is pointed at or reached by keyboard. */}

@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /** No server features are used; the site is three static pages.
+  /** Every page is static; the one server feature is the beta sign-up form's
+   * server action (app/beta/actions.ts), so the site runs under `next start`.
    * poweredByHeader off keeps the response headers plain. */
   poweredByHeader: false,
   /** The images are served as scripts/sync-assets.mjs makes them: already
