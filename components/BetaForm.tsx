@@ -57,12 +57,16 @@ function FormBody({
               ? "you have been added to the Android test. An email with the link to join it is on its way to "
               : "you will be added to the Android test, and an email with the link to join it will be sent to "}
             <span className="text-parchment">{state.google}</span>
-            {state.androidMailed ? "" : " shortly"}. Check your spam folder if it hasn&rsquo;t arrived.
+            {state.androidMailed ? "" : " shortly"}.
           </p>
         )}
         {!state.apple && !state.google && (
           <p className="text-muted">The invitation will come to the address you gave.</p>
         )}
+        <p className="text-muted">
+          <strong className="text-parchment">Don&rsquo;t see it?</strong> Invitations sometimes land in
+          spam or junk. Check there, and mark it as not spam so the next one reaches your inbox.
+        </p>
       </div>
     );
   }
@@ -158,6 +162,11 @@ function FormBody({
       >
         {pending ? "Sending…" : "Join the beta"}
       </button>
+      <p className="text-sm text-muted">
+        Your invitation comes by email: from Apple&rsquo;s TestFlight for iPhone and iPad, and from{" "}
+        Riftwyrm for Android. It sometimes lands in spam or junk, so look there if it hasn&rsquo;t
+        arrived within a few minutes.
+      </p>
     </form>
   );
 }
