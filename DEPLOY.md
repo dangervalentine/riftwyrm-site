@@ -46,7 +46,12 @@ To get an email for each sign-up, also set `GMAIL_USER` and
 `GMAIL_APP_PASSWORD` (the Gmail account and app password NextQuest's tester
 email uses, in its `app/scripts/deploy/config.json`) and optionally
 `BETA_NOTIFY_TO`. Put them in the service's environment or in `.env.local`
-in the clone; never commit them. Run
+in the clone; never commit them.
+
+For automatic TestFlight invites, add `ASC_ISSUER_ID`, `ASC_KEY_ID`,
+`ASC_PRIVATE_KEY_PATH` (the `.p8` file, outside the clone and readable only by
+the service account) and `ASC_BETA_GROUP_ID` the same way, restart the
+service, and run `npm run testflight -- sync` once (see the README). Run
 `npm run beta-export` with the same `BETA_SIGNUPS_FILE` to get the lists for
 TestFlight and Google Play (see the README).
 

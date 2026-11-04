@@ -8,7 +8,8 @@
     "start": "next start --port 3200 --hostname 127.0.0.1",
     "lint": "eslint",
     "sync-assets": "node scripts/sync-assets.mjs",
-    "beta-export": "node scripts/beta-export.mjs"
+    "beta-export": "node scripts/beta-export.mjs",
+    "testflight": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/testflight.mts"
   },
   "dependencies": {
     "embla-carousel-react": "^8.6.0",

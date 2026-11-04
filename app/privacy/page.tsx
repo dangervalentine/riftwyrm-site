@@ -89,9 +89,10 @@ export default function Privacy() {
         </p>
         <ul>
           <li>
-            We use it only to invite you to test the game: we add your address to Apple TestFlight
-            or Google Play&rsquo;s testing program, which then send you the invitation. Apple and
-            Google handle it there under their own privacy policies.
+            We use it only to invite you to test the game. An Apple ID is passed straight to
+            Apple&rsquo;s TestFlight when you sign up, and Apple sends you the invitation; a Google
+            account is added to Google Play&rsquo;s testing program, and we email you the link to
+            join. Apple and Google handle it there under their own privacy policies.
           </li>
           <li>We do not use it for marketing, and we do not sell or share it with anyone else.</li>
           <li>

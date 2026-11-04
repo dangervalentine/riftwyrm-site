@@ -2,10 +2,12 @@
 
 import { addSignup, type Signup } from "@/lib/beta";
 import { notifySignup } from "@/lib/notify";
+import { inviteTester, splitName, testflightConfig } from "@/lib/testflight";
 
 export type BetaState =
   | { status: "idle" }
-  | { status: "done"; platforms: string }
+  /** testflight: whether the Apple ID is already in the TestFlight group. */
+  | { status: "done"; apple: string; google: string; testflight: boolean }
   | {
       status: "error";
       message: string;
@@ -27,7 +29,7 @@ function field(form: FormData, name: string, max = 254): string {
 export async function joinBeta(_prev: BetaState, form: FormData): Promise<BetaState> {
   // The hidden "website" box is left empty by people and filled in by bots.
   // A bot is told it succeeded and nothing is kept.
-  if (field(form, "website")) return { status: "done", platforms: "" };
+  if (field(form, "website")) return { status: "done", apple: "", google: "", testflight: false };
 
   const ios = form.get("ios") === "on";
   const android = form.get("android") === "on";
@@ -54,12 +56,34 @@ export async function joinBeta(_prev: BetaState, form: FormData): Promise<BetaSt
     console.error("beta sign-up could not be saved", e);
     return { status: "error", message: "Something went wrong saving that. Please try again in a little while.", values };
   }
-  // The sign-up is already kept; a mail that fails is logged, not shown.
+  // The sign-up is already kept, so from here a failure is logged and mailed,
+  // never shown: the visitor is on the list either way.
+  let invited = false;
   if (total !== null) {
-    await notifySignup(signup, total).catch((e) => console.error("beta sign-up email failed", e));
+    const notes: string[] = [];
+    if (apple) {
+      const tf = await testflight(apple, name);
+      invited = tf.ok;
+      notes.push(`TestFlight: ${tf.note}`);
+    }
+    if (google) notes.push("Android: add them to the Play closed testing list, then email them the opt-in link.");
+    await notifySignup(signup, total, notes).catch((e) => console.error("beta sign-up email failed", e));
   }
-  return {
-    status: "done",
-    platforms: ios && android ? "iPhone or iPad and Android" : ios ? "iPhone or iPad" : "Android",
-  };
+  return { status: "done", apple, google, testflight: invited };
+}
+
+/** Adds the Apple ID to the TestFlight group and says how it went. */
+async function testflight(email: string, name: string): Promise<{ ok: boolean; note: string }> {
+  const cfg = testflightConfig();
+  if (!cfg) return { ok: false, note: "not set up on the server; run npm run testflight -- sync once it is." };
+  try {
+    const r = await inviteTester(cfg, { email, ...splitName(name) });
+    return {
+      ok: true,
+      note: r === "added" ? "added to the group; Apple sends the invitation." : "was already a tester; added to the group.",
+    };
+  } catch (e) {
+    console.error("TestFlight invite failed", e);
+    return { ok: false, note: `FAILED (${e instanceof Error ? e.message : e}); run npm run testflight -- sync to retry.` };
+  }
 }

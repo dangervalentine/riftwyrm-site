@@ -14,7 +14,7 @@ import type { Signup } from "./beta";
  * are still kept. The note is plain text, so nothing a visitor typed can
  * become markup or a header.
  */
-export async function notifySignup(s: Signup, total: number): Promise<void> {
+export async function notifySignup(s: Signup, total: number, notes: string[] = []): Promise<void> {
   const user = process.env.GMAIL_USER;
   const pass = process.env.GMAIL_APP_PASSWORD;
   if (!user || !pass) return;
@@ -37,6 +37,8 @@ export async function notifySignup(s: Signup, total: number): Promise<void> {
       `Google account:  ${s.google || "-"}`,
       `Signed up:       ${s.at}`,
       "",
+      ...notes,
+      ...(notes.length ? [""] : []),
       `${total} sign-up${total === 1 ? "" : "s"} so far. Run \`npm run beta-export\` on the host for the TestFlight and Google Play lists.`,
     ].join("\n"),
   });

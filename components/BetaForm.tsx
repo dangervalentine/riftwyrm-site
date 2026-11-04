@@ -17,13 +17,29 @@ export default function BetaForm() {
 
   if (state.status === "done") {
     return (
-      <div role="status" className="rounded-lg border border-line bg-stone p-6">
+      <div role="status" className="space-y-3 rounded-lg border border-line bg-stone p-6">
         <p className="font-display text-xl font-semibold text-parchment">You&rsquo;re on the list.</p>
-        <p className="mt-2 text-muted">
-          {state.platforms
-            ? `When a test build for ${state.platforms} is ready, the invitation will come to the address you gave.`
-            : "When a test build is ready, the invitation will come to the address you gave."}
-        </p>
+        {state.apple && (
+          <p className="text-muted">
+            <strong className="text-parchment">iPhone and iPad:</strong>{" "}
+            {state.testflight
+              ? "you have been added to the TestFlight beta. Apple will email your invitation to "
+              : "you will be added to the TestFlight beta, and Apple will email your invitation to "}
+            <span className="text-parchment">{state.apple}</span>
+            {state.testflight ? "" : " shortly"}. Open it on your device to install the test build
+            with TestFlight.
+          </p>
+        )}
+        {state.google && (
+          <p className="text-muted">
+            <strong className="text-parchment">Android:</strong> you will be added to the Android
+            test, and an email with the link to join it will be sent to{" "}
+            <span className="text-parchment">{state.google}</span> shortly.
+          </p>
+        )}
+        {!state.apple && !state.google && (
+          <p className="text-muted">The invitation will come to the address you gave.</p>
+        )}
       </div>
     );
   }
