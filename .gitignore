@@ -25,3 +25,7 @@ next-env.d.ts
 # beta sign-ups (personal data, kept on the host only) and their exports
 /data/
 /beta-export/
+
+# The App Store Connect key on the remote server (deploy/docker-compose.yml); never committed
+/secrets/
+*.p8

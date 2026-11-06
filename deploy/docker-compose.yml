@@ -1,0 +1,32 @@
+# The site on the remote server (root@91.99.62.133), beside NextQuest and the Riftwyrm
+# scores service (DEPLOY.md). It joins NextQuest's docker network so NextQuest's Caddy,
+# which owns ports 80 and 443, can forward riftwyrm.dangervalentine.com to it by name;
+# no port is open to the world. The loopback port is for curl on the server.
+#
+# On the server, in /opt/riftwyrm-site (deploy.sh puts it there):
+#   docker compose -f deploy/docker-compose.yml up -d --build
+name: riftwyrm-site
+
+services:
+  web:
+    build:
+      context: ..
+    container_name: riftwyrm_web
+    env_file: ./.env
+    environment:
+      ASC_PRIVATE_KEY_PATH: /run/secrets/asc.p8
+    volumes:
+      - signups:/data
+      - ../secrets/asc.p8:/run/secrets/asc.p8:ro
+    ports:
+      - "127.0.0.1:5200:3200"
+    networks: [nextquest_network]
+    mem_limit: 384m
+    restart: unless-stopped
+
+volumes:
+  signups:
+
+networks:
+  nextquest_network:
+    external: true

@@ -1,0 +1,13 @@
+.git
+node_modules
+.next
+data
+secrets
+deploy/.env
+.env
+.env.*
+!.env.example
+*.tsbuildinfo
+specs
+.specify
+.claude
