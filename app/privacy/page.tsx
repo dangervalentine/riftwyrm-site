@@ -11,11 +11,13 @@ export const metadata: Metadata = {
   alternates: { canonical: "/privacy" },
 };
 
-/** Stated as narrowly as the app behaves: progress on the device, and the
- * player's own choice to use Google Play Games or Apple Game Center, and on
- * the website the beta sign-up form (app/beta). Nothing here may claim
- * collection the game or the site does not do. */
-const EFFECTIVE = "November 3, 2026";
+/** Stated as narrowly as the app behaves: progress on the device, the
+ * player's own choice to use Google Play Games or Apple Game Center, the
+ * shared leaderboard the game sends finished games to while signed in to one
+ * of them (dragon-hunter specs/042), and on the website the beta sign-up form
+ * (app/beta). Nothing here may claim collection the game or the site does not
+ * do, and nothing it does may go unsaid. */
+const EFFECTIVE = "November 6, 2026";
 
 export default function Privacy() {
   const mail = <a href={`mailto:${site.email}`}>{site.email}</a>;
@@ -29,16 +31,19 @@ export default function Privacy() {
         <p>
           This policy explains how {site.name} (&ldquo;the game&rdquo;), made by {site.developer}{" "}
           (&ldquo;we&rdquo;, &ldquo;us&rdquo;), handles information. In short: the game keeps your
-          progress on your device, and we do not collect, sell or share your personal data. The one
-          exception is the beta sign-up on this website, which keeps the email address you give it
-          so we can invite you to test the game.
+          progress on your device. If you sign in to Google Play Games or Apple Game Center, the
+          game also sends the games you finish to our own leaderboard service, so players on
+          Android, iPhone and iPad can share one leaderboard. We do not sell or share your data. The
+          beta sign-up on this website keeps the email address you give it so we can invite you to
+          test the game.
         </p>
 
         <h2>Information stored on your device</h2>
         <p>
           The game saves your progress on your device: what you have unlocked, your play records,
-          your achievements and your settings. This information stays on your device and is not
-          sent to us.
+          your achievements and your settings. Apart from the game records described under{" "}
+          <a href="#leaderboard">Shared leaderboard</a>, sent only while you are signed in, this
+          information stays on your device and is not sent to us.
         </p>
 
         <h2>What we do not do</h2>
@@ -47,7 +52,10 @@ export default function Privacy() {
           <li>The game contains no analytics and no tracking.</li>
           <li>We do not sell your data or share it with anyone for advertising.</li>
           <li>The game has no account system of its own; you never create an account with us.</li>
-          <li>The game sends no data to any server of ours.</li>
+          <li>
+            Signed out, the game sends no data to any server of ours. Signed in, it sends only what{" "}
+            <a href="#leaderboard">Shared leaderboard</a> lists.
+          </li>
         </ul>
 
         <h2>Optional: Google Play Games and Apple Game Center</h2>
@@ -77,7 +85,51 @@ export default function Privacy() {
         <h3>What we can see</h3>
         <p>
           We do not receive or have access to the data you keep with Google or Apple, beyond what
-          they show developers in aggregate, such as leaderboard entries.
+          they show developers in aggregate, such as leaderboard entries, and what the game sends us
+          for the shared leaderboard below.
+        </p>
+
+        <h2 id="leaderboard">Shared leaderboard</h2>
+        <p>
+          While you are signed in to Google Play Games or Apple Game Center, the game sends each
+          game you finish to our own leaderboard service, run by us on our own server, so that
+          players on Android, iPhone and iPad can share one leaderboard. Games finished before you
+          signed in are sent once when you do.
+        </p>
+        <ul>
+          <li>
+            <strong>What is sent:</strong> which platform you play on; your Google Play Games or Game
+            Center player ID; your display name on that platform; and, for each finished game, its
+            result, score, difficulty, dragon, the rules and options played, how far the game got,
+            the time played, and when it started and ended.
+          </li>
+          <li>
+            <strong>How we know it is you:</strong> each time, the game asks Google or Apple for a
+            proof that you are signed in, and our service checks it with them. We do not keep the
+            proof.
+          </li>
+          <li>
+            <strong>Who sees it:</strong> other players see your display name, your platform, and
+            the score, dragon, rules, time and date of your best wins on the leaderboard. Your player
+            ID, your losses and your other games are shown to no one.
+          </li>
+          <li>
+            <strong>What it is used for:</strong> showing the leaderboard and keeping your game
+            records. It is not sold, not shared with anyone else, and not used for advertising.
+          </li>
+          <li>
+            <strong>How long it is kept:</strong> until you ask us to remove it, or the service is
+            shut down. Backup copies of the database are kept for up to 30 days for recovery.
+          </li>
+          <li>
+            <strong>Removing it:</strong> email {mail} with your display name and platform, and we
+            will delete everything the service holds about you. Signing out stops anything new from
+            being sent.
+          </li>
+        </ul>
+        <p>
+          The connection to the service is encrypted. Google&rsquo;s and Apple&rsquo;s own
+          leaderboards keep receiving your wins too, under their own privacy policies.
         </p>
 
         <h2 id="beta">Beta sign-ups on this website</h2>
@@ -123,6 +175,10 @@ export default function Privacy() {
             <strong>Apple Game Center and iCloud:</strong> you can manage or delete your data in
             Settings on your device (Game Center, and iCloud &rarr; Manage Storage) and through{" "}
             <a href="https://privacy.apple.com/">Apple&rsquo;s Data and Privacy page</a>.
+          </li>
+          <li>
+            <strong>Shared leaderboard:</strong> email {mail} with your display name and platform,
+            and we will delete your records and remove you from the leaderboard.
           </li>
           <li>
             <strong>Beta sign-ups:</strong> email {mail} and we will delete your sign-up.
