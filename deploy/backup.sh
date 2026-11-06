@@ -2,7 +2,7 @@
 # Nightly, on the remote server (cron): the beta sign-ups to Cloudflare R2, through the
 # Riftwyrm scores service's own backup code and R2 keys (its riftwyrm_scores/backup.py),
 # under riftwyrm-site/ in the same bucket, kept 30 days.
-#   40 4 * * * /opt/riftwyrm-site/deploy/backup.sh >> /var/log/riftwyrm-site-backup.log 2>&1
+#   45 4 * * * /opt/riftwyrm-site/deploy/backup.sh >> /var/log/riftwyrm-site-backup.log 2>&1
 set -euo pipefail
 
 docker exec riftwyrm_web cat /data/beta-signups.jsonl | docker exec -i riftwyrm_scores python -c '

@@ -15,7 +15,7 @@ deploy/deploy.sh [branch]      # pull the branch on the server, rebuild, check i
   `ssh root@91.99.62.133 'docker exec riftwyrm_web npm run testflight -- sync'`
   (likewise `beta-export`, `android-invite`, `android-group`).
 - Sign-ups live in the `riftwyrm-site_signups` volume at `/data/beta-signups.jsonl`,
-  backed up nightly to R2 by `deploy/backup.sh` (cron at 04:40, beside the scores
+  backed up nightly to R2 by `deploy/backup.sh` (cron at 04:45, beside the scores
   service's backup, under `riftwyrm-site/` in its bucket, kept 30 days).
 - Settings: `/opt/riftwyrm-site/deploy/.env` (mode 600, keys in `deploy/env.example`);
   the App Store Connect key: `/opt/riftwyrm-site/secrets/asc.p8` (mode 600), mounted
